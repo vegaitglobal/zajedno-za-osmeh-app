@@ -33,6 +33,7 @@ class _GuMobileAppState extends State<GuMobileApp> {
           routerConfig: router,
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            fontFamily: 'Poppins',
           ),
         ));
   }

@@ -15,7 +15,8 @@ class CoinListItem extends StatelessWidget {
     return ListTile(
       leading: Image.network(coin.image),
       title: Text(coin.name),
-      subtitle: Text('${coin.symbol} - \$${coin.currentPrice.toStringAsFixed(2)}'),
+      subtitle:
+          Text('${coin.symbol} - \$${coin.currentPrice.toStringAsFixed(2)}'),
       onTap: () {
         // Handle tap on the list item
       },
@@ -34,7 +35,7 @@ class CoinListItemWithBorder extends StatelessWidget {
       margin: const EdgeInsets.all(8), // Optional margin for spacing
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16), // Set border radius
-        border: Border.all(color: AppColors.systemShadow), // Set border color
+        border: Border.all(color: Colors.grey), // Set border color
         boxShadow: const [
           BoxShadow(
             color: Colors.white, // Set shadow color
@@ -47,7 +48,8 @@ class CoinListItemWithBorder extends StatelessWidget {
       child: ListTile(
         leading: Image.network(coin.image),
         title: Text(coin.name),
-        subtitle: Text('${coin.symbol} - \$${coin.currentPrice.toStringAsFixed(2)}'),
+        subtitle:
+            Text('${coin.symbol} - \$${coin.currentPrice.toStringAsFixed(2)}'),
         trailing: kIsWeb
             ? const Icon(Icons.arrow_forward_ios) // Arrow icon for web
             : const Icon(Icons.arrow_forward), // Default arrow icon for mobile
