@@ -1,4 +1,4 @@
-class CarouselItem {
+class BenefitModel {
   final String title;
   final String address;
   final String logoImgUrl;
@@ -7,7 +7,7 @@ class CarouselItem {
   final List<String> services;
   final List<String> tags;
 
-  CarouselItem({
+  BenefitModel({
     required this.title,
     required this.address,
     required this.websiteUrl,
