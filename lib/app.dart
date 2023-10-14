@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/data/benefits_feature/repository/benefits_repo.dart';
+import 'package:gu_mobile/data/benefits_feature/repository/benefits_repository.dart';
 import 'package:gu_mobile/data/example_feature/repository/example_repository_impl.dart';
 import 'package:gu_mobile/di/injector.dart';
+import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/example_feature/bloc/example_bloc.dart';
 
 import 'navigation/app_routing/navigation_router.dart';
@@ -19,6 +22,10 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
             create: (context) =>
                 ExampleBloc(repository: getIt<ExampleRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                BenefitsBloc(repository: getIt<BenefitsRepo>()),
           ),
         ],
         child: MaterialApp.router(

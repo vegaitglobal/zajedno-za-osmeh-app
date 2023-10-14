@@ -6,7 +6,6 @@ import 'package:gu_mobile/data/core/token/token_manager_impl.dart';
 import 'package:gu_mobile/di/example_di.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 GetIt getIt = GetIt.instance;
 
 Future<void> initDependencyInjection() async {

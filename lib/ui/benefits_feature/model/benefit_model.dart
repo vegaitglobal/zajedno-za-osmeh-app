@@ -1,6 +1,7 @@
 class BenefitModel {
   final String title;
   final String address;
+  final String city;
   final String logoImgUrl;
   final String coverImgUrl;
   final String websiteUrl;
@@ -10,6 +11,7 @@ class BenefitModel {
   BenefitModel({
     required this.title,
     required this.address,
+    required this.city,
     required this.websiteUrl,
     required this.coverImgUrl,
     required this.logoImgUrl,

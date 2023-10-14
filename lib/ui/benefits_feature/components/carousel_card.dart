@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 
-import '../model/carousel_item_model.dart';
+import '../model/benefit_model.dart';
 
 class CarouselCard extends StatelessWidget {
   final BenefitModel benefitData;

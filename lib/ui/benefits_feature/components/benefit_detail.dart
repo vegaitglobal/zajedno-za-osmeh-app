@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/tag_pill.dart';
-import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
+import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BenefitDetailsCard extends StatelessWidget {
@@ -121,7 +121,6 @@ class BenefitDetailsCard extends StatelessWidget {
       throw Exception('Could not launch $url');
     }
   }
-
 }
 
 class BenefitServiceSingle extends StatelessWidget {
