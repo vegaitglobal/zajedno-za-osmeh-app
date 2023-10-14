@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
@@ -9,7 +10,7 @@ import 'app_routes.dart';
 
 GoRouter get router => _router;
 
-final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
+final _router = GoRouter(initialLocation: AppRoutes.benefits.path(), routes: [
   ShellRoute(
       builder: (context, state, child) {
         return Stack(children: [
@@ -34,7 +35,7 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.benefitDetail.name,
             builder: (context, state) {
               return BenefitDetailView(
-                  benefitId: state.pathParameters['benefitId']!);
+                  benefitData: state.extra as BenefitModel);
             }),
         GoRoute(
             path: AppRoutes.aboutUs.path(),
