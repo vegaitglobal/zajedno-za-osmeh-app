@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../resources/my_colors.dart';
 import 'benefit_card.dart';
 
 class BenefitsView extends StatelessWidget {
@@ -14,25 +15,27 @@ class BenefitsView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15,),
           child: Column(
             children: [
-              const Text(
-                'Besplatne ili povlašćene usluge',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF01295F),
-                  fontFamily: 'Poppins',
+               Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 15),
+                child: Text(
+                  'Besplatne ili povlašćene usluge',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.royalBlue,
+                  ),
                 ),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text('Filtriraj',
                       style: TextStyle(
                         fontSize: 14,
-                        fontFamily: 'Poppins',
+                        color: AppColors.royalBlue,
                       )),
-                  SizedBox(width: 8),
-                  Image(image: AssetImage('assets/icons/filter.png')),
+                  const SizedBox(width: 8),
+                  const Image(image: AssetImage('assets/images/icons/filter_icon.png')),
                 ],
               ),
               SizedBox(

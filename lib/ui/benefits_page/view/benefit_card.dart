@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../resources/my_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class BenefitCard extends StatelessWidget {
   const BenefitCard({
   super.key,
@@ -14,43 +17,41 @@ class BenefitCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
         ),
-        height: 260,
         width: MediaQuery.of(context).size.width,
         child:
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CardHeader(),
-              SizedBox(height: 8),
+              const CardHeader(),
+              const SizedBox(height: 8),
               Text(
                 'Jahting Klub "Kej"',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF001B2E),
-                  fontFamily: 'Poppins',
+                  color: AppColors.textColor,
                 ),
               ),
-              SizedBox(height: 8),
               Text(
                 'Ušće bb, Beograd',
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF445979),
-                  fontFamily: 'Poppins',
+                  color: AppColors.grayBlue
                 ),
               ),
-              SizedBox(height: 20),
-              CardFooter(),
-              SizedBox(height: 10),
+              const SizedBox(height: 20),
+              const CardFooter(),
+              const SizedBox(height: 10),
             ],
           ),
         ),
       ),
     );
+
   }
+  
 
 
 }
@@ -79,22 +80,20 @@ class CardHeader extends StatelessWidget {
                 width: 100,
               ),
             ),
-            const Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 2),
+                  padding: const EdgeInsets.only(bottom: 2),
                   child: Text(
                     'website donatora',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF445979),
-                      fontFamily: 'Poppins',
+                      color: AppColors.royalBlue
                     ),
                   ),
                 ),
-                SizedBox(width: 5),
-                Image(image: AssetImage('assets/icons/open_in_new.png')),
+                const SizedBox(width: 5),
+                IconButton(onPressed: () { _launchUrl(Uri.parse('https://flutter.dev'));}, icon:Image(image: AssetImage('assets/images/icons/open_in_new_icon.png'))),
               ],
             ),
           ],
@@ -112,6 +111,12 @@ class CardHeader extends StatelessWidget {
       ],
     );
   }
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 }
 
 class CardFooter extends StatelessWidget {
@@ -120,24 +125,31 @@ class CardFooter extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Image(image: AssetImage('assets/icons/check.png')),
-            SizedBox(width: 8),
-            Text(
-              'Besplatno krstarenje rekom',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xFF445979),
-                fontFamily: 'Poppins',
+        Expanded(
+          child: Row(
+            children: [
+              Image.asset('assets/images/icons/check_icon.png'),
+              const SizedBox(
+                width: 12,
               ),
-            ),
-          ],
+              Expanded(
+
+                child: Text(
+                  'Besplatno krstarenje rekom',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                    color: AppColors.textColor,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
-        Image(image: AssetImage('assets/icons/share.png')),
+        const Image(image: AssetImage('assets/images/icons/share_icon.png')),
       ],
     );
   }
