@@ -11,24 +11,29 @@ class DonatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Donate page')),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LeftArrowBackButton(),
-              SizedBox(
-                height: 10,
-              ),
-              ContactInfo(),
-              SizedBox(
-                height: 20,
-              ),
-              PaymentInfo(),
-            ],
-          ),
-        ),
+      body: ListView(
+        children: const [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LeftArrowBackButton(),
+                SizedBox(
+                  height: 10,
+                ),
+                ContactInfo(),
+                SizedBox(
+                  height: 20,
+                ),
+                PaymentInfo(),
+              ],
+            ),
+          )
+        ],
       ),
       backgroundColor: AppColors.bodyBackgroundColor,
     );
