@@ -32,7 +32,8 @@ class _GuMobileAppState extends State<GuMobileApp> {
         child: MaterialApp.router(
           routerConfig: router,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.orange,
+            fontFamily: 'Poppins',
           ),
         ));
   }
