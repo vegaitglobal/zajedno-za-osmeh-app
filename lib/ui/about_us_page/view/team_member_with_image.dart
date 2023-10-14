@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/about_us_page/model/team_members_ui_model.dart';
 
 class TeamMemberWithImage extends StatelessWidget {
-  const TeamMemberWithImage({super.key});
+  const TeamMemberWithImage({super.key, required this.teamMember});
+
+  final TeamMembersUIModel teamMember;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +25,14 @@ class TeamMemberWithImage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                'https://googleflutter.com/sample_image.jpg',
+                teamMember.profileImageUrl!,
                 fit: BoxFit.fill,
               ),
             ),
           ),
           const SizedBox(width: 0, height: 10),
           Text(
-            'Goran Petrović',
+            teamMember.name,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 12,
@@ -41,7 +44,7 @@ class TeamMemberWithImage extends StatelessWidget {
             width: 148,
             child: Expanded(
               child: Text(
-                'osnivač i predsednik Upravnog odbora Fondacije',
+                teamMember.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
                 style: TextStyle(

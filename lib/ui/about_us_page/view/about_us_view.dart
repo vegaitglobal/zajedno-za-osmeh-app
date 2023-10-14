@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
+import 'package:gu_mobile/ui/about_us_page/bloc/about_us_event.dart';
+import 'package:gu_mobile/ui/about_us_page/bloc/about_us_state.dart';
+import 'package:gu_mobile/ui/about_us_page/model/team_members_ui_model.dart';
 import 'package:gu_mobile/ui/about_us_page/view/our_team_overview.dart';
 
 import '../../common/custom_appbar.dart';
@@ -10,6 +15,8 @@ class AboutUsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<AboutUsBloc>().add(const AboutUsFetchTeamMembers());
+
     List<String> goals = [
       "Unapređenje socijalne i zdravstvene zaštite dece u Republici Srbiji",
       "Podrška oboleloj deci i njihovim porodicama u cilju lečenja, medicinskog zbrinjavanja i oporavka",
@@ -28,32 +35,57 @@ class AboutUsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(),
-      body: ListView(children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(
-            top: 24,
-            left: 16,
-            right: 16,
-          ),
-          child: LeftArrowBackButton(),
+      body: BlocListener<AboutUsBloc, AboutUsState>(
+        listener: (BuildContext context, AboutUsState state) {},
+        child: BlocBuilder<AboutUsBloc, AboutUsState>(
+          builder: (context, state) {
+            return switch (state) {
+              AboutUsInitialState() => const Padding(
+                  padding: EdgeInsets.only(
+                    top: 24,
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: LeftArrowBackButton(),
+                ),
+              AboutUsSuccessState() => ListView(children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 24,
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: LeftArrowBackButton(),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  _buildWhoAreWeExpansionTile(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _buildGoalsOfFoundationExpansionTile(goals),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _buildOurTeamExpansionTile(state.teamMembers),
+                ]),
+              AboutUsFailureState() => const Padding(
+                  padding: EdgeInsets.only(
+                    top: 24,
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: LeftArrowBackButton(),
+                ),
+            };
+          },
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        _buildWhoAreWeExpansionTile(),
-        const SizedBox(
-          height: 20,
-        ),
-        _buildGoalsOfFoundationExpansionTile(goals),
-        const SizedBox(
-          height: 20,
-        ),
-        _buildOurTeamExpansionTile(),
-      ]),
+      ),
     );
   }
 
-  Widget _buildOurTeamExpansionTile() {
+  Widget _buildOurTeamExpansionTile(List<TeamMembersUIModel> teamMembers) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -63,8 +95,8 @@ class AboutUsView extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        child: const ExpansionTile(
-          title: Text(
+        child: ExpansionTile(
+          title: const Text(
             'Naš tim',
             style: TextStyle(
               fontSize: 24,
@@ -72,7 +104,7 @@ class AboutUsView extends StatelessWidget {
             ),
           ),
           children: [
-            OurTeamOverview(),
+            OurTeamOverview(teamMembers: teamMembers),
           ],
         ),
       ),

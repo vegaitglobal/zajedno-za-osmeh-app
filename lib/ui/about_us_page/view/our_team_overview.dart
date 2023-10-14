@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gu_mobile/ui/about_us_page/model/team_members_ui_model.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_with_image.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_without_image.dart';
 
-import '../../common/custom_appbar.dart';
-
 class OurTeamOverview extends StatelessWidget {
-  const OurTeamOverview({super.key});
+  const OurTeamOverview({super.key, required this.teamMembers});
+
+  final List<TeamMembersUIModel> teamMembers;
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +22,18 @@ class OurTeamOverview extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const SizedBox(
+          SizedBox(
             height: 230 * 3,
             child: Wrap(
               spacing: 10,
               // runSpacing: 30,
               alignment: WrapAlignment.spaceBetween,
-              children: [
-                TeamMemberWithImage(),
-                TeamMemberWithImage(),
-                TeamMemberWithImage(),
-                TeamMemberWithImage(),
-                // TeamMemberWithImage(),
-                TeamMemberWithImage()
-              ],
+              children: List<TeamMemberWithImage>.generate(
+                teamMembers.length,
+                (index) => TeamMemberWithImage(
+                  teamMember: teamMembers[index],
+                ),
+              ),
             ),
           ),
           const SizedBox(
