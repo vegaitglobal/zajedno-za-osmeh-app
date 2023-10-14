@@ -23,7 +23,7 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             path: AppRoutes.home.path(),
             name: AppRoutes.home.name,
             builder: (context, state) {
-              return const HomeView();
+              return const BenefitsView();
             }),
         GoRoute(
             path: AppRoutes.benefits.path(),
