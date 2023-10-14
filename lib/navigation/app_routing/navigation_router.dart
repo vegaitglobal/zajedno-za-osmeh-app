@@ -10,7 +10,7 @@ import 'app_routes.dart';
 
 GoRouter get router => _router;
 
-final _router = GoRouter(initialLocation: AppRoutes.benefits.path(), routes: [
+final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
   ShellRoute(
       builder: (context, state, child) {
         return Stack(children: [
