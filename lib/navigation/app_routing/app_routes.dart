@@ -3,6 +3,7 @@ enum AppRoutes {
   benefits,
   benefitDetail,
   aboutUs,
+  donate
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -11,5 +12,6 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.benefits => '/benefits',
         AppRoutes.benefitDetail => '/benefitDetail',
         AppRoutes.aboutUs => '/aboutUs',
+        AppRoutes.donate => '/donate',
       };
 }

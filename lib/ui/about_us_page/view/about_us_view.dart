@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/about_us_page/view/our_team_overview.dart';
 
@@ -26,6 +27,14 @@ class AboutUsView extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(title: const Text(' ')),
       body: ListView(children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.only(
+            top: 24,
+            left: 16,
+            right: 16,
+          ),
+          child: LeftArrowBackButton(),
+        ),
         _buildWhoAreWeExpansionTile(),
         _buildGoalsOfFoundationExpansionTile(goals),
         _buildOurTeamExpansionTile(),
