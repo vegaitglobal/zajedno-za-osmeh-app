@@ -89,58 +89,54 @@ class AboutUsView extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-              child: ExpandablePanel(
-                header: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                  child: Text('Ko smo mi?', style: TextStyle(fontSize: 24)),
-                ),
-                collapsed: const Text(
-                  '',
-                  style: TextStyle(fontSize: 0),
-                  softWrap: true,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                expanded: const Padding(
-                  padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          'Fondacija „Zajedno za osmeh“  je osnovana sa željom, '
-                          'grupe mladih ljudi, da svojim delovanjem pomognu unapređenje socijalne '
-                          'i zdravstvene zaštite dece u Republici Srbiji, da pruže podršku '
-                          'oboleloj deci i njihovim porodicama, u cilju lečenja, medicinskog '
-                          'zbrinjavanja i oporavka, da pomognu promovisanju i unapređenju sistema '
-                          'dečije zdravstvene zaštite, da pruže svaki vid pomoći i podrške onima'
-                          ' kojima je to potrebno. Godišnje u našoj zemlji od maligne bolesti '
-                          'oboli oko 330 dece. Strah, nemoć, a na kraju i smrt- to je sudbina '
-                          'svakog 7. og obolelog deteta u Republici Srbiji. Ekstremno siromaštvo '
-                          'u Srbiji podrazumeva da čovek nema ni za hleb i taj vid siromaštva još '
-                          'uvek nije iskorenjen.',
-                          style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 24.0),
-                      Text('Socijalna davanja',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      SizedBox(height: 24.0),
-                      Text(
-                        'Ekstremno siromaštvo u Srbiji podrazumeva da čovek nema ni za hleb i '
-                        'taj vid siromaštva još uvek nije iskorenjen.'
-                        'Apsolutno siromaštvo u Srbiji podrazumeva svaku osobu koja nema '
-                        '12 000 din. mesečno za zadovoljenje osnovnih životnih potreba.'
-                        ' Takvih je u R. Srbiji oko pola miliona stanovnika ili 7,3%.'
-                        'Prema podacima UNICEF-a, 22 000 dece umre svaki dan od siromaštva, '
-                        'dok je u Srbiji 400 000 dece pod rizikom od siromaštva. '
-                        '268 000 stanovnika dobija neki oblik socijalne pomoći.',
+              child: const ExpansionTile(
+                  title: Padding(
+                    padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
+                    child: Text('Ko smo mi',
                         style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                            fontSize: 24, fontWeight: FontWeight.bold)),
                   ),
-                ),
-              ),
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              'Fondacija „Zajedno za osmeh“  je osnovana sa željom, '
+                              'grupe mladih ljudi, da svojim delovanjem pomognu unapređenje socijalne '
+                              'i zdravstvene zaštite dece u Republici Srbiji, da pruže podršku '
+                              'oboleloj deci i njihovim porodicama, u cilju lečenja, medicinskog '
+                              'zbrinjavanja i oporavka, da pomognu promovisanju i unapređenju sistema '
+                              'dečije zdravstvene zaštite, da pruže svaki vid pomoći i podrške onima'
+                              ' kojima je to potrebno. Godišnje u našoj zemlji od maligne bolesti '
+                              'oboli oko 330 dece. Strah, nemoć, a na kraju i smrt- to je sudbina '
+                              'svakog 7. og obolelog deteta u Republici Srbiji. Ekstremno siromaštvo '
+                              'u Srbiji podrazumeva da čovek nema ni za hleb i taj vid siromaštva još '
+                              'uvek nije iskorenjen.',
+                              style: TextStyle(fontSize: 16)),
+                          SizedBox(height: 24.0),
+                          Text('Socijalna davanja',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          SizedBox(height: 24.0),
+                          Text(
+                            'Ekstremno siromaštvo u Srbiji podrazumeva da čovek nema ni za hleb i '
+                            'taj vid siromaštva još uvek nije iskorenjen.'
+                            'Apsolutno siromaštvo u Srbiji podrazumeva svaku osobu koja nema '
+                            '12 000 din. mesečno za zadovoljenje osnovnih životnih potreba.'
+                            ' Takvih je u R. Srbiji oko pola miliona stanovnika ili 7,3%.'
+                            'Prema podacima UNICEF-a, 22 000 dece umre svaki dan od siromaštva, '
+                            'dok je u Srbiji 400 000 dece pod rizikom od siromaštva. '
+                            '268 000 stanovnika dobija neki oblik socijalne pomoći.',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
             )),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -149,42 +145,39 @@ class AboutUsView extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-            child: ExpandablePanel(
-              header: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                child:
-                    Text('Ciljevi fondacije', style: TextStyle(fontSize: 24)),
+            child: ExpansionTile(
+              title: const Padding(
+                padding:  EdgeInsets.only(bottom: 24, top: 24, right: 16),
+                child: Text('Ciljevi fondacije',
+                    style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               ),
-              collapsed: const Text(
-                ' ',
-                style: TextStyle(fontSize: 0),
-                softWrap: true,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              expanded: Container(
-                padding: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
-                child: Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: ciljevi.map((strone) {
-                    return Row(
-                      children: [
-                        Icon(Icons.check),
-                        SizedBox(
-                          width: 15,
-                        ), //space between bullet and text
-                        Expanded(
-                          child: Text(
-                            strone,
-                            style: TextStyle(fontSize: 16),
-                          ), //text
-                        )
-                      ],
-                    );
-                  }).toList(),
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.only(bottom: 24, left: 16, right: 16),
+                  child: Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
+                    children: ciljevi.map((strone) {
+                      return Row(
+                        children: [
+                          Image(image: AssetImage('assets/images/icons/check_icon.png')),
+                          SizedBox(
+                            width: 15,
+                          ), //space between bullet and text
+                          Expanded(
+                            child: Text(
+                              strone,
+                              style: TextStyle(fontSize: 16),
+                            ), //text
+                          )
+                        ],
+                      );
+                    }).toList(),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -195,20 +188,12 @@ class AboutUsView extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-            child: ExpandablePanel(
-              header: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                child:
-                Text('Naš tim', style: TextStyle(fontSize: 24)),
+            child: const ExpansionTile(
+              title: Padding(
+                padding:   EdgeInsets.only(bottom: 24, top: 24, right: 16),
+                child: Text('Naš tim', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
               ),
-              collapsed: const Text(
-                ' ',
-                style: TextStyle(fontSize: 0),
-                softWrap: true,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              expanded: const Text('Ovde ide tim\n'),
+              children:[ Text('Ovde ide tim\n'),],
             ),
           ),
         ),
