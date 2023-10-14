@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../resources/my_colors.dart';
+import '../../common/custom_bottom_navigation_bar.dart';
 import 'benefit_card.dart';
 
 class BenefitsView extends StatelessWidget {
@@ -10,6 +11,7 @@ class BenefitsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F5FA),
       appBar: AppBar(backgroundColor: Colors.orange),
+        bottomNavigationBar: const CustomBottomNavigationBar(),
       body:  Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15,),

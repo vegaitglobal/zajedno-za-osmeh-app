@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/home_page/view/carousel_card.dart';
 
+import '../../common/custom_bottom_navigation_bar.dart';
 import '../model/carousel_item_model.dart';
 
 // Mock carousel data
@@ -62,8 +61,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
