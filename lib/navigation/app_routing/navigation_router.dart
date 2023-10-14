@@ -29,13 +29,14 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             path: AppRoutes.benefits.path(),
             name: AppRoutes.benefits.name,
             builder: (context, state) {
-              return  const BenefitsView();
+              return const BenefitsView();
             }),
         GoRoute(
             path: AppRoutes.benefitDetail.path(),
             name: AppRoutes.benefitDetail.name,
             builder: (context, state) {
-              return BenefitDetailView(benefitId: state.pathParameters['benefitId']!);
+              return BenefitDetailView(
+                  benefitId: state.pathParameters['benefitId']!);
             }),
         GoRoute(
             path: AppRoutes.aboutUs.path(),
