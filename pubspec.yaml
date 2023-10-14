@@ -81,6 +81,8 @@ flutter:
     - assets/images/icons/filter_icon.png
     - assets/images/icons/open_in_new_icon.png
     - assets/images/icons/share_icon.png
+    - assets/images/icons/phone-ringing.png
+    - assets/images/icons/email-address.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
