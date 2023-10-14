@@ -1,4 +1,4 @@
-enum AppRoutes { home, benefits, benefitDetail, aboutUs, donate }
+enum AppRoutes { home, benefits, benefitDetail, aboutUs, donate, donorDetails }
 
 extension AppRoutesExtension on AppRoutes {
   String path() => switch (this) {
@@ -7,5 +7,6 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.benefitDetail => '/benefitDetail',
         AppRoutes.aboutUs => '/aboutUs',
         AppRoutes.donate => '/donate',
+        AppRoutes.donorDetails => '/donorDetails',
       };
 }
