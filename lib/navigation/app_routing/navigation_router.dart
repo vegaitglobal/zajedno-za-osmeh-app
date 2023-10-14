@@ -6,11 +6,12 @@ import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';
+import '../../ui/home_page/view/home_view.dart';
 import 'app_routes.dart';
 
 GoRouter get router => _router;
 
-final _router = GoRouter(initialLocation: AppRoutes.aboutUs.path(), routes: [
+final _router = GoRouter(initialLocation: AppRoutes.benefits.path(), routes: [
   ShellRoute(
       builder: (context, state, child) {
         return Stack(children: [
@@ -22,7 +23,7 @@ final _router = GoRouter(initialLocation: AppRoutes.aboutUs.path(), routes: [
             path: AppRoutes.home.path(),
             name: AppRoutes.home.name,
             builder: (context, state) {
-              return const AboutUsView();
+              return const HomeView();
             }),
         GoRoute(
             path: AppRoutes.benefits.path(),

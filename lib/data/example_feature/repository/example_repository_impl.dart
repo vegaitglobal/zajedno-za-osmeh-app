@@ -1,15 +1,14 @@
 import 'package:gu_mobile/data/example_feature/model/example_model_response.dart';
-import 'package:gu_mobile/domain/example_feature/example_repository.dart';
 import 'package:gu_mobile/data/example_feature/service/example_api_service.dart';
-import 'package:gu_mobile/domain/example_feature/model/example_model.dart';
+import 'package:gu_mobile/ui/example_feature/model/ExampleUiModel.dart';
 
-class ExampleRepositoryImpl implements ExampleRepository {
-  final ExampleApiService _apiService;
+class ExampleRepository {
+  late final ExampleApiService _apiService;
 
-  ExampleRepositoryImpl(this._apiService);
+  ExampleRepository(this._apiService);
 
   @override
-  Future<ExampleModel> getExampleCall() async {
+  Future<ExampleUiModel> getExampleCall() async {
     final response = await _apiService.getResponse();
     return response.toModel();
   }

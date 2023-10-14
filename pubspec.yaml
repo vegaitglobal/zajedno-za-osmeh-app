@@ -89,8 +89,9 @@ flutter:
     - assets/images/icons/pdf_icon.png
     - assets/images/icons/left_arrow.png
     - assets/images/icons/arrow.png
+    - assets/images/graphics/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
+  # An image asset can refer to one or mSore resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
