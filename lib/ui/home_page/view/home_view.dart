@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/carousel_card.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
-
-import '../../benefits_feature/model/carousel_item_model.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -15,9 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      appBar: CustomAppBar(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SingleChildScrollView(
         child: Padding(
@@ -108,8 +104,8 @@ class HomeView extends StatelessWidget {
               ),
               const LinkCard(
                 image: 'assets/images/graphics/home_graphic_2.png',
-                title: 'Proverite sve povlašćene\nusluge',
-                buttonText: 'Proveri',
+                title: 'Naša fondacija\nZajedno za osmeh',
+                buttonText: 'O nama',
                 goTo: AppRoutes.aboutUs,
                 align: CrossAxisAlignment.start,
               ),
@@ -117,7 +113,7 @@ class HomeView extends StatelessWidget {
                 image: 'assets/images/graphics/home_graphic_3.png',
                 title: 'Pogledajte kako i Vi možete da\nučestvujete',
                 buttonText: 'Proveri',
-                goTo: AppRoutes.home,
+                goTo: AppRoutes.donate,
                 align: CrossAxisAlignment.end,
               ),
             ],

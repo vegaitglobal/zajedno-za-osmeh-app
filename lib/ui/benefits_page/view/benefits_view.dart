@@ -5,6 +5,7 @@ import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
 import '../../../resources/my_colors.dart';
 import '../../filter_page/filter_view';
+import '../../common/custom_appbar.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 
 class BenefitsView extends StatelessWidget {
@@ -14,7 +15,7 @@ class BenefitsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFFF6F5FA),
-        appBar: AppBar(backgroundColor: Colors.orange),
+        appBar: CustomAppBar(),
         bottomNavigationBar: const CustomBottomNavigationBar(),
         body: Center(
           child: Column(children: [
