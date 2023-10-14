@@ -4,6 +4,7 @@ import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/carousel_card.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,9 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      appBar: CustomAppBar(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SingleChildScrollView(
         child: Padding(

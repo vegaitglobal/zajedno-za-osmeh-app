@@ -3,6 +3,8 @@ import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/about_us_page/view/our_team_overview.dart';
 
+import '../../common/custom_appbar.dart';
+
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
 
@@ -25,7 +27,7 @@ class AboutUsView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(title: const Text(' ')),
+      appBar: CustomAppBar(),
       body: ListView(children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(
