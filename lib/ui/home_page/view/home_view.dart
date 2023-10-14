@@ -108,8 +108,8 @@ class HomeView extends StatelessWidget {
               ),
               const LinkCard(
                 image: 'assets/images/graphics/home_graphic_2.png',
-                title: 'Proverite sve povlašćene\nusluge',
-                buttonText: 'Proveri',
+                title: 'Naša fondacija\nZajedno za osmeh',
+                buttonText: 'O nama',
                 goTo: AppRoutes.aboutUs,
                 align: CrossAxisAlignment.start,
               ),
