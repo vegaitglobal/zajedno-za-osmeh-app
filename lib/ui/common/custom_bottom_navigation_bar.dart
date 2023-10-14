@@ -20,6 +20,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   bool isActive(AppRoutes route) {
     String currentRouteName = ModalRoute.of(context)!.settings.name ?? '';
+    if (route == AppRoutes.home){
+      return currentRouteName == AppRoutes.benefitDetail.name || currentRouteName == AppRoutes.home.name;
+    }
     return currentRouteName.startsWith(route.name);
   }
 

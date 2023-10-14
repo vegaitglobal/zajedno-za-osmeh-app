@@ -50,13 +50,9 @@ class BenefitsView extends StatelessWidget {
                   padding: EdgeInsets.only(top: 8),
                   itemCount: mockBenefitsData.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () => context.go(AppRoutes.benefitDetail.path(),
-                          extra: mockBenefitsData[index]),
-                      child: BenefitDetailsCard(
-                        benefitData: mockBenefitsData[index],
-                        showAllServices: false,
-                      ),
+                    return BenefitDetailsCard(
+                      benefitData: mockBenefitsData[index],
+                      showAllServices: true,
                     );
                   }),
             )
