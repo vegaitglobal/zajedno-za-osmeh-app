@@ -82,6 +82,12 @@ flutter:
     - assets/images/icons/filter_icon.png
     - assets/images/icons/open_in_new_icon.png
     - assets/images/icons/share_icon.png
+    - assets/images/icons/phone_ringing.png
+    - assets/images/icons/email_address.png
+    - assets/images/icons/bank_qr_code.png
+    - assets/images/icons/credit_agricole.png
+    - assets/images/icons/pdf_icon.png
+    - assets/images/icons/left_arrow.png
     - assets/images/icons/arrow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
