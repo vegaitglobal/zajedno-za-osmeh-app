@@ -14,7 +14,7 @@ class AboutUsView extends StatelessWidget {
             text: 'Fondacija „Zajedno za osmeh“  je osnovana sa željom, '
                 'grupe mladih ljudi, da svojim delovanjem pomognu unapređenje socijalne '
                 'i zdravstvene zaštite dece u Republici Srbiji, da pruže podršku '
-                'oboleloj deci i njishovim porodicama, u cilju lečenja, medicinskog '
+                'oboleloj deci i njihovim porodicama, u cilju lečenja, medicinskog '
                 'zbrinjavanja i oporavka, da pomognu promovisanju i unapređenju sistema '
                 'dečije zdravstvene zaštite, da pruže svaki vid pomoći i podrške onima'
                 ' kojima je to potrebno. Godišnje u našoj zemlji od maligne bolesti '
