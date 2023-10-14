@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../resources/my_colors.dart';
-
-class TeamMember extends StatelessWidget {
-  const TeamMember({super.key});
+class TeamMemberWithoutImage extends StatelessWidget {
+  const TeamMemberWithoutImage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 148,
-      height: 202,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-      child: Column(
+    return SizedBox(
+      height: 50,
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-              'https://googleflutter.com/sample_image.jpg',
-            width: 144, fit: BoxFit.cover,
-          ),
-          SizedBox(height: 10,),
           Text(
             'Goran Petrović',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
