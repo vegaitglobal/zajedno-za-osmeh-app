@@ -6,35 +6,35 @@ class PaymentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0), color: Colors.white),
-        child: ExpansionTile(
-          title: Text(
-            'Uplate',
-            style: TextStyle(
-              fontSize: 24,
-              color: AppColors.textColor,
-              fontWeight: FontWeight.w500,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.white,
+      ),
+      child: ExpansionTile(
+        title: Text(
+          'Uplate',
+          style: TextStyle(
+            fontSize: 24,
+            color: AppColors.textColor,
+            fontWeight: FontWeight.w500,
           ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 24, left: 16, right: 16, bottom: 24),
-              child: Column(
-                children: [
-                  _buildBankInfo(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  _buildPaymentsInfo()
-                ],
-              ),
-            )
-          ],
         ),
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 24),
+            child: Column(
+              children: [
+                _buildBankInfo(),
+                const SizedBox(
+                  height: 30,
+                ),
+                _buildPaymentsInfo()
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -50,7 +50,7 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(
@@ -60,7 +60,7 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -71,7 +71,7 @@ class PaymentInfo extends StatelessWidget {
             color: AppColors.textColor,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -81,7 +81,7 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -92,7 +92,7 @@ class PaymentInfo extends StatelessWidget {
             color: AppColors.textColor,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -102,7 +102,7 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -113,7 +113,7 @@ class PaymentInfo extends StatelessWidget {
             color: AppColors.textColor,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
@@ -136,15 +136,14 @@ class PaymentInfo extends StatelessWidget {
           height: 80,
           width: 80,
         ),
-        SizedBox(
-          width: 50,
+        const SizedBox(
+          width: 20,
           height: 0,
         ),
-        Container(
-            child: Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: 50,
               width: 140,
               child: Image.asset('assets/images/icons/credit_agricole.png'),
@@ -156,7 +155,7 @@ class PaymentInfo extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: AppColors.textColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
@@ -166,7 +165,7 @@ class PaymentInfo extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: AppColors.textColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(
@@ -178,7 +177,7 @@ class PaymentInfo extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       color: AppColors.textColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Image.asset(
@@ -189,7 +188,7 @@ class PaymentInfo extends StatelessWidget {
               ],
             ),
           ],
-        ))
+        )
       ],
     );
   }

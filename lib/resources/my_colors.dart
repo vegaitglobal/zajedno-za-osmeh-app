@@ -17,4 +17,5 @@ class AppColors {
   static Color grayBlue = Color(0xFF445979);
   static Color blueHighlight = Color(0xFFBFDBF7);
   static Color royalBlue = Color(0xFF01295F);
+  static Color bodyBackgroundColor = Color(0xFFF5F5F5);
 }
