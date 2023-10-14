@@ -11,30 +11,31 @@ class PaymentInfo extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         color: Colors.white,
       ),
-      child: ExpansionTile(
-        title: Text(
-          'Uplate',
-          style: TextStyle(
-            fontSize: 24,
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 24),
-            child: Column(
-              children: [
-                _buildBankInfo(),
-                const SizedBox(
-                  height: 30,
-                ),
-                _buildPaymentsInfo()
-              ],
+      child: SizedBox(
+        child: ExpansionTile(
+          title: Text(
+            'Uplate',
+            style: TextStyle(
+              fontSize: 24,
+              color: AppColors.textColor,
+              fontWeight: FontWeight.bold,
             ),
-          )
-        ],
+          ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              child: Column(
+                children: [
+                  _buildBankInfo(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  _buildPaymentsInfo()
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
