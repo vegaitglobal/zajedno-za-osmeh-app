@@ -5,7 +5,7 @@ List<BenefitModel> mockBenefitsData = [
   BenefitModel(
     title: 'Poliklinika ST Medicina',
     address: 'Bulevar oslobođenja 79, Novi Sad',
-    websiteUrl: 'www.example.com',
+    websiteUrl: 'https://flutter.dev',
     coverImgUrl:
         'https://scontent.fbeg2-1.fna.fbcdn.net/v/t39.30808-6/277811310_462361305606652_7778290834032971142_n.jpg?stp=dst-jpg_s960x960&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7UBkYfamXH0AX_rOsME&_nc_ht=scontent.fbeg2-1.fna&oh=00_AfBOzEdoAe_uMBOHg3q6viXl7kirBT4f5vR4MEl6GMSHzw&oe=65301498',
     logoImgUrl:
@@ -20,7 +20,7 @@ List<BenefitModel> mockBenefitsData = [
   BenefitModel(
     title: 'Poliklinika ST Medicina',
     address: 'Bulevar oslobođenja 79, Novi Sad',
-    websiteUrl: 'www.example.com',
+    websiteUrl: 'https://flutter.dev',
     coverImgUrl:
         'https://scontent.fbeg2-1.fna.fbcdn.net/v/t39.30808-6/277811310_462361305606652_7778290834032971142_n.jpg?stp=dst-jpg_s960x960&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7UBkYfamXH0AX_rOsME&_nc_ht=scontent.fbeg2-1.fna&oh=00_AfBOzEdoAe_uMBOHg3q6viXl7kirBT4f5vR4MEl6GMSHzw&oe=65301498',
     logoImgUrl:
@@ -35,7 +35,7 @@ List<BenefitModel> mockBenefitsData = [
   BenefitModel(
     title: 'Poliklinika ST Medicina',
     address: 'Bulevar oslobođenja 79, Novi Sad',
-    websiteUrl: 'www.example.com',
+    websiteUrl: 'https://flutter.dev',
     coverImgUrl:
         'https://scontent.fbeg2-1.fna.fbcdn.net/v/t39.30808-6/277811310_462361305606652_7778290834032971142_n.jpg?stp=dst-jpg_s960x960&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7UBkYfamXH0AX_rOsME&_nc_ht=scontent.fbeg2-1.fna&oh=00_AfBOzEdoAe_uMBOHg3q6viXl7kirBT4f5vR4MEl6GMSHzw&oe=65301498',
     logoImgUrl:

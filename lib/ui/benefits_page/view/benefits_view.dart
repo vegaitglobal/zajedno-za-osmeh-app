@@ -4,6 +4,7 @@ import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
 import '../../../resources/my_colors.dart';
+import '../../common/custom_bottom_navigation_bar.dart';
 
 class BenefitsView extends StatelessWidget {
   const BenefitsView({super.key});
@@ -13,6 +14,7 @@ class BenefitsView extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color(0xFFF6F5FA),
         appBar: AppBar(backgroundColor: Colors.orange),
+        bottomNavigationBar: const CustomBottomNavigationBar(),
         body: Center(
           child: Column(children: [
             Padding(
@@ -48,13 +50,9 @@ class BenefitsView extends StatelessWidget {
                   padding: EdgeInsets.only(top: 8),
                   itemCount: mockBenefitsData.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () => context.go(AppRoutes.benefitDetail.path(),
-                          extra: mockBenefitsData[index]),
-                      child: BenefitDetailsCard(
-                        benefitData: mockBenefitsData[index],
-                        showAllServices: false,
-                      ),
+                    return BenefitDetailsCard(
+                      benefitData: mockBenefitsData[index],
+                      showAllServices: true,
                     );
                   }),
             )

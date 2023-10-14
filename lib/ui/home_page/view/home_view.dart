@@ -5,6 +5,7 @@ import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/carousel_card.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 import '../../benefits_feature/model/carousel_item_model.dart';
 
@@ -17,6 +18,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -155,12 +157,10 @@ class LinkCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Expanded(
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+            Image.asset(
+              image,
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
             Padding(
               padding: const EdgeInsets.all(16),
