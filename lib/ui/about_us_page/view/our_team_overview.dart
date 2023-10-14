@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_with_image.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_without_image.dart';
 
+import '../../common/custom_appbar.dart';
+
 class OurTeamOverview extends StatelessWidget {
   const OurTeamOverview({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter Bloc with Streams')),
+      appBar: CustomAppBar(),
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(

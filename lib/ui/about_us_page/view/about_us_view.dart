@@ -2,6 +2,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 
+import '../../common/custom_appbar.dart';
+
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
 
@@ -80,7 +82,7 @@ class AboutUsView extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(title: const Text(' ')),
+      appBar: CustomAppBar(),
       body: ListView(children: <Padding>[
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -147,7 +149,7 @@ class AboutUsView extends StatelessWidget {
             ),
             child: ExpansionTile(
               title: const Padding(
-                padding:  EdgeInsets.only(bottom: 24, top: 24, right: 16),
+                padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
                 child: Text('Ciljevi fondacije',
                     style:
                         TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -162,7 +164,9 @@ class AboutUsView extends StatelessWidget {
                     children: ciljevi.map((strone) {
                       return Row(
                         children: [
-                          Image(image: AssetImage('assets/images/icons/check_icon.png')),
+                          Image(
+                              image: AssetImage(
+                                  'assets/images/icons/check_icon.png')),
                           SizedBox(
                             width: 15,
                           ), //space between bullet and text
@@ -190,10 +194,15 @@ class AboutUsView extends StatelessWidget {
             ),
             child: const ExpansionTile(
               title: Padding(
-                padding:   EdgeInsets.only(bottom: 24, top: 24, right: 16),
-                child: Text('Naš tim', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
+                child: Text(
+                  'Naš tim',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
-              children:[ Text('Ovde ide tim\n'),],
+              children: [
+                Text('Ovde ide tim\n'),
+              ],
             ),
           ),
         ),
