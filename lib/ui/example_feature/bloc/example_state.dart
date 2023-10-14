@@ -1,6 +1,6 @@
 part of 'example_bloc.dart';
 
-sealed class ExampleState extends Equatable {
+sealed class QRVerificationState extends Equatable {
   const ExampleState();
 
   @override
@@ -14,7 +14,7 @@ final class ExampleInitialState extends ExampleState {
 final class ExampleSuccessState extends ExampleState {
   const ExampleSuccessState(this.item);
 
-  final ExampleUiModel item;
+  final QRVerificationUiModel item;
 
   @override
   List<Object> get props => [item];
