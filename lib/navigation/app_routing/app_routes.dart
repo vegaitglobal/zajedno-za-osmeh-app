@@ -2,14 +2,14 @@ enum AppRoutes {
   home,
   benefits,
   benefitDetail,
-  aboutUs
+  aboutUs,
 }
 
 extension AppRoutesExtension on AppRoutes {
   String path() => switch (this) {
         AppRoutes.home => '/',
         AppRoutes.benefits => '/benefits',
-        AppRoutes.benefitDetail => '/benefits/:benefitId',
+        AppRoutes.benefitDetail => '/benefitDetail',
         AppRoutes.aboutUs => '/aboutUs',
       };
 }
