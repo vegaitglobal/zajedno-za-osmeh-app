@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gu_mobile/ui/about_us_feature/view/team_member_with_image.dart';
-import 'package:gu_mobile/ui/about_us_feature/view/team_member_without_image.dart';
+import 'package:gu_mobile/ui/about_us_page/view/team_member_with_image.dart';
+import 'package:gu_mobile/ui/about_us_page/view/team_member_without_image.dart';
 
 class OurTeamOverview extends StatelessWidget {
   const OurTeamOverview({super.key});
@@ -14,7 +14,7 @@ class OurTeamOverview extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0), color: Colors.white),
           child: ExpansionTile(
-            title: Text(
+            title: const Text(
               'Naš tim',
               style: TextStyle(
                   fontSize: 24,
@@ -23,27 +23,26 @@ class OurTeamOverview extends StatelessWidget {
             ),
             children: [
               Padding(
-                padding:
-                    EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 24),
+                padding: const EdgeInsets.only(
+                    top: 24, left: 16, right: 16, bottom: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Fondacija „Zajedno za osmeh“ osnovana je sa ciljem da spozna sve tekuće probleme pojedinca, porodice ili zajednice sa kojima se susreću i pruži svaki vid podrške koji je neophodan.',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 202 * 3,
-                      child: GridView.count(
-                        primary: false,
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 20,
-                        scrollDirection: Axis.vertical,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: <Widget>[
+                    const SizedBox(
+                      height: 250 * 3,
+                      child: Wrap(
+                        spacing: 30,
+                        runSpacing: 30,
+                        alignment: WrapAlignment.spaceBetween,
+                        children: [
                           TeamMemberWithImage(),
                           TeamMemberWithImage(),
                           TeamMemberWithImage(),
@@ -53,17 +52,22 @@ class OurTeamOverview extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
                       height: 50 * 5,
                       child: ListView.separated(
                         scrollDirection: Axis.vertical,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 5,
                         separatorBuilder: (context, index) {
-                          return SizedBox(height: 20,);
+                          return const SizedBox(
+                            height: 10,
+                          );
                         },
                         itemBuilder: (context, index) {
-                          return TeamMemberWithoutImage();
+                          return const TeamMemberWithoutImage();
                         },
                       ),
                     )
