@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
+import 'package:gu_mobile/ui/qr_verification_page/view/qr_verification_view.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';
@@ -49,6 +50,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.donate.name,
             builder: (context, state) {
               return const DonatePage();
+            }),
+        GoRoute(
+            path: AppRoutes.qrVerification.path(),
+            name: AppRoutes.qrVerification.name,
+            builder: (context, state) {
+              return const QRVerificationView();
             })
       ])
 ]);
