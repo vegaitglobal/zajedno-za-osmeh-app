@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
+import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';
@@ -42,6 +43,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.aboutUs.name,
             builder: (context, state) {
               return const AboutUsView();
+            }),
+        GoRoute(
+            path: AppRoutes.donate.path(),
+            name: AppRoutes.donate.name,
+            builder: (context, state) {
+              return const DonatePage();
             })
       ])
 ]);
