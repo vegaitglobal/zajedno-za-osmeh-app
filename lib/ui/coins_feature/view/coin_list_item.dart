@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/domain/coins_feature/model/coin_model.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:gu_mobile/resources/my_colors.dart'; // Import kIsWeb
 
 class CoinListItem extends StatelessWidget {
   final CoinModel coin;
