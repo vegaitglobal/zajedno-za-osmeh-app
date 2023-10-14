@@ -29,7 +29,7 @@ class ContactInfo extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Image.asset('assets/images/icons/phone-ringing.png'),
+                          Image.asset('assets/images/icons/phone_ringing.png'),
                           SizedBox(
                             width: 20,
                           ),
@@ -47,7 +47,7 @@ class ContactInfo extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Image.asset('assets/images/icons/email-address.png'),
+                          Image.asset('assets/images/icons/email_address.png'),
                           SizedBox(
                             width: 20,
                           ),
