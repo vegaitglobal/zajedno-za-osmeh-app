@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/about_us_page/view/our_team_overview.dart';
 
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
@@ -24,7 +25,7 @@ class AboutUsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(title: const Text(' ')),
-      body: ListView(children: <Padding>[
+      body: ListView(children: <Widget>[
         _buildWhoAreWeExpansionTile(),
         _buildGoalsOfFoundationExpansionTile(goals),
         _buildOurTeamExpansionTile(),
@@ -32,9 +33,12 @@ class AboutUsView extends StatelessWidget {
     );
   }
 
-  Padding _buildOurTeamExpansionTile() {
+  Widget _buildOurTeamExpansionTile() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      padding: const EdgeInsets.symmetric(
+        vertical: 24,
+        horizontal: 16,
+      ),
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -49,7 +53,7 @@ class AboutUsView extends StatelessWidget {
             ),
           ),
           children: [
-            Text('Ovde ide tim\n'),
+            OurTeamOverview(),
           ],
         ),
       ),
