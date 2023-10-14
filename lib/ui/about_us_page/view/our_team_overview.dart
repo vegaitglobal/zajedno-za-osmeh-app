@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_with_image.dart';
 import 'package:gu_mobile/ui/about_us_page/view/team_member_without_image.dart';
 
+import '../../common/custom_appbar.dart';
+
 class OurTeamOverview extends StatelessWidget {
   const OurTeamOverview({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          top: 0, left: 16, right: 16, bottom: 24),
+      padding: const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

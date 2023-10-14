@@ -3,6 +3,8 @@ import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/about_us_page/view/our_team_overview.dart';
 
+import '../../common/custom_appbar.dart';
+
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
 
@@ -25,7 +27,7 @@ class AboutUsView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(title: const Text(' ')),
+      appBar: CustomAppBar(),
       body: ListView(children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(
@@ -35,8 +37,17 @@ class AboutUsView extends StatelessWidget {
           ),
           child: LeftArrowBackButton(),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         _buildWhoAreWeExpansionTile(),
+        const SizedBox(
+          height: 20,
+        ),
         _buildGoalsOfFoundationExpansionTile(goals),
+        const SizedBox(
+          height: 20,
+        ),
         _buildOurTeamExpansionTile(),
       ]),
     );
@@ -45,7 +56,6 @@ class AboutUsView extends StatelessWidget {
   Widget _buildOurTeamExpansionTile() {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 24,
         horizontal: 16,
       ),
       child: Container(
@@ -54,11 +64,11 @@ class AboutUsView extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         child: const ExpansionTile(
-          title: Padding(
-            padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
-            child: Text(
-              'Naš tim',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          title: Text(
+            'Naš tim',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
           children: [
@@ -71,17 +81,18 @@ class AboutUsView extends StatelessWidget {
 
   Padding _buildGoalsOfFoundationExpansionTile(List<String> goals) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         child: ExpansionTile(
-          title: const Padding(
-            padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
-            child: Text('Ciljevi fondacije',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          title: const Text(
+            'Ciljevi fondacije',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           children: [
             Container(
@@ -117,21 +128,20 @@ class AboutUsView extends StatelessWidget {
 
   Padding _buildWhoAreWeExpansionTile() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: const ExpansionTile(
-              title: Padding(
-                padding: EdgeInsets.only(bottom: 24, top: 24, right: 16),
-                child: Text(
-                  'Ko smo mi',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+              title: Text(
+                'Ko smo mi',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               children: [
