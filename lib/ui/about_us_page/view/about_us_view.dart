@@ -27,7 +27,7 @@ class AboutUsView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(title: const Text(' ')),
+      appBar: CustomAppBar(),
       body: ListView(children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(
