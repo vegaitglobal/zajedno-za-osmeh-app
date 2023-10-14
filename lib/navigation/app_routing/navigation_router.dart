@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
-import 'package:gu_mobile/ui/coins_feature/view/coins_view.dart';
-import 'package:gu_mobile/ui/example_feature/view/example_view.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';

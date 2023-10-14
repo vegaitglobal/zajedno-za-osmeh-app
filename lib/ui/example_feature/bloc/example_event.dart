@@ -1,8 +1,7 @@
 part of 'example_bloc.dart';
 
-sealed class ExampleEvent  {
+sealed class ExampleEvent {
   const ExampleEvent();
-
 }
 
 final class ExampleFetchData extends ExampleEvent {
