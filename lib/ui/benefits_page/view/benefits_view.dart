@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../resources/my_colors.dart';
 import 'benefit_card.dart';
+import '../../filter_page/filter_view';
 
 class BenefitsView extends StatelessWidget {
   const BenefitsView({super.key});
