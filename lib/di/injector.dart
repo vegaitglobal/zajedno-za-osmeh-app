@@ -6,7 +6,6 @@ import 'package:gu_mobile/data/core/token/token_manager_impl.dart';
 import 'package:gu_mobile/di/example_di.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'coins_di.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -18,8 +17,6 @@ Future<void> initDependencyInjection() async {
       TokenManagerImpl(getIt<SharedPreferences>()));
 
   getIt.registerLazySingleton<AppDatabase>(() => AppDatabase());
-
-  initCoinsServices();
   initExampleServices();
 }
 

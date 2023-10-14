@@ -10,16 +10,17 @@ class ExampleView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Bloc with Streams')),
       body: Center(
-        child: BlocBuilder<ExampleBloc, ExampleState>(
-          builder: (context, state) {
-            return switch (state) {
-              ExampleInitialState() =>
-                const Text('Initial State, press the button to start'),
-              ExampleSuccessState() =>
-                Text('Name: ${state.item.name}'),
-              ExampleFailState() => const Text('Some error catch !')
-            };
-          },
+        child: BlocListener<ExampleBloc, ExampleState>(
+          listener: (BuildContext context, ExampleState state) {  },
+          child: BlocBuilder<ExampleBloc, ExampleState>(
+            builder: (context, state) {
+              return switch (state) {
+                ExampleInitialState() => const Text('Initial State, press the button to start'),
+                ExampleSuccessState() => Text('Name: ${state.item}'),
+                ExampleFailState() => const Text('Some error catch !')
+              };
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

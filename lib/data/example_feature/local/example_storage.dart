@@ -1,7 +1,8 @@
-import 'package:gu_mobile/domain/example_feature/model/example_model.dart';
+import 'package:gu_mobile/data/example_feature/model/example_model_response.dart';
+
 
 abstract class ExampleStorage {
-  void save(ExampleModel value);
+  void save(ExampleModelResponse value);
 
-  ExampleModel? getValue();
+  ExampleModelResponse? getValue();
 }

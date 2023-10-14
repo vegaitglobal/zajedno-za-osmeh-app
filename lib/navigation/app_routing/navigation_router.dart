@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
-import 'package:gu_mobile/ui/coins_feature/view/coins_view.dart';
-import 'package:gu_mobile/ui/example_feature/view/example_view.dart';
+import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
 
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';
@@ -23,7 +23,7 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             path: AppRoutes.home.path(),
             name: AppRoutes.home.name,
             builder: (context, state) {
-              return const BenefitsView();
+              return const HomeView();
             }),
         GoRoute(
             path: AppRoutes.benefits.path(),
@@ -36,13 +36,19 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.benefitDetail.name,
             builder: (context, state) {
               return BenefitDetailView(
-                  benefitId: state.pathParameters['benefitId']!);
+                  benefitData: state.extra as BenefitModel);
             }),
         GoRoute(
             path: AppRoutes.aboutUs.path(),
             name: AppRoutes.aboutUs.name,
             builder: (context, state) {
               return const AboutUsView();
+            }),
+        GoRoute(
+            path: AppRoutes.donate.path(),
+            name: AppRoutes.donate.name,
+            builder: (context, state) {
+              return const DonatePage();
             })
       ])
 ]);
