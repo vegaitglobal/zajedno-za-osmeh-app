@@ -24,6 +24,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           currentRouteName == AppRoutes.aboutUs.name ||
           currentRouteName == AppRoutes.donate.name;
     }
+    if (route == AppRoutes.qrVerification){
+      return currentRouteName == AppRoutes.qrVerification.name ||currentRouteName == AppRoutes.qrResult.name;
+    }
     return currentRouteName.startsWith(route.name);
   }
 

@@ -6,20 +6,42 @@ import '../../../navigation/app_routing/app_routes.dart';
 import '../../../resources/my_colors.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 
-class QRVerificationView extends StatelessWidget {
-  const QRVerificationView({super.key});
+class QRResultView extends StatelessWidget {
+  const QRResultView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: 150,
+        leading: GestureDetector(
+          onTap: () => context.go(AppRoutes.home.path()),
+          child: Container(
+            margin: const EdgeInsets.only(left: 16),
+            child: Row(
+              children: [
+                Image.asset('assets/images/icons/arrow.png'),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  'Nazad',
+                  style: TextStyle(fontSize: 14, color: AppColors.royalBlue),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Skeninraj QR kod',
+              'Verifikacija korisnika',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
@@ -27,18 +49,17 @@ class QRVerificationView extends StatelessWidget {
               ),
             ),
             const Image(
-                image: AssetImage('assets/images/icons/qr_code_icon.png')),
+                image: AssetImage('assets/images/icons/valid_qr_icon.png')),
             SizedBox(
               width: 295,
               child: OutlinedButton(
                 onPressed: () => context.go(AppRoutes.qrScanner.path()),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>((states) => AppColors.primaryGreen),
                     side: MaterialStateProperty.resolveWith(
-                            (states) => BorderSide(color: AppColors.royalBlue))),
-                child: const Text(
-                  "Skeniraj QR kod",
-                  style: TextStyle(color: Colors.white),
+                        (states) => BorderSide(color: AppColors.royalBlue))),
+                child: Text(
+                  "Vrati se na skener",
+                  style: TextStyle(color: AppColors.royalBlue),
                 ),
               ),
             )
