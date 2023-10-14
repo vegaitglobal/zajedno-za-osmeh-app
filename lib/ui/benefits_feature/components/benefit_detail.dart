@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/tag_pill.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BenefitDetailsCard extends StatelessWidget {
   final BenefitModel benefitData;
@@ -33,7 +34,9 @@ class BenefitDetailsCard extends StatelessWidget {
                 height: 70,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _launchUrl(Uri.parse(benefitData.websiteUrl));
+                },
                 child: Row(
                   children: [
                     Text(
@@ -112,6 +115,13 @@ class BenefitDetailsCard extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
 }
 
 class BenefitServiceSingle extends StatelessWidget {
