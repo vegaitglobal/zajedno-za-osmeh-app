@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:gu_mobile/data/coins_feature/database/model/coin_table.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [CoinTable])
+@DriftDatabase(tables: [/*CoinTable*/]) //will leave this as an example database
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
