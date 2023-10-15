@@ -5,7 +5,7 @@ import '../../../ui/filter_page/model/FilterUiModel.dart';
 class FilterRepository {
   FilterRepository();
 
-  Future<List<FilterUiModel>> getFiltersCall() async {
+  Future<List<FilterUiModel>> getAll() async {
     final response = await supabaseClient.from('Category').select();
     List<FilterUiModel> filters = response
         .map<FilterUiModel>(

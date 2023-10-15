@@ -10,7 +10,6 @@ import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
 import 'package:gu_mobile/ui/example_feature/bloc/example_bloc.dart';
-import 'package:gu_mobile/ui/filter_page/bloc/filter_bloc.dart';
 import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_bloc.dart';
 import 'data/qr_verification_page/repository/qr_code_status_repository.dart';
 import 'navigation/app_routing/navigation_router.dart';
@@ -30,8 +29,10 @@ class _ApplicationState extends State<Application> {
                 ExampleBloc(repository: getIt<ExampleRepository>()),
           ),
           BlocProvider(
-            create: (context) =>
-                BenefitsBloc(repository: getIt<BenefitsRepo>()),
+            create: (context) => BenefitsBloc(
+              benefitsRepository: getIt<BenefitsRepo>(),
+              filterRepository: getIt<FilterRepository>(),
+            ),
           ),
           BlocProvider(
             create: (context) =>
@@ -44,10 +45,6 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
             create: (context) =>
                 QRVerificationBloc(repository: getIt<QRCodeStatusRepository>()),
-          ),
-          BlocProvider(
-            create: (context) =>
-                FilterBloc(repository: getIt<FilterRepository>()),
           ),
         ],
         child: MaterialApp.router(

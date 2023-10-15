@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
+import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import '../../../resources/my_colors.dart';
 import '../../benefits_feature/bloc/benefits_bloc.dart';
 import '../../filter_page/view/filter_view.dart';
@@ -30,8 +31,20 @@ class BenefitsView extends StatelessWidget {
                 ),
               ),
             ),
-            _buildFilterExpansionTile(),
-            SizedBox(
+            BlocBuilder<BenefitsBloc, BenefitsState>(
+              builder: (context, state) {
+                return switch (state) {
+                  BenefitsLoadingState() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  BenefitsInitial() => const Placeholder(),
+                  BenefitsSuccessState() =>
+                    _buildFilterExpansionTile(state.categories),
+                  BenefitsFailState() => const Placeholder()
+                };
+              },
+            ),
+            const SizedBox(
               height: 10,
             ),
             Expanded(
@@ -46,10 +59,10 @@ class BenefitsView extends StatelessWidget {
                       ),
                     BenefitsSuccessState() => ListView.builder(
                         padding: const EdgeInsets.only(top: 8),
-                        itemCount: state.data.length,
+                        itemCount: state.benefits.length,
                         itemBuilder: (BuildContext context, int index) {
                           return BenefitDetailsCard(
-                            benefitData: state.data[index],
+                            benefitData: state.benefits[index],
                             showAllServices: true,
                           );
                         }),
@@ -63,7 +76,7 @@ class BenefitsView extends StatelessWidget {
         ));
   }
 
-  Padding _buildFilterExpansionTile() {
+  Widget _buildFilterExpansionTile(List<FilterUiModel> categories) {
     return Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -74,15 +87,20 @@ class BenefitsView extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: ExpansionTile(
-              title: Text(
-                'Filteri',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            title: const Text(
+              'Filteri',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-              trailing: Image.asset("assets/images/icons/filter_icon.png"),
-              children: [FilterView()]),
+            ),
+            trailing: Image.asset("assets/images/icons/filter_icon.png"),
+            children: [
+              FilterView(
+                categories: categories,
+              ),
+            ],
+          ),
         ));
   }
 }

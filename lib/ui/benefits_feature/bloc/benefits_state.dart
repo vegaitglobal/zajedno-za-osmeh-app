@@ -12,12 +12,13 @@ final class BenefitsInitial extends BenefitsState {
 }
 
 final class BenefitsSuccessState extends BenefitsState {
-  const BenefitsSuccessState(this.data);
+  const BenefitsSuccessState(this.benefits, this.categories);
 
-  final List<BenefitModel> data;
+  final List<BenefitModel> benefits;
+  final List<FilterUiModel> categories;
 
   @override
-  List<Object> get props => [data];
+  List<Object> get props => [benefits];
 }
 
 final class BenefitsFailState extends BenefitsState {
