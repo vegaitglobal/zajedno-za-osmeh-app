@@ -135,8 +135,8 @@ class PaymentInfo extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          'assets/images/icons/bank_qr_code.png',
+        Image.network(
+          organization.ipsQrUrl,
           height: 80,
           width: 80,
         ),
@@ -182,7 +182,9 @@ class PaymentInfo extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _launchUrl(Uri.parse(organization.accessFileUrl));
+                    _launchUrl(
+                      Uri.parse(organization.accessFileUrl),
+                    );
                   },
                   child: Image.asset(
                     'assets/images/icons/pdf_icon.png',

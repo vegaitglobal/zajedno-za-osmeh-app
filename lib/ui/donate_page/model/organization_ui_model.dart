@@ -15,6 +15,7 @@ class OrganizationUIModel {
   String beneficiaryAddress;
   String correspondentBankName;
   String correspondentBankSwift;
+  String ipsQrUrl;
 
   OrganizationUIModel({
     required this.id,
@@ -30,5 +31,6 @@ class OrganizationUIModel {
     required this.beneficiaryAddress,
     required this.correspondentBankName,
     required this.correspondentBankSwift,
+    required this.ipsQrUrl,
   });
 }
