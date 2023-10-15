@@ -29,7 +29,7 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         List<FilterUiModel> categories = await filterRepository.getAll();
 
         emit(BenefitsSuccessState(
-            benefitsData, benefitsData, categories, state.selectedCategories));
+            benefitsData, benefitsData, categories, const []));
       } catch (error) {
         emit(BenefitsFailState(state.benefits, state.filteredBenefits,
             state.categories, state.selectedCategories));
