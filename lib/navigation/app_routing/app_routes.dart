@@ -1,6 +1,5 @@
 enum AppRoutes {
   home,
-  authentification,
   benefits,
   benefitDetail,
   aboutUs,
@@ -8,6 +7,8 @@ enum AppRoutes {
   qrVerification,
   qrScanner,
   qrResult,
+  myQR,
+  authentification
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -20,6 +21,7 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.donate => '/donate',
         AppRoutes.qrVerification => '/qrVerification',
         AppRoutes.qrScanner => '/qrScanner',
-        AppRoutes.qrResult => '/qrResult'
+        AppRoutes.qrResult => '/qrResult',
+        AppRoutes.myQR => '/myQr'
       };
 }

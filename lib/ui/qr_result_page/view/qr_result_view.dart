@@ -6,7 +6,8 @@ import '../../../resources/my_colors.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 
 class QRResultView extends StatelessWidget {
-  const QRResultView({super.key});
+  final bool isValid;
+  const QRResultView({super.key, required this.isValid});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class QRResultView extends StatelessWidget {
                 color: AppColors.royalBlue,
               ),
             ),
-            const Image(image: AssetImage('assets/images/icons/valid_qr_icon.png')),
+            Image(image: AssetImage('assets/images/icons/${isValid ? 'valid' : 'invalid'}_qr_icon.png')),
             SizedBox(
               width: 295,
               child: OutlinedButton(
