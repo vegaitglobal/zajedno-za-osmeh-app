@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,16 +25,14 @@ class QRVerificationView extends StatelessWidget {
                 color: AppColors.royalBlue,
               ),
             ),
-            const Image(
-                image: AssetImage('assets/images/icons/qr_code_icon.png')),
+            const Image(image: AssetImage('assets/images/icons/qr_code_icon.png')),
             SizedBox(
               width: 295,
               child: OutlinedButton(
                 onPressed: () => context.go(AppRoutes.qrScanner.path()),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>((states) => AppColors.primaryGreen),
-                    side: MaterialStateProperty.resolveWith(
-                            (states) => BorderSide(color: AppColors.royalBlue))),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((states) => AppColors.primaryGreen),
+                    side: MaterialStateProperty.resolveWith((states) => BorderSide(color: AppColors.royalBlue))),
                 child: const Text(
                   "Skeniraj QR kod",
                   style: TextStyle(color: Colors.white),

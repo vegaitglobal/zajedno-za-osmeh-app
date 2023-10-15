@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,15 +47,12 @@ class QRResultView extends StatelessWidget {
                 color: AppColors.royalBlue,
               ),
             ),
-            const Image(
-                image: AssetImage('assets/images/icons/valid_qr_icon.png')),
+            const Image(image: AssetImage('assets/images/icons/valid_qr_icon.png')),
             SizedBox(
               width: 295,
               child: OutlinedButton(
                 onPressed: () => context.go(AppRoutes.qrScanner.path()),
-                style: ButtonStyle(
-                    side: MaterialStateProperty.resolveWith(
-                        (states) => BorderSide(color: AppColors.royalBlue))),
+                style: ButtonStyle(side: MaterialStateProperty.resolveWith((states) => BorderSide(color: AppColors.royalBlue))),
                 child: Text(
                   "Vrati se na skener",
                   style: TextStyle(color: AppColors.royalBlue),
