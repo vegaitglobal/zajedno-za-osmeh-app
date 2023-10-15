@@ -10,3 +10,8 @@ sealed class BenefitsEvent extends Equatable {
 final class FetchBenefitsData extends BenefitsEvent {
   const FetchBenefitsData();
 }
+
+final class AddCategoryFilter extends BenefitsEvent {
+  final FilterUiModel category;
+  const AddCategoryFilter(this.category);
+}

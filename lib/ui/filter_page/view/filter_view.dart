@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -47,7 +49,13 @@ class FilterView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   backgroundColor: Colors.transparent,
-                  onSelected: (bool value) {},
+                  onSelected: (bool value) {
+                    if (value) {
+                      context
+                          .read<BenefitsBloc>()
+                          .add(AddCategoryFilter(category));
+                    } else {}
+                  },
                 ),
               );
             }).toList()

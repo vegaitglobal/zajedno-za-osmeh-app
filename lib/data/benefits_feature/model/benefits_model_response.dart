@@ -8,7 +8,7 @@ class BenefitModelResponse {
   final String? coverImgUrl;
   final String? websiteUrl;
   final List<dynamic>? services;
-  final List<dynamic>? tags;
+  final String categoryName;
 
   BenefitModelResponse({
     required this.title,
@@ -18,7 +18,7 @@ class BenefitModelResponse {
     required this.coverImgUrl,
     required this.logoImgUrl,
     required this.services,
-    required this.tags,
+    required this.categoryName,
   });
 
   BenefitModel toUiModel() {
@@ -34,12 +34,12 @@ class BenefitModelResponse {
           ? logoImgUrl!
           : 'https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=',
       services: services!.map((e) => e.toString()).toList(),
-      tags: tags!.map((e) => e.toString()).toList(),
+      categoryName: categoryName
     );
   }
 
   @override
   String toString() {
-    return 'title: ${this.title}\naddress: ${this.address}\ncity: ${this.city}\nlogoImgUrl: ${this.logoImgUrl}\ncoverImgUrl: ${this.coverImgUrl}\nwebsiteUrl: ${this.websiteUrl}\nservices: ${this.services}\ntags: ${this.tags}\n';
+    return 'title: ${this.title}\naddress: ${this.address}\ncity: ${this.city}\nlogoImgUrl: ${this.logoImgUrl}\ncoverImgUrl: ${this.coverImgUrl}\nwebsiteUrl: ${this.websiteUrl}\nservices: ${this.services}\ncategoryName: ${this.categoryName}\n';
   }
 }
