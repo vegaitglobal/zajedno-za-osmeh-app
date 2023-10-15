@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gu_mobile/ui/authentification_page/view/authentification_page.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
@@ -28,6 +29,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.home.name,
             builder: (context, state) {
               return const HomeView();
+            }),
+        GoRoute(
+            path: AppRoutes.authentification.path(),
+            name: AppRoutes.authentification.name,
+            builder: (context, state) {
+              return AuthentificationView();
             }),
         GoRoute(
             path: AppRoutes.benefits.path(),
