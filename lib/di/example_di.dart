@@ -1,6 +1,7 @@
 import 'package:gu_mobile/data/about_us_page/repository/team_members_repository.dart';
 import 'package:gu_mobile/data/core/dio_service.dart';
 import 'package:gu_mobile/data/core/token/token_manager.dart';
+import 'package:gu_mobile/data/donate_page/repository/organization_repository.dart';
 import 'package:gu_mobile/data/example_feature/local/example_storage.dart';
 import 'package:gu_mobile/data/example_feature/local/example_storage_impl.dart';
 import 'package:gu_mobile/data/example_feature/repository/example_repository_impl.dart';
@@ -34,4 +35,7 @@ void _initRepositories() {
 
   getIt.registerLazySingleton<TeamMembersRepository>(
       () => TeamMembersRepository());
+
+  getIt.registerLazySingleton<OrganizationRepository>(
+      () => OrganizationRepository());
 }
