@@ -20,7 +20,11 @@ class _FilterViewState extends State<FilterView> {
   Widget build(BuildContext context) {
     context.read<FilterBloc>().add(const FilterFetchData());
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(
+        left: 16.0,
+        right: 16,
+        bottom: 20,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -37,43 +41,45 @@ class _FilterViewState extends State<FilterView> {
               return switch (state) {
                 FilterInitialState() => Placeholder(),
                 FilterFailState() => Placeholder(),
-                FilterSuccessState() => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                FilterSuccessState() => Wrap(
                     children: state.items.map((category) {
-                      return FilterChip(
-                        label: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(MdiIcons.fromString(category.icon)),
-                            SizedBox(width: 4.0),
-                            Text(
-                              category.name,
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
+                      return Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: FilterChip(
+                          label: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(MdiIcons.fromString(category.icon)),
+                              SizedBox(width: 4.0),
+                              Text(
+                                category.name,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                          selected: selectedCategories.contains(category),
+                          onSelected: (isSelected) {
+                            setState(() {
+                              if (isSelected) {
+                                selectedCategories.add(category);
+                              } else {
+                                selectedCategories.remove(category);
+                              }
+                            });
+                          },
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black, width: 1.0),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          backgroundColor: Colors.transparent,
                         ),
-                        selected: selectedCategories.contains(category),
-                        onSelected: (isSelected) {
-                          setState(() {
-                            if (isSelected) {
-                              selectedCategories.add(category);
-                            } else {
-                              selectedCategories.remove(category);
-                            }
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black, width: 1.0),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        backgroundColor: Colors.transparent,
                       );
                     }).toList(),
                   ),
               };
             })
           ]),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Text(
             'Lokacija',
             style: TextStyle(
@@ -81,7 +87,7 @@ class _FilterViewState extends State<FilterView> {
               fontWeight: FontWeight.normal,
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.grayBlue, width: 1.0),

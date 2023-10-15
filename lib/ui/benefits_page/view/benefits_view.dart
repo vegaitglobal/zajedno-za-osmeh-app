@@ -31,6 +31,9 @@ class BenefitsView extends StatelessWidget {
               ),
             ),
             _buildFilterExpansionTile(),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: BlocBuilder<BenefitsBloc, BenefitsState>(
                 builder: (context, state) {
@@ -79,9 +82,7 @@ class BenefitsView extends StatelessWidget {
                 ),
               ),
               trailing: Image.asset("assets/images/icons/filter_icon.png"),
-              children: [
-                FilterView()
-              ]),
+              children: [FilterView()]),
         ));
   }
 }
