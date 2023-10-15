@@ -10,6 +10,14 @@ class OurTeamOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<TeamMembersUIModel> teamMembersWithProfileImage = teamMembers
+        .where((tm) => tm.profileImageUrl != null && tm.profileImageUrl != '')
+        .toList();
+
+    List<TeamMembersUIModel> teamMembersWithoutProfileImage = teamMembers
+        .where((tm) => tm.profileImageUrl == null || tm.profileImageUrl == '')
+        .toList();
+
     return Padding(
       padding: const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 24),
       child: Column(
@@ -23,15 +31,17 @@ class OurTeamOverview extends StatelessWidget {
             height: 20,
           ),
           SizedBox(
-            height: 230 * 3,
+            height: 230 *
+                ((teamMembersWithProfileImage.length % 2 == 0)
+                    ? (teamMembersWithProfileImage.length / 2)
+                    : (teamMembersWithProfileImage.length / 2) + 1),
             child: Wrap(
               spacing: 10,
-              // runSpacing: 30,
               alignment: WrapAlignment.spaceBetween,
               children: List<TeamMemberWithImage>.generate(
-                teamMembers.length,
+                teamMembersWithProfileImage.length,
                 (index) => TeamMemberWithImage(
-                  teamMember: teamMembers[index],
+                  teamMember: teamMembersWithProfileImage[index],
                 ),
               ),
             ),
@@ -40,18 +50,20 @@ class OurTeamOverview extends StatelessWidget {
             height: 10,
           ),
           SizedBox(
-            height: 50 * 5,
+            height: 50 * teamMembersWithoutProfileImage.length.toDouble(),
             child: ListView.separated(
               scrollDirection: Axis.vertical,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount: teamMembersWithoutProfileImage.length,
               separatorBuilder: (context, index) {
                 return const SizedBox(
                   height: 10,
                 );
               },
               itemBuilder: (context, index) {
-                return const TeamMemberWithoutImage();
+                return TeamMemberWithoutImage(
+                  teamMember: teamMembersWithoutProfileImage[index],
+                );
               },
             ),
           )

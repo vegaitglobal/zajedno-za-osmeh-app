@@ -13,7 +13,7 @@ class TeamMembersRepository {
             name: teamMember['name'],
             createdAt: teamMember['created_at'],
             title: teamMember['title'],
-            profileImageUrl: teamMember['profile_image_url'] ?? '',
+            profileImageUrl: teamMember['profile_image_url'],
           ),
         )
         .toList();
