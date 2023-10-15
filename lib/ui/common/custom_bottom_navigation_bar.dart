@@ -46,6 +46,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
             // buildNavigationItem(AppRoutes.qrVerification, 'Skeniraj QR kod',
             //     'assets/images/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.png')
+            buildNavigationItem(AppRoutes.myQR, 'Tvoj QR kod',
+                'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png')
           ],
         ),
       ),
