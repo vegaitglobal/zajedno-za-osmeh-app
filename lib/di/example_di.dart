@@ -8,6 +8,7 @@ import 'package:gu_mobile/data/example_feature/local/example_storage.dart';
 import 'package:gu_mobile/data/example_feature/local/example_storage_impl.dart';
 import 'package:gu_mobile/data/example_feature/repository/example_repository_impl.dart';
 import 'package:gu_mobile/data/example_feature/service/example_api_service.dart';
+import 'package:gu_mobile/data/qr_verification_page/repository/qr_code_status_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'injector.dart';
@@ -41,4 +42,7 @@ void _initRepositories() {
 
   getIt.registerLazySingleton<OrganizationRepository>(
       () => OrganizationRepository());
+
+  getIt.registerLazySingleton<QRCodeStatusRepository>(
+          () => QRCodeStatusRepository());
 }
