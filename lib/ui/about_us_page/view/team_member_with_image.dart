@@ -42,16 +42,14 @@ class TeamMemberWithImage extends StatelessWidget {
           ),
           SizedBox(
             width: 148,
-            child: Expanded(
-              child: Text(
-                teamMember.title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.grayBlue,
-                ),
+            child: Text(
+              teamMember.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: AppColors.grayBlue,
               ),
             ),
           )

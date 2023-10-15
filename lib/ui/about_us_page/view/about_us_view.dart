@@ -69,6 +69,9 @@ class AboutUsView extends StatelessWidget {
                     height: 20,
                   ),
                   _buildOurTeamExpansionTile(state.teamMembers),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ]),
               AboutUsFailureState() => const Padding(
                   padding: EdgeInsets.only(
