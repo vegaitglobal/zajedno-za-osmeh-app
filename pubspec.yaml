@@ -25,6 +25,7 @@ dependencies:
   expandable: ^5.0.1
   supabase_flutter: ^1.6.2
   logging: ^1.2.0
+  flutter_email_sender: ^6.0.2
 
   flutter:
     sdk: flutter
