@@ -11,7 +11,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   FilterBloc({required FilterRepository repository}) : super(const FilterInitialState()) {
     on<FilterFetchData>((event, emit) async {
       try {
-        FilterUiModel items = await repository.getFiltersCall();
+        List<FilterUiModel> items = await repository.getFiltersCall();
         emit(FilterSuccessState(items));
       } catch (e) {
         emit(const FilterFailState());

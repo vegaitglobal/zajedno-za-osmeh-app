@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:gu_mobile/data/core/supabase/supabase_client.dart';
 import '../../../ui/filter_page/model/FilterUiModel.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class FilterRepository {
 
@@ -11,10 +13,9 @@ class FilterRepository {
           id: category['id'], 
           createdAt: category['created_at'],
           name: category['name'],
-          iconName: category['icon_name'],
+          icon: category['icon_name'],
         ),
       ).toList();
       return filters;
   }
-  
 }

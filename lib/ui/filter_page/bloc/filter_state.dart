@@ -14,7 +14,7 @@ final class FilterInitialState extends FilterState {
 final class FilterSuccessState extends FilterState {
   const FilterSuccessState(this.item);
 
-  final FilterUiModel item;
+  final List<FilterUiModel> item;
 
   @override
   List<Object> get props => [item];

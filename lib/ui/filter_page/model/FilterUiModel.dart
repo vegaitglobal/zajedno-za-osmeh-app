@@ -5,12 +5,12 @@ class FilterUiModel {
   int id;
   DateTime createdAt;
   String name;
-  String iconName;
+  String icon;
 
   FilterUiModel({
     required this.id,
     required this.createdAt,
     required this.name,
-    required this.iconName
+    required this.icon
   });
 }
