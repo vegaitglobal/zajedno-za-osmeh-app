@@ -100,16 +100,6 @@ class BenefitDetailsCard extends StatelessWidget {
                       service: benefitData.services.first,
                     )
                   ],
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                'assets/images/icons/share_icon.png',
-                width: 24,
-              ),
-            ),
           )
         ],
       ),
