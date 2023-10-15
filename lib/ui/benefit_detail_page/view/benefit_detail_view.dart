@@ -22,7 +22,7 @@ class BenefitDetailView extends StatelessWidget {
         leading: GestureDetector(
           onTap: () => context.go(AppRoutes.home.path()),
           child: Container(
-            margin: EdgeInsets.only(left: 16),
+            margin: const EdgeInsets.only(left: 16),
             child: Row(
               children: [
                 Image.asset('assets/images/icons/arrow.png'),
