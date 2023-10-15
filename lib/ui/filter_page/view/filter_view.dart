@@ -81,7 +81,9 @@ class _FilterViewState extends State<FilterView> {
                   return switch (state) {
                     FilterInitialState() => Placeholder(),
                     FilterFailState() => Placeholder(),
-                    FilterSuccessState() => Column(children: 
+                    FilterSuccessState() => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: 
                       state.items.map((category) {
                             return FilterChip(
                               label: Row(
