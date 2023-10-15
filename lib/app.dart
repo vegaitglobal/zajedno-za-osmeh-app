@@ -11,7 +11,8 @@ import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
 import 'package:gu_mobile/ui/example_feature/bloc/example_bloc.dart';
 import 'package:gu_mobile/ui/filter_page/bloc/filter_bloc.dart';
-
+import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_bloc.dart';
+import 'data/qr_verification_page/repository/qr_code_status_repository.dart';
 import 'navigation/app_routing/navigation_router.dart';
 
 class Application extends StatefulWidget {
@@ -39,6 +40,10 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
             create: (context) =>
                 DonatePageBloc(repository: getIt<OrganizationRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                QRVerificationBloc(repository: getIt<QRCodeStatusRepository>()),
           ),
           BlocProvider(
             create: (context) =>
