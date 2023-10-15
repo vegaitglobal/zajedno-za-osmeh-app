@@ -5,9 +5,11 @@ import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class FilterView extends StatelessWidget {
-  const FilterView({super.key, required this.categories});
+  const FilterView(
+      {super.key, required this.categories, required this.selectedCategories});
 
   final List<FilterUiModel> categories;
+  final List<FilterUiModel> selectedCategories;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,8 @@ class FilterView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   backgroundColor: Colors.transparent,
-                  // selected: ,
+                  selected:
+                      selectedCategories.map((e) => e.id).contains(category.id),
                   onSelected: (bool value) {
                     if (value) {
                       context

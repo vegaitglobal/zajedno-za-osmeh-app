@@ -38,8 +38,8 @@ class BenefitsView extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                   BenefitsInitial() => const Placeholder(),
-                  BenefitsSuccessState() =>
-                    _buildFilterExpansionTile(state.categories),
+                  BenefitsSuccessState() => _buildFilterExpansionTile(
+                      state.categories, state.selectedCategories),
                   BenefitsFailState() => const Placeholder()
                 };
               },
@@ -76,7 +76,8 @@ class BenefitsView extends StatelessWidget {
         ));
   }
 
-  Widget _buildFilterExpansionTile(List<FilterUiModel> categories) {
+  Widget _buildFilterExpansionTile(
+      List<FilterUiModel> categories, List<FilterUiModel> selectedCategories) {
     return Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -98,6 +99,7 @@ class BenefitsView extends StatelessWidget {
             children: [
               FilterView(
                 categories: categories,
+                selectedCategories: selectedCategories,
               ),
             ],
           ),
