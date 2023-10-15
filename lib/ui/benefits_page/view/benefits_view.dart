@@ -4,6 +4,7 @@ import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
 import '../../../resources/my_colors.dart';
+import '../../filter_page/filter_view';
 import '../../common/custom_appbar.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 
@@ -30,20 +31,36 @@ class BenefitsView extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('Filtriraj',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.royalBlue,
-                      )),
-                  const SizedBox(width: 8),
-                  const Image(
-                      image: AssetImage('assets/images/icons/filter_icon.png')),
-                ],
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FilterView()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 32, right: 16),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Filtriraj',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(
+                        Icons.filter_list, // Use an appropriate icon here
+                        size: 18,
+                        color: Colors.orange,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(
