@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
+import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
 import 'package:gu_mobile/ui/my_qr_code_page/view/my_qr_code_view.dart';

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
 
 class ContactInfo extends StatelessWidget {
-  const ContactInfo({super.key});
+  const ContactInfo({super.key, required this.organization});
+
+  final OrganizationUIModel organization;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class ContactInfo extends StatelessWidget {
                       width: 20,
                     ),
                     Text(
-                      '+381 64 2387 792',
+                      organization.phoneNumber,
                       style: TextStyle(
                           color: AppColors.textColor,
                           fontSize: 16,
@@ -51,7 +54,7 @@ class ContactInfo extends StatelessWidget {
                       width: 20,
                     ),
                     Text(
-                      'info@zajednozaosmeh.com',
+                      organization.email,
                       style: TextStyle(
                           color: AppColors.textColor,
                           fontSize: 16,
