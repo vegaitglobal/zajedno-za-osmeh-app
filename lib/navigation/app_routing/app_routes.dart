@@ -1,8 +1,20 @@
-enum AppRoutes { home, benefits, benefitDetail, aboutUs, donate, qrVerification, qrScanner, qrResult, myQR }
+enum AppRoutes {
+  home,
+  benefits,
+  benefitDetail,
+  aboutUs,
+  donate,
+  qrVerification,
+  qrScanner,
+  qrResult,
+  myQR,
+  authentification
+}
 
 extension AppRoutesExtension on AppRoutes {
   String path() => switch (this) {
         AppRoutes.home => '/home',
+        AppRoutes.authentification => '/authentification',
         AppRoutes.benefits => '/benefits',
         AppRoutes.benefitDetail => '/benefitDetail',
         AppRoutes.aboutUs => '/aboutUs',
