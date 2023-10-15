@@ -13,11 +13,10 @@ class ContactInfo extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: ExpansionTile(
-        title: Text(
+        title: const Text(
           'Kontakt',
           style: TextStyle(
             fontSize: 24,
-            color: AppColors.textColor,
             fontWeight: FontWeight.bold,
           ),
         ),
