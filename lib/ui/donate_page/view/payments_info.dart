@@ -13,11 +13,10 @@ class PaymentInfo extends StatelessWidget {
       ),
       child: SizedBox(
         child: ExpansionTile(
-          title: Text(
+          title: const Text(
             'Uplate',
             style: TextStyle(
               fontSize: 24,
-              color: AppColors.textColor,
               fontWeight: FontWeight.bold,
             ),
           ),
