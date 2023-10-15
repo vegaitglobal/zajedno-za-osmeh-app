@@ -31,38 +31,7 @@ class BenefitsView extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FilterView()),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 32, right: 16),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Filtriraj',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Icon(
-                        Icons.filter_list, // Use an appropriate icon here
-                        size: 18,
-                        color: Colors.orange,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            _buildFilterExpansionTile(),
             Expanded(
               child: ListView.builder(
                   padding: EdgeInsets.only(top: 8),
@@ -75,6 +44,31 @@ class BenefitsView extends StatelessWidget {
                   }),
             )
           ]),
+        ));
+  }
+
+  Padding _buildFilterExpansionTile() {
+    return Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          ),
+          child: ExpansionTile(
+              title: Text(
+                'Filteri',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              trailing: Image.asset("assets/images/icons/filter_icon.png"),
+              children: [
+                FilterView()
+              ]),
         ));
   }
 }
