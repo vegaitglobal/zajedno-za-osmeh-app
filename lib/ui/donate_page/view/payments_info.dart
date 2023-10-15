@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
 
 class PaymentInfo extends StatelessWidget {
-  const PaymentInfo({super.key});
+  const PaymentInfo({super.key, required this.organization});
+
+  final OrganizationUIModel organization;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,7 @@ class PaymentInfo extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'RZBAATWW – Raiffeisen bank \nInternational AG, Vienna',
+          '${organization.correspondentBankSwift} – ${organization.correspondentBankName}',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w300,
@@ -85,7 +88,7 @@ class PaymentInfo extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'MEBARS22 \nCredit Agricole Srbija a.d. Novi Sad',
+          '${organization.beneficiaryBankSwift}\n${organization.beneficiaryBankName}',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w300,
@@ -106,7 +109,7 @@ class PaymentInfo extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'IBANRS35330007080000307322',
+          organization.beneficiaryIban,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w300,
@@ -117,7 +120,7 @@ class PaymentInfo extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'FONDACIJA “ZAJEDNO ZA OSMEH”',
+          organization.beneficiaryName.toUpperCase(),
           style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -143,11 +146,6 @@ class PaymentInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 50,
-              width: 140,
-              child: Image.asset('assets/images/icons/credit_agricole.png'),
-            ),
             Text(
               'Dinarski račun:',
               style: TextStyle(
@@ -159,7 +157,7 @@ class PaymentInfo extends StatelessWidget {
               height: 15,
             ),
             Text(
-              '330000000401900189',
+              organization.account,
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -173,17 +171,23 @@ class PaymentInfo extends StatelessWidget {
                 Text(
                   'Pristupnica fondaciji:',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textColor),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.textColor,
+                  ),
                 ),
                 const SizedBox(
                   width: 10,
                 ),
-                Image.asset(
-                  'assets/images/icons/pdf_icon.png',
-                  width: 24,
-                  height: 32,
+                GestureDetector(
+                  onTap: () {
+                    print('TODO');
+                  },
+                  child: Image.asset(
+                    'assets/images/icons/pdf_icon.png',
+                    width: 24,
+                    height: 32,
+                  ),
                 )
               ],
             ),

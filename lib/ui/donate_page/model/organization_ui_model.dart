@@ -6,21 +6,29 @@ class OrganizationUIModel {
   String createdAt;
   String account;
   String accessFileUrl;
-  String correspondent;
-  String accWithInstitution;
-  String beneficiary;
   String email;
   String phoneNumber;
+  String beneficiaryBankSwift;
+  String beneficiaryBankName;
+  String beneficiaryIban;
+  String beneficiaryName;
+  String beneficiaryAddress;
+  String correspondentBankName;
+  String correspondentBankSwift;
 
   OrganizationUIModel({
     required this.id,
     required this.createdAt,
     required this.account,
     required this.accessFileUrl,
-    required this.correspondent,
-    required this.accWithInstitution,
-    required this.beneficiary,
     required this.email,
     required this.phoneNumber,
+    required this.beneficiaryBankSwift,
+    required this.beneficiaryBankName,
+    required this.beneficiaryIban,
+    required this.beneficiaryName,
+    required this.beneficiaryAddress,
+    required this.correspondentBankName,
+    required this.correspondentBankSwift,
   });
 }

@@ -48,7 +48,7 @@ class DonatePage extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          const PaymentInfo(),
+                          PaymentInfo(organization: state.organization),
                         ],
                       ),
                     )

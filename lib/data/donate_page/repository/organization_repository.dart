@@ -13,11 +13,15 @@ class OrganizationRepository {
       createdAt: response['created_at'],
       account: response['account'],
       accessFileUrl: response['access_file_url'],
-      correspondent: 'TODO: Change',
-      accWithInstitution: 'TODO: Change',
-      beneficiary: 'TODO: Change',
       email: response['email'],
       phoneNumber: response['phone_number'],
+      beneficiaryBankSwift: response['beneficiary_bank_swift'],
+      beneficiaryBankName: response['beneficiary_bank_name'],
+      beneficiaryIban: response['beneficiary_iban'],
+      beneficiaryName: response['beneficiary_name'],
+      beneficiaryAddress: response['beneficiary_address'],
+      correspondentBankName: response['correspondent_bank_name'],
+      correspondentBankSwift: response['correspondent_bank_swift'],
     );
 
     return organizationUIModel;
