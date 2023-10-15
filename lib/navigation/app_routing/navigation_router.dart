@@ -70,7 +70,9 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             path: AppRoutes.qrResult.path(),
             name: AppRoutes.qrResult.name,
             builder: (context, state) {
-              return const QRResultView();
+              return QRResultView(
+                isValid: state.queryParameters['isValid']  == 'true' ? true : false,
+              );
             }),
         GoRoute(
             path: AppRoutes.myQR.path(),

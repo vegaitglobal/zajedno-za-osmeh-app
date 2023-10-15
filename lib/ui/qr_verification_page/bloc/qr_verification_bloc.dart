@@ -4,13 +4,13 @@ import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_event.dar
 import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_state.dart';
 import 'package:gu_mobile/ui/qr_verification_page/model/qr_code_status_ui_model.dart';
 
-class AboutUsBloc extends Bloc<QRVerificationEvent, QRVerificationState> {
-  AboutUsBloc({required QRCodeStatusRepository repository})
+class QRVerificationBloc extends Bloc<QRVerificationEvent, QRVerificationState> {
+  QRVerificationBloc({required QRCodeStatusRepository repository})
       : super(const QRVerificationInitialState()) {
     on<QRVerificatioFetchQRStatus>((event, emit) async {
       try {
-        QRCodeStatusUIModel items = await repository.get(event.doneeExtrnalId);
-        emit(QRVerificationSuccessState(items));
+        QRCodeStatusUIModel item = await repository.get(event.doneeId);
+        emit(QRVerificationSuccessState(item));
       } catch (e) {
         emit(const QRVerificationFailureState());
       }

@@ -10,7 +10,7 @@ class MyQrCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: CustomAppBar(), bottomNavigationBar: const CustomBottomNavigationBar(), body: Center(child: QrImageView(
-      data: '11111', // Donee: extrnal_id
+      data: '1', // TODO: Replace with actual value (Donee: id)
       version: QrVersions.auto,
       size: 300,
       embeddedImageStyle: const QrEmbeddedImageStyle(

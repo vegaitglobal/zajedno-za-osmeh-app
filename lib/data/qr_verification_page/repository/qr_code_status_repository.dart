@@ -4,14 +4,11 @@ import 'package:gu_mobile/ui/qr_verification_page/model/qr_code_status_ui_model.
 class QRCodeStatusRepository {
   QRCodeStatusRepository();
 
-  Future<QRCodeStatusUIModel> get(String doneeExtrnalId) async {
-    final response = await supabaseClient.from('Donee').select().filter('extrnal_id', 'eq', doneeExtrnalId);
-    QRCodeStatusUIModel qrStatus = response
-        .map<QRCodeStatusUIModel>(
-          (teamMember) => QRCodeStatusUIModel(
-        isValid: teamMember['is_verified'],
-      ),
-    ).toList().first;
+  Future<QRCodeStatusUIModel> get(String doneelId) async {
+    final response = await supabaseClient.from('Donee').select().filter('id', 'eq', doneelId).single();
+    QRCodeStatusUIModel qrStatus = QRCodeStatusUIModel(
+      isValid: response['is_verified'],
+    );
     return qrStatus;
   }
 }
