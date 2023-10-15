@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
-import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
 import '../../../resources/my_colors.dart';
+import '../../benefits_feature/bloc/benefits_bloc.dart';
 import '../../filter_page/view/filter_view.dart';
 import '../../common/custom_appbar.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
@@ -33,15 +32,29 @@ class BenefitsView extends StatelessWidget {
             ),
             _buildFilterExpansionTile(),
             Expanded(
-              child: ListView.builder(
-                  padding: EdgeInsets.only(top: 8),
-                  itemCount: mockBenefitsData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return BenefitDetailsCard(
-                      benefitData: mockBenefitsData[index],
-                      showAllServices: true,
-                    );
-                  }),
+              child: BlocBuilder<BenefitsBloc, BenefitsState>(
+                builder: (context, state) {
+                  return switch (state) {
+                    BenefitsLoadingState() => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    BenefitsFailState() => const Center(
+                        child: Text('Failed'),
+                      ),
+                    BenefitsSuccessState() => ListView.builder(
+                        padding: const EdgeInsets.only(top: 8),
+                        itemCount: state.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return BenefitDetailsCard(
+                            benefitData: state.data[index],
+                            showAllServices: true,
+                          );
+                        }),
+                    BenefitsState() =>
+                      const Center(child: CircularProgressIndicator()),
+                  };
+                },
+              ),
             )
           ]),
         ));
