@@ -26,7 +26,7 @@ class TeamMemberWithImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
                 teamMember.profileImageUrl!,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
           ),
