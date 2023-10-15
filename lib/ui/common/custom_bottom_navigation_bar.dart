@@ -24,6 +24,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           currentRouteName == AppRoutes.aboutUs.name ||
           currentRouteName == AppRoutes.donate.name;
     }
+    if (route == AppRoutes.qrVerification){
+      return currentRouteName == AppRoutes.qrVerification.name ||currentRouteName == AppRoutes.qrResult.name;
+    }
     return currentRouteName.startsWith(route.name);
   }
 
@@ -40,7 +43,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             buildNavigationItem(AppRoutes.home, 'Home',
                 'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
-                'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png')
+                'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
+            // buildNavigationItem(AppRoutes.qrVerification, 'Skeniraj QR kod',
+            //     'assets/images/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.png')
           ],
         ),
       ),
