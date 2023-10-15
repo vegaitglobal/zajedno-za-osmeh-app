@@ -20,8 +20,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
       {required String email,
       required String password,
       required String filePath}) async {
-    await signUp(email: email, password: password)
-        .then((value) => _sendEmail(email, filePath));
+    await _sendEmail(email, filePath)
+        .then((value) => signUp(email: email, password: password));
   }
 
   @override

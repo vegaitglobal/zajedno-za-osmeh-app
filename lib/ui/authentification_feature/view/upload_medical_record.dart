@@ -1,11 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 
 import '../components/auth_card.dart';
 
 class UploadMedicalrecordCard extends StatefulWidget {
-  const UploadMedicalrecordCard({super.key});
+  const UploadMedicalrecordCard({super.key, required this.onSubmit});
+
+  final Function(String) onSubmit;
 
   @override
   State<UploadMedicalrecordCard> createState() =>
@@ -15,6 +18,8 @@ class UploadMedicalrecordCard extends StatefulWidget {
 class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
   Key formKey = GlobalKey();
   bool submitEnabled = false;
+
+  String? filePath = null;
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +76,14 @@ class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
               height: 12,
             ),
             GestureDetector(
-              onTap: () {
-                // TODO: pick file
+              onTap: () async {
+                final result = await FilePicker.platform.pickFiles();
+                filePath = result?.files.single.path;
+                if (filePath != null) {
+                  setState(() {
+                    submitEnabled = true;
+                  });
+                }
               },
               child: DottedBorder(
                 dashPattern: const [5, 4],
@@ -111,7 +122,7 @@ class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
             GestureDetector(
                 onTap: submitEnabled
                     ? () {
-                        // TODO submit button
+                        (filePath != null) ? widget.onSubmit(filePath!) : null;
                       }
                     : null,
                 child: Container(

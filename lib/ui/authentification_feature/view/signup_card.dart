@@ -4,7 +4,9 @@ import 'package:gu_mobile/resources/my_colors.dart';
 import '../components/auth_card.dart';
 
 class SignUpCard extends StatefulWidget {
-  const SignUpCard({super.key});
+  const SignUpCard({super.key, required this.onSubmit});
+
+  final Function(String, String) onSubmit;
 
   @override
   State<SignUpCard> createState() => _SignUpCardState();
@@ -24,8 +26,7 @@ class _SignUpCardState extends State<SignUpCard> {
 
   @override
   Widget build(BuildContext context) {
-    bool submitEnabled = firstName.isNotEmpty &&
-        lastName.isNotEmpty &&
+    bool submitEnabled =
         email.isNotEmpty &&
         password.isNotEmpty &&
         passwordRepeated.isNotEmpty &&
@@ -185,7 +186,7 @@ class _SignUpCardState extends State<SignUpCard> {
             GestureDetector(
                 onTap: submitEnabled
                     ? () {
-                        // TODO submit button
+                        widget.onSubmit(email, password);
                       }
                     : null,
                 child: Container(

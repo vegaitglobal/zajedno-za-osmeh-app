@@ -23,7 +23,9 @@ final class EnterUserInformationEvent extends AuthenticationEvent {
 }
 
 final class CompleteSignUpEvent extends AuthenticationEvent {
-  const CompleteSignUpEvent();
+  final String filePath;
+
+  const CompleteSignUpEvent(this.filePath);
 }
 
 final class RegistrationCompleteEvent extends AuthenticationEvent {
@@ -32,4 +34,8 @@ final class RegistrationCompleteEvent extends AuthenticationEvent {
 
 final class BackButtonPressedEvent extends AuthenticationEvent {
   const BackButtonPressedEvent();
+}
+
+final class SwitchToSignUpScreen extends AuthenticationEvent {
+  const SwitchToSignUpScreen();
 }

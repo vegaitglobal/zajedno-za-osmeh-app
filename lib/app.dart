@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/data/about_us_page/repository/team_members_repository.dart';
+import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 import 'package:gu_mobile/data/benefits_feature/repository/benefits_repo.dart';
 import 'package:gu_mobile/data/donate_page/repository/organization_repository.dart';
 import 'package:gu_mobile/data/example_feature/repository/example_repository_impl.dart';
 import 'package:gu_mobile/data/filter_feature/repository/filter_repository_impl.dart';
 import 'package:gu_mobile/di/injector.dart';
 import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
+import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
 import 'package:gu_mobile/ui/example_feature/bloc/example_bloc.dart';
@@ -48,6 +50,11 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
             create: (context) =>
                 FilterBloc(repository: getIt<FilterRepository>()),
+          ),
+
+          BlocProvider(
+            create: (context) =>
+                AuthenticationBloc(repository: getIt<IAuthenticationRepository>()),
           ),
         ],
         child: MaterialApp.router(
