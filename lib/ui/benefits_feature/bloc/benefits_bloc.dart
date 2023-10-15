@@ -13,11 +13,12 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
   BenefitsBloc({
     required BenefitsRepo benefitsRepository,
     required FilterRepository filterRepository,
-  }) : super(const BenefitsInitial([], [], [])) {
+  }) : super(const BenefitsInitial([], [], [], [])) {
     on<FetchBenefitsData>((event, emit) async {
       emit(
         BenefitsLoadingState(
           state.benefits,
+          state.filteredBenefits,
           state.categories,
           state.selectedCategories,
         ),
@@ -28,16 +29,16 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         List<FilterUiModel> categories = await filterRepository.getAll();
 
         emit(BenefitsSuccessState(
-            benefitsData, categories, state.selectedCategories));
+            benefitsData, benefitsData, categories, state.selectedCategories));
       } catch (error) {
-        emit(BenefitsFailState(
-            state.benefits, state.categories, state.selectedCategories));
+        emit(BenefitsFailState(state.benefits, state.filteredBenefits,
+            state.categories, state.selectedCategories));
       }
     });
 
     on<AddCategoryFilter>((event, emit) async {
-      emit(BenefitsLoadingState(
-          state.benefits, state.categories, state.selectedCategories));
+      emit(BenefitsLoadingState(state.benefits, state.filteredBenefits,
+          state.categories, state.selectedCategories));
       try {
         List<FilterUiModel> newSelectedCategories =
             [...state.selectedCategories, event.category].toList();
@@ -48,11 +49,33 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
                 .contains(element.categoryName))
             .toList();
 
-        emit(BenefitsSuccessState(
-            filteredBenefits, state.categories, newSelectedCategories));
+        emit(BenefitsSuccessState(state.benefits, filteredBenefits,
+            state.categories, newSelectedCategories));
       } catch (error) {
-        emit(BenefitsFailState(
-            state.benefits, state.categories, state.selectedCategories));
+        emit(BenefitsFailState(state.benefits, state.filteredBenefits,
+            state.categories, state.selectedCategories));
+      }
+    });
+
+    on<RemoveCategoryFilter>((event, emit) async {
+      emit(BenefitsLoadingState(state.benefits, state.filteredBenefits,
+          state.categories, state.selectedCategories));
+      try {
+        List<FilterUiModel> newSelectedCategories = state.selectedCategories
+            .where((element) => element.id != event.category.id)
+            .toList();
+
+        List<BenefitModel> filteredBenefits = state.benefits
+            .where((element) => newSelectedCategories
+                .map((e) => e.name)
+                .contains(element.categoryName))
+            .toList();
+
+        emit(BenefitsSuccessState(state.benefits, filteredBenefits,
+            state.categories, newSelectedCategories));
+      } catch (error) {
+        emit(BenefitsFailState(state.benefits, state.filteredBenefits,
+            state.categories, state.selectedCategories));
       }
     });
   }

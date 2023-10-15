@@ -49,12 +49,17 @@ class FilterView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   backgroundColor: Colors.transparent,
+                  // selected: ,
                   onSelected: (bool value) {
                     if (value) {
                       context
                           .read<BenefitsBloc>()
                           .add(AddCategoryFilter(category));
-                    } else {}
+                    } else {
+                      context
+                          .read<BenefitsBloc>()
+                          .add(RemoveCategoryFilter(category));
+                    }
                   },
                 ),
               );

@@ -59,10 +59,10 @@ class BenefitsView extends StatelessWidget {
                       ),
                     BenefitsSuccessState() => ListView.builder(
                         padding: const EdgeInsets.only(top: 8),
-                        itemCount: state.benefits.length,
+                        itemCount: state.filteredBenefits.length,
                         itemBuilder: (BuildContext context, int index) {
                           return BenefitDetailsCard(
-                            benefitData: state.benefits[index],
+                            benefitData: state.filteredBenefits[index],
                             showAllServices: true,
                           );
                         }),
