@@ -1,10 +1,15 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
+import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_event.dart';
+import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_state.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../bloc/qr_verification_bloc.dart';
 
 class QRScanner extends StatefulWidget {
   const QRScanner({Key? key}) : super(key: key);
@@ -33,14 +38,23 @@ class _QRScannerState extends State<QRScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      body: _buildQrView(context),
+      body: BlocListener<QRVerificationBloc, QRVerificationState>(
+          listener: (BuildContext context, QRVerificationState state) {
+            if (state is QRVerificationSuccessState){
+              context.go('${AppRoutes.qrResult.path()}?isValid=${state.qrStatus.isValid.toString()}');
+            }
+            else if (state is QRVerificationFailureState){
+              context.go('${AppRoutes.qrResult.path()}?isValid=false');
+            }
+          },
+          child: _buildQrView(context)),
     );
   }
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
-        MediaQuery.of(context).size.height < 400)
+            MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
@@ -63,11 +77,11 @@ class _QRScannerState extends State<QRScanner> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-        print(scanData);
-        context.go(AppRoutes.qrResult.path());
-      });
+      String code = scanData.code ?? '';
+      context
+          .read<QRVerificationBloc>()
+          .add(QRVerificatioFetchQRStatus(doneeId: code));
+      //context.go(AppRoutes.qrResult.path());
     });
   }
 

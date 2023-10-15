@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../navigation/app_routing/app_routes.dart';
 import '../../../resources/my_colors.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
+import '../bloc/qr_verification_bloc.dart';
+import '../bloc/qr_verification_event.dart';
 
 class QRVerificationView extends StatelessWidget {
   const QRVerificationView({super.key});
