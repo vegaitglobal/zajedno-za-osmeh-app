@@ -121,11 +121,11 @@ class BenefitDetailsCard extends StatelessWidget {
       throw Exception('Could not launch $url');
     }
   }
-
 }
 
 class BenefitServiceSingle extends StatelessWidget {
   final String service;
+
   const BenefitServiceSingle({
     required this.service,
     super.key,

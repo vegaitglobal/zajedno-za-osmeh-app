@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PaymentInfo extends StatelessWidget {
   const PaymentInfo({super.key, required this.organization});
@@ -181,7 +182,7 @@ class PaymentInfo extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print('TODO');
+                    _launchUrl(Uri.parse(organization.accessFileUrl));
                   },
                   child: Image.asset(
                     'assets/images/icons/pdf_icon.png',
@@ -195,5 +196,11 @@ class PaymentInfo extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
+import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
 import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+
 import '../../../resources/my_colors.dart';
-import '../../filter_page/filter_view';
 import '../../common/custom_appbar.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
+import '../../filter_page/filter_view';
 
 class BenefitsView extends StatelessWidget {
   const BenefitsView({super.key});

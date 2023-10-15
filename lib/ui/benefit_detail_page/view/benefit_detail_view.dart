@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
+import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/carousel_item_model.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
