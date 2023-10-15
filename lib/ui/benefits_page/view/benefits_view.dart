@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail.dart';
+import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
 import '../../../resources/my_colors.dart';
 import '../../benefits_feature/bloc/benefits_bloc.dart';
 import '../../filter_page/filter_view';

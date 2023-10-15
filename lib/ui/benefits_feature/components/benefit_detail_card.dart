@@ -125,6 +125,7 @@ class BenefitDetailsCard extends StatelessWidget {
 
 class BenefitServiceSingle extends StatelessWidget {
   final String service;
+
   const BenefitServiceSingle({
     required this.service,
     super.key,
