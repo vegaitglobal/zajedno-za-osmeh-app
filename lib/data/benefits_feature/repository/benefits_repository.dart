@@ -22,7 +22,7 @@ class BenefitsRepository implements BenefitsRepo {
                 response[i]['Donor']['company_image'].toString().trim(),
             logoImgUrl: response[i]['Donor']['icon_url'].toString().trim(),
             services: response[i]['included_benefits'],
-            tags: [response[i]['Category']['name']],
+            categoryName: response[i]['Category']['name'],
           ),
         );
       }

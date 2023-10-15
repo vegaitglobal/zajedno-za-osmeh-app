@@ -48,7 +48,7 @@ class PaymentInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Instrukcije za naplatu iz inostranstva',
+          'Instrukcije za uplatu iz inostranstva',
           style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -64,16 +64,54 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
-        Text(
-          '${organization.correspondentBankSwift} – ${organization.correspondentBankName}',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w300,
-            color: AppColors.textColor,
-          ),
+        Wrap(
+          children: [
+            Text(
+              'SWIFT/BIC',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              '${organization.correspondentBankSwift}\n',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+                color: AppColors.textColor,
+              ),
+            ),
+          ],
+        ),
+        Wrap(
+          children: [
+            Text(
+              'BANK',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              '${organization.correspondentBankName}\n',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+                color: AppColors.textColor,
+              ),
+            ),
+          ],
         ),
         const SizedBox(
           height: 10,
@@ -88,13 +126,51 @@ class PaymentInfo extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          '${organization.beneficiaryBankSwift}\n${organization.beneficiaryBankName}',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w300,
-            color: AppColors.textColor,
-          ),
+        Wrap(
+          children: [
+            Text(
+              'SWIFT/BIC',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              '${organization.beneficiaryBankSwift}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+                color: AppColors.textColor,
+              ),
+            )
+          ],
+        ),
+        Wrap(
+          children: [
+            Text(
+              'BANK',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              '${organization.beneficiaryBankName}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+                color: AppColors.textColor,
+              ),
+            )
+          ],
         ),
         const SizedBox(
           height: 10,
@@ -109,13 +185,28 @@ class PaymentInfo extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          organization.beneficiaryIban,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w300,
-            color: AppColors.textColor,
-          ),
+        Wrap(
+          children: [
+            Text(
+              'IBAN',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              '${organization.beneficiaryIban}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+                color: AppColors.textColor,
+              ),
+            )
+          ],
         ),
         const SizedBox(
           height: 10,
@@ -125,6 +216,13 @@ class PaymentInfo extends StatelessWidget {
           style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
+              color: AppColors.textColor),
+        ),
+        Text(
+          organization.beneficiaryAddress,
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
               color: AppColors.textColor),
         ),
       ],

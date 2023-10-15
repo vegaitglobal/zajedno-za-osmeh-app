@@ -58,13 +58,9 @@ class BenefitDetailsCard extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Row(
-            children: benefitData.tags
-                .map((e) => Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: TagPill(text: e),
-                    ))
-                .toList(),
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: TagPill(text: benefitData.categoryName),
           ),
           const SizedBox(
             height: 16,
