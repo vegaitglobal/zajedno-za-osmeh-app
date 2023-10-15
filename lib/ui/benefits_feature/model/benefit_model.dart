@@ -18,4 +18,9 @@ class BenefitModel {
     required this.services,
     required this.tags,
   });
+
+  @override
+  String toString() {
+    return 'title: ${this.title}\naddress: ${this.address}\ncity: ${this.city}\nlogoImgUrl: ${this.logoImgUrl}\ncoverImgUrl: ${this.coverImgUrl}\nwebsiteUrl: ${this.websiteUrl}\nservices: ${this.services}\ntags: ${this.tags}\n';
+  }
 }

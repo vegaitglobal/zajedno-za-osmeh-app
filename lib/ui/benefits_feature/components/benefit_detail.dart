@@ -29,7 +29,7 @@ class BenefitDetailsCard extends StatelessWidget {
             children: [
               Image.network(
                 benefitData.logoImgUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 width: 120,
                 height: 70,
               ),

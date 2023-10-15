@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gu_mobile/data/core/supabase/supabase_client.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/carousel_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../benefits_feature/bloc/benefits_bloc.dart';
 
@@ -21,9 +18,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  List<BenefitModel> benefitsData = [];
+
   @override
   void initState() {
     context.read<BenefitsBloc>().add(const FetchBenefitsData());
+
     super.initState();
   }
 
@@ -103,25 +103,26 @@ class _HomeViewState extends State<HomeView> {
                 child: BlocBuilder<BenefitsBloc, BenefitsState>(
                   builder: (context, state) {
                     return switch (state) {
-                      BenefitsLoadingState() => Center(
+                      BenefitsLoadingState() => const Center(
                           child: CircularProgressIndicator(),
                         ),
-                      BenefitsFailState() => Center(
+                      BenefitsFailState() => const Center(
                           child: Text('Failed'),
                         ),
                       BenefitsSuccessState() => SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: state.data
-                                .map((e) => Padding(
+                                .map((data) => Padding(
                                       padding: const EdgeInsets.only(right: 16),
-                                      child: CarouselCard(benefitData: e),
+                                      child: CarouselCard(benefitData: data),
                                     ))
                                 .toList(),
                           ),
                         ),
                       BenefitsState() =>
-                        Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                     };
                   },
                 ),

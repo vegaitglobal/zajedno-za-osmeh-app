@@ -23,10 +23,13 @@ class CarouselCard extends StatelessWidget {
             color: Colors.white),
         child: Column(
           children: [
-            Image.network(
-              benefitData.coverImgUrl,
-              height: 176,
-              fit: BoxFit.cover,
+            SizedBox(
+              width: double.infinity,
+              child: Image.network(
+                benefitData.coverImgUrl,
+                height: 176,
+                fit: BoxFit.cover,
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(16),
