@@ -12,7 +12,6 @@ class FilterView extends StatefulWidget {
 
 class _FilterViewState extends State<FilterView> {
   String? selectedCity;
-
   List<FilterUiModel> selectedCategories = [];
 
   List<String> cities = ['Novi Sad', 'Beograd'];
@@ -82,8 +81,8 @@ class _FilterViewState extends State<FilterView> {
                   return switch (state) {
                     FilterInitialState() => Placeholder(),
                     FilterFailState() => Placeholder(),
-                    FilterSuccessState() => ListView(children: 
-                      state.item.map((category) {
+                    FilterSuccessState() => Column(children: 
+                      state.items.map((category) {
                             return FilterChip(
                               label: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -115,9 +114,9 @@ class _FilterViewState extends State<FilterView> {
                           }).toList(),
                         ),
                       };
-              }
-              ) 
-              ]
+                    }
+                  ) 
+                ]
               ),
               SizedBox(height: 20),
               Text(

@@ -12,12 +12,12 @@ final class FilterInitialState extends FilterState {
 }
 
 final class FilterSuccessState extends FilterState {
-  const FilterSuccessState(this.item);
+  const FilterSuccessState(this.items);
 
-  final List<FilterUiModel> item;
+  final List<FilterUiModel> items;
 
   @override
-  List<Object> get props => [item];
+  List<Object> get props => [items];
 }
 
 final class FilterFailState extends FilterState {
