@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/carousel_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/mock_data.dart';
+import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
-class HomeView extends StatelessWidget {
+import '../../benefits_feature/bloc/benefits_bloc.dart';
+
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  List<BenefitModel> benefitsData = [];
+
+  @override
+  void initState() {
+    context.read<BenefitsBloc>().add(const FetchBenefitsData());
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,16 +100,31 @@ class HomeView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: mockBenefitsData
-                        .map((e) => Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: CarouselCard(benefitData: e),
-                            ))
-                        .toList(),
-                  ),
+                child: BlocBuilder<BenefitsBloc, BenefitsState>(
+                  builder: (context, state) {
+                    return switch (state) {
+                      BenefitsLoadingState() => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      BenefitsFailState() => const Center(
+                          child: Text('Failed'),
+                        ),
+                      BenefitsSuccessState() => SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: state.data
+                                .map((data) => Padding(
+                                      padding: const EdgeInsets.only(right: 16),
+                                      child: CarouselCard(benefitData: data),
+                                    ))
+                                .toList(),
+                          ),
+                        ),
+                      BenefitsState() =>
+                        const Center(child: CircularProgressIndicator()),
+                    };
+                  },
                 ),
               ),
               const LinkCard(

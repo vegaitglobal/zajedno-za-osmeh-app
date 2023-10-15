@@ -1,3 +1,5 @@
+import 'package:gu_mobile/data/benefits_feature/repository/benefits_repo.dart';
+import 'package:gu_mobile/data/benefits_feature/repository/benefits_repository.dart';
 import 'package:gu_mobile/data/about_us_page/repository/team_members_repository.dart';
 import 'package:gu_mobile/data/core/dio_service.dart';
 import 'package:gu_mobile/data/core/token/token_manager.dart';
@@ -32,6 +34,7 @@ void _initServices() {
 void _initRepositories() {
   getIt.registerLazySingleton<ExampleRepository>(
       () => ExampleRepository(getIt<ExampleApiService>()));
+  getIt.registerLazySingleton<BenefitsRepo>(() => BenefitsRepository());
 
   getIt.registerLazySingleton<TeamMembersRepository>(
       () => TeamMembersRepository());
