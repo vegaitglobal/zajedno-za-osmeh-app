@@ -48,10 +48,18 @@ class _ApplicationState extends State<Application> {
             create: (context) =>
                 QRVerificationBloc(repository: getIt<QRCodeStatusRepository>()),
           ),
+<<<<<<< HEAD
+          BlocProvider(
+            create: (context) =>
+                FilterBloc(repository: getIt<FilterRepository>()),
+          ),
+
           BlocProvider(
             create: (context) =>
                 AuthenticationBloc(repository: getIt<IAuthenticationRepository>()),
           ),
+=======
+>>>>>>> develop
         ],
         child: MaterialApp.router(
           routerConfig: router,

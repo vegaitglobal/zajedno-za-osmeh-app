@@ -113,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: state.data
+                            children: state.benefits
                                 .map((data) => Padding(
                                       padding: const EdgeInsets.only(right: 16),
                                       child: CarouselCard(benefitData: data),

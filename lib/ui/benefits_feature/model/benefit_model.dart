@@ -6,7 +6,7 @@ class BenefitModel {
   final String coverImgUrl;
   final String websiteUrl;
   final List<String> services;
-  final List<String> tags;
+  final String categoryName;
 
   BenefitModel({
     required this.title,
@@ -16,11 +16,11 @@ class BenefitModel {
     required this.coverImgUrl,
     required this.logoImgUrl,
     required this.services,
-    required this.tags,
+    required this.categoryName,
   });
 
   @override
   String toString() {
-    return 'title: ${this.title}\naddress: ${this.address}\ncity: ${this.city}\nlogoImgUrl: ${this.logoImgUrl}\ncoverImgUrl: ${this.coverImgUrl}\nwebsiteUrl: ${this.websiteUrl}\nservices: ${this.services}\ntags: ${this.tags}\n';
+    return 'title: ${this.title}\naddress: ${this.address}\ncity: ${this.city}\nlogoImgUrl: ${this.logoImgUrl}\ncoverImgUrl: ${this.coverImgUrl}\nwebsiteUrl: ${this.websiteUrl}\nservices: ${this.services}\ncategoryName: ${this.categoryName}\n';
   }
 }
