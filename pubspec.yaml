@@ -26,6 +26,8 @@ dependencies:
   supabase_flutter: ^1.6.2
   logging: ^1.2.0
   dotted_border: ^2.1.0
+  flutter_email_sender: ^6.0.2
+  file_picker: ^6.0.0
 
   flutter:
     sdk: flutter
