@@ -4,7 +4,8 @@ import 'package:gu_mobile/ui/authentification_feature/components/auth_card.dart'
 import '../../../resources/my_colors.dart';
 
 class LoginCard extends StatefulWidget {
-  const LoginCard({super.key, required this.onSubmit, required this.navigateToSignUp});
+  const LoginCard(
+      {super.key, required this.onSubmit, required this.navigateToSignUp});
 
   final Function(String, String) onSubmit;
   final Function navigateToSignUp;
@@ -41,6 +42,9 @@ class _LoginCardState extends State<LoginCard> {
           key: formKey,
           child: AuthCard(children: [
             TextFormField(
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              enableSuggestions: false,
               onChanged: (value) => setState(() {
                 email = value;
               }),

@@ -32,6 +32,11 @@ final class RegistrationCompleteState extends AuthenticationState {
   const RegistrationCompleteState();
 }
 
-final class AuthErrorState extends AuthenticationState {
-  const AuthErrorState();
+class AuthErrorState extends AuthenticationState {
+  final String errorMessage;
+
+  const AuthErrorState(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
 }

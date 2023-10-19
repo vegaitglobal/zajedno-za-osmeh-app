@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:gu_mobile/data/authentication/authentication_repository.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 
 part 'authentication_event.dart';
@@ -18,7 +17,7 @@ class AuthenticationBloc
         await repository.signIn(email: event.email, password: event.password);
         emit(const UserLoggedInState());
       } catch (e) {
-        emit(const AuthErrorState());
+        emit(AuthErrorState(e.toString()));
       }
     });
 
@@ -32,7 +31,7 @@ class AuthenticationBloc
     on<CompleteSignUpEvent>((event, emit) async {
       try {
         if (_registrationData == null) {
-          emit(const AuthErrorState());
+          emit(const AuthErrorState(''));
         }
         await repository.signUpWithVerification(
             email: _registrationData!.email,
@@ -41,7 +40,7 @@ class AuthenticationBloc
 
         emit(const RegistrationCompleteState());
       } catch (e) {
-        emit(const AuthErrorState());
+        emit(AuthErrorState(e.toString()));
       }
     });
 

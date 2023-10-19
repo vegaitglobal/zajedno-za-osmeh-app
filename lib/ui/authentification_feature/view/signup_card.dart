@@ -26,8 +26,7 @@ class _SignUpCardState extends State<SignUpCard> {
 
   @override
   Widget build(BuildContext context) {
-    bool submitEnabled =
-        email.isNotEmpty &&
+    bool submitEnabled = email.isNotEmpty &&
         password.isNotEmpty &&
         passwordRepeated.isNotEmpty &&
         password == passwordRepeated;
@@ -86,6 +85,9 @@ class _SignUpCardState extends State<SignUpCard> {
             //   height: 30,
             // ),
             TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              enableSuggestions: false,
+              autocorrect: false,
               onChanged: (value) => setState(() {
                 email = value;
               }),

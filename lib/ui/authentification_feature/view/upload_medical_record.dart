@@ -94,25 +94,31 @@ class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
                   width: double.infinity,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/icons/upload_file.png'),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        'Klikni da odabereš fajl iz galerije',
-                        style:
-                            TextStyle(fontSize: 12, color: AppColors.textColor),
-                      ),
-                      Text(
-                        'Potrebno je priložiti fotografiju dokumenta ....',
-                        style:
-                            TextStyle(fontSize: 10, color: AppColors.grayBlue),
-                      ),
-                    ],
-                  ),
+                  child: filePath == null
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/icons/upload_file.png'),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Text(
+                              'Klikni da odabereš fajl iz galerije',
+                              style: TextStyle(
+                                  fontSize: 12, color: AppColors.textColor),
+                            ),
+                            Text(
+                              'Potrebno je priložiti fotografiju dokumenta ....',
+                              style: TextStyle(
+                                  fontSize: 10, color: AppColors.grayBlue),
+                            ),
+                          ],
+                        )
+                      : Image.asset(
+                          'assets/images/icons/valid_qr_icon.png',
+                          height: 30,
+                          width: 30,
+                        ),
                 ),
               ),
             ),

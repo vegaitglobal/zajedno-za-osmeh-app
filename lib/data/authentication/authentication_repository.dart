@@ -1,7 +1,6 @@
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:gu_mobile/data/authentication/local/user_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import 'i_authentication_repository.dart';
 
 class AuthenticationRepository implements IAuthenticationRepository {
@@ -11,24 +10,44 @@ class AuthenticationRepository implements IAuthenticationRepository {
   AuthenticationRepository(this._authClient, this._userStorage);
 
   @override
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+  }) async {
     await _authClient.signUp(password: password, email: email);
   }
 
+  // @override
+  // Future<void> signUpWithVerification({
+  //   required String email,
+  //   required String password,
+  //   required String filePath,
+  // }) async {
+  //   // await _sendEmail(email, filePath);
+  //   await _sendEmail(email, filePath).then(
+  //     (value) => signUp(email: email, password: password),
+  //   );
+  // }
+
   @override
-  Future<void> signUpWithVerification(
-      {required String email,
-      required String password,
-      required String filePath}) async {
-    await _sendEmail(email, filePath)
-        .then((value) => signUp(email: email, password: password));
+  Future<void> signUpWithVerification({
+    required String email,
+    required String password,
+    required String filePath,
+  }) async {
+    await _sendEmail(email, filePath);
+    await signUp(email: email, password: password);
   }
 
   @override
   Future<void> signIn({required String email, required String password}) async {
     return await _authClient
         .signInWithPassword(password: password, email: email)
-        .then((value) => _userStorage.saveToken(value.session?.accessToken));
+        .then(
+          (value) => _userStorage.saveToken(
+            value.session?.accessToken,
+          ),
+        );
   }
 
   @override
@@ -40,7 +59,9 @@ class AuthenticationRepository implements IAuthenticationRepository {
     final Email email = Email(
       body: 'Šalje: $sender',
       subject: 'Registracija korisnika',
-      recipients: ['fondacijazajednozaosmeh@gmail.com'],
+      recipients: [
+        'tomislavpetkovic22@gmail.com'
+      ], //TODO; Mejl organizacije: fondacijazajednozaosmeh@gmail.com
       attachmentPaths: [filePath],
       isHTML: false,
     );
