@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfo extends StatelessWidget {
   const ContactInfo({super.key, required this.organization});
@@ -9,8 +10,17 @@ class ContactInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void launchLink({required String link, required bool isPhone}) async {
+      try {
+        final Uri convertedLink =
+            Uri(scheme: isPhone ? 'tel' : 'mailto', path: link);
+        await launchUrl(convertedLink);
+      } catch (e) {
+        throw Exception('Could not launch $e');
+      }
+    }
+
     return Container(
-      // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -25,42 +35,54 @@ class ContactInfo extends StatelessWidget {
         ),
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-                top: 24, left: 16, right: 16, bottom: 24),
+            padding:
+                const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 24),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Image.asset('assets/images/icons/phone_ringing.png'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      organization.phoneNumber,
-                      style: TextStyle(
+                GestureDetector(
+                  onTap: () {
+                    launchLink(link: organization.phoneNumber, isPhone: true);
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icons/phone_ringing.png'),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        organization.phoneNumber,
+                        style: TextStyle(
                           color: AppColors.textColor,
                           fontSize: 16,
-                          fontWeight: FontWeight.w300),
-                    )
-                  ],
+                          fontWeight: FontWeight.w300,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Image.asset('assets/images/icons/email_address.png'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      organization.email,
-                      style: TextStyle(
+                GestureDetector(
+                  onTap: () {
+                    launchLink(link: organization.email, isPhone: false);
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icons/email_address.png'),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        organization.email,
+                        style: TextStyle(
                           color: AppColors.textColor,
                           fontSize: 16,
-                          fontWeight: FontWeight.w300),
-                    )
-                  ],
+                          fontWeight: FontWeight.w300,
+                        ),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

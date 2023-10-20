@@ -64,7 +64,7 @@ class PaymentInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Wrap(
@@ -77,7 +77,7 @@ class PaymentInfo extends StatelessWidget {
                 color: AppColors.textColor,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
@@ -100,7 +100,7 @@ class PaymentInfo extends StatelessWidget {
                 color: AppColors.textColor,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Text(
@@ -136,11 +136,11 @@ class PaymentInfo extends StatelessWidget {
                 color: AppColors.textColor,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
-              '${organization.beneficiaryBankSwift}',
+              organization.beneficiaryBankSwift,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
@@ -159,11 +159,11 @@ class PaymentInfo extends StatelessWidget {
                 color: AppColors.textColor,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
-              '${organization.beneficiaryBankName}',
+              organization.beneficiaryBankName,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
@@ -195,11 +195,11 @@ class PaymentInfo extends StatelessWidget {
                 color: AppColors.textColor,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Text(
-              '${organization.beneficiaryIban}',
+              organization.beneficiaryIban,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
