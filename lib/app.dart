@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/data/about_us_page/repository/team_members_repository.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
@@ -17,6 +18,8 @@ import 'data/qr_verification_page/repository/qr_code_status_repository.dart';
 import 'navigation/app_routing/navigation_router.dart';
 
 class Application extends StatefulWidget {
+  const Application({super.key});
+
   @override
   State<StatefulWidget> createState() => _ApplicationState();
 }
@@ -24,6 +27,10 @@ class Application extends StatefulWidget {
 class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -49,8 +56,8 @@ class _ApplicationState extends State<Application> {
                 QRVerificationBloc(repository: getIt<QRCodeStatusRepository>()),
           ),
           BlocProvider(
-            create: (context) =>
-                AuthenticationBloc(repository: getIt<IAuthenticationRepository>()),
+            create: (context) => AuthenticationBloc(
+                repository: getIt<IAuthenticationRepository>()),
           ),
         ],
         child: MaterialApp.router(
