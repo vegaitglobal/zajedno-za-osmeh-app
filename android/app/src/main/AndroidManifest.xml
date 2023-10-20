@@ -9,7 +9,7 @@
     </queries>
 
    <application
-        android:label="Zajedno za osmeh"
+        android:label="Zajedno Za Osmeh"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
