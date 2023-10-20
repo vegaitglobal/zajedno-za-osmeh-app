@@ -46,9 +46,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.authentification, 'Profil',
-                'assets/images/icons/scan_qr${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
-            // buildNavigationItem(AppRoutes.myQR, 'Tvoj QR kod',
-            //     'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png')
+                'assets/images/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
+            buildNavigationItem(AppRoutes.myQR, 'Tvoj QR',
+                'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png'),
+            buildNavigationItem(AppRoutes.qrVerification, 'Sken',
+                'assets/images/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.png')
           ],
         ),
       ),
@@ -57,24 +59,31 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   Widget buildNavigationItem(AppRoutes route, String name, String iconSrc) {
     return ElevatedButton(
-        style: getButtonStyle(),
-        onPressed: () => goTo(route),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      style: getButtonStyle(),
+      onPressed: () => goTo(route),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Image(image: AssetImage(iconSrc)),
-          Text(name,
-              style: TextStyle(
-                  color: isActive(route)
-                      ? AppColors.textColor
-                      : AppColors.grayBlue))
-        ]));
+          Text(
+            name,
+            style: TextStyle(
+              color: isActive(route) ? AppColors.textColor : AppColors.grayBlue,
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   ButtonStyle getButtonStyle() {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>((_) {
-      return Colors.white;
-    }), elevation: MaterialStateProperty.resolveWith<double?>((_) {
-      return 0.0;
-    }));
+      backgroundColor: MaterialStateProperty.resolveWith<Color?>((_) {
+        return Colors.white;
+      }),
+      elevation: MaterialStateProperty.resolveWith<double?>((_) {
+        return 0.0;
+      }),
+    );
   }
 }
