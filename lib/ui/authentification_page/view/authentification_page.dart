@@ -86,9 +86,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                     ),
                   UserLoggedInState() => const Text(
                       'User profile',
-                    ), //TODO: ovde treba da bude widget sa podacima user-a i sign out
-
-                  // RegistrationCompleteState() => const CheckEmail(),
+                    ), //TODO: Ovaj state mozda skloniti, pa navigirati is bottom bar-a na UserProfileScreen u zavisnosti od token-a
                   RegistrationCompleteState() => LoginCard(
                       onSubmit: (email, password) =>
                           _loginAction(context, email, password),
@@ -99,8 +97,9 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                   //     textAlign: TextAlign.center,
                   //     style: TextStyle(color: AppColors.clientRed, fontSize: 16),
                   //   ),
-                  AuthErrorState() =>
-                    ErrorModal(errorMessage: state.errorMessage)
+                  AuthErrorState() => ErrorModal(
+                      errorMessage: state
+                          .errorMessage) //TODO: Treba da se odradi, ovo je za sada, ali nije dobro
                 };
               }),
             ),
