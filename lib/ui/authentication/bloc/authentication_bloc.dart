@@ -56,6 +56,10 @@ class AuthenticationBloc
     on<SwitchToSignUpScreen>((event, emit) async {
       emit(const AuthRegistrationState(null, null));
     });
+
+    on<SwitchToSignInScreen>((event, emit) async {
+      emit(const AuthLoginState());
+    });
   }
 }
 

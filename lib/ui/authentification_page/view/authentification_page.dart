@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
-import 'package:gu_mobile/ui/authentification_feature/view/check_email.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/error_modal.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/signup_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
@@ -79,6 +78,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                   AuthRegistrationState() => SignUpCard(
                       onSubmit: (email, password) =>
                           _signUpAction(context, email, password),
+                      navigateToSignIn: () => _switchToSignIn(context),
                     ),
                   AuthFinalRegistrationState() => UploadMedicalrecordCard(
                       onSubmit: (filePath) =>
@@ -124,5 +124,9 @@ class _AuthentificationViewState extends State<AuthentificationView> {
 
   _switchToSignUp(BuildContext context) {
     context.read<AuthenticationBloc>().add(const SwitchToSignUpScreen());
+  }
+
+  _switchToSignIn(BuildContext context) {
+    context.read<AuthenticationBloc>().add(const SwitchToSignInScreen());
   }
 }

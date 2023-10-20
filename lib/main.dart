@@ -8,7 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencyInjection();
   await initializeSupabase();
-  runApp(Application());
+  runApp(const Application());
 }
 
 Future<void> initializeSupabase() async => await Supabase.initialize(

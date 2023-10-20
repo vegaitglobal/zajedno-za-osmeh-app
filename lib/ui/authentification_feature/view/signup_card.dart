@@ -4,9 +4,11 @@ import 'package:gu_mobile/resources/my_colors.dart';
 import '../components/auth_card.dart';
 
 class SignUpCard extends StatefulWidget {
-  const SignUpCard({super.key, required this.onSubmit});
+  const SignUpCard(
+      {super.key, required this.onSubmit, required this.navigateToSignIn});
 
   final Function(String, String) onSubmit;
+  final Function navigateToSignIn;
 
   @override
   State<SignUpCard> createState() => _SignUpCardState();
@@ -45,147 +47,148 @@ class _SignUpCardState extends State<SignUpCard> {
         ),
         Form(
           key: formKey,
-          child: AuthCard(children: [
-            // TextFormField(
-            //   onChanged: (value) => setState(() {
-            //     firstName = value;
-            //   }),
-            //   initialValue: firstName,
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(
-            //         borderSide: BorderSide(
-            //           color: AppColors.textColor,
-            //         ),
-            //         borderRadius: const BorderRadius.all(Radius.circular(8))),
-            //     label: const Text('Ime'),
-            //     contentPadding:
-            //         const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 30,
-            // ),
-            // TextFormField(
-            //   onChanged: (value) => setState(() {
-            //     lastName = value;
-            //   }),
-            //   initialValue: lastName,
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(
-            //         borderSide: BorderSide(
-            //           color: AppColors.textColor,
-            //         ),
-            //         borderRadius: const BorderRadius.all(Radius.circular(8))),
-            //     label: const Text('Prezime'),
-            //     contentPadding:
-            //         const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 30,
-            // ),
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              enableSuggestions: false,
-              autocorrect: false,
-              onChanged: (value) => setState(() {
-                email = value;
-              }),
-              initialValue: email,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.textColor,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(8))),
-                label: const Text('Email adresa'),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Stack(children: [
+          child: AuthCard(
+            children: [
+              // TextFormField(
+              //   onChanged: (value) => setState(() {
+              //     firstName = value;
+              //   }),
+              //   initialValue: firstName,
+              //   decoration: InputDecoration(
+              //     border: OutlineInputBorder(
+              //         borderSide: BorderSide(
+              //           color: AppColors.textColor,
+              //         ),
+              //         borderRadius: const BorderRadius.all(Radius.circular(8))),
+              //     label: const Text('Ime'),
+              //     contentPadding:
+              //         const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              // TextFormField(
+              //   onChanged: (value) => setState(() {
+              //     lastName = value;
+              //   }),
+              //   initialValue: lastName,
+              //   decoration: InputDecoration(
+              //     border: OutlineInputBorder(
+              //         borderSide: BorderSide(
+              //           color: AppColors.textColor,
+              //         ),
+              //         borderRadius: const BorderRadius.all(Radius.circular(8))),
+              //     label: const Text('Prezime'),
+              //     contentPadding:
+              //         const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                enableSuggestions: false,
+                autocorrect: false,
                 onChanged: (value) => setState(() {
-                  password = value;
+                  email = value;
                 }),
-                initialValue: password,
-                obscureText: shouldObscureTextPassword,
+                initialValue: email,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.textColor,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))),
-                    label: const Text('Lozinka'),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 17, vertical: 10)),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      shouldObscureTextPassword = !shouldObscureTextPassword;
-                    });
-                  },
-                  icon: Icon(shouldObscureTextPassword
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined),
-                  color: AppColors.clientOrange,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.textColor,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  label: const Text('Email adresa'),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
                 ),
-              )
-            ]),
-            SizedBox(
-              height: 6,
-            ),
-            Text(
-              'Lozinka mora da sadrži najmanje 8 karaktera, jedno malo i veliko slovo i jedan broj.',
-              style: TextStyle(fontSize: 10, color: AppColors.grayBlue),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Stack(children: [
-              TextFormField(
-                onChanged: (value) => setState(() {
-                  passwordRepeated = value;
-                }),
-                initialValue: passwordRepeated,
-                obscureText: shouldObscureTextRepeat,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.textColor,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))),
-                    label: const Text('Lozinka'),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 17, vertical: 10)),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      shouldObscureTextRepeat = !shouldObscureTextRepeat;
-                    });
-                  },
-                  icon: Icon(shouldObscureTextRepeat
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined),
-                  color: AppColors.clientOrange,
+              const SizedBox(
+                height: 30,
+              ),
+              Stack(children: [
+                TextFormField(
+                  onChanged: (value) => setState(() {
+                    password = value;
+                  }),
+                  initialValue: password,
+                  obscureText: shouldObscureTextPassword,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.textColor,
+                          ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8))),
+                      label: const Text('Lozinka'),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 17, vertical: 10)),
                 ),
-              )
-            ]),
-            const SizedBox(
-              height: 30,
-            ),
-            GestureDetector(
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        shouldObscureTextPassword = !shouldObscureTextPassword;
+                      });
+                    },
+                    icon: Icon(shouldObscureTextPassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                    color: AppColors.clientOrange,
+                  ),
+                )
+              ]),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                'Lozinka mora da sadrži najmanje 8 karaktera, jedno malo i veliko slovo i jedan broj.',
+                style: TextStyle(fontSize: 10, color: AppColors.grayBlue),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Stack(children: [
+                TextFormField(
+                  onChanged: (value) => setState(() {
+                    passwordRepeated = value;
+                  }),
+                  initialValue: passwordRepeated,
+                  obscureText: shouldObscureTextRepeat,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.textColor,
+                          ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8))),
+                      label: const Text('Lozinka'),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 17, vertical: 10)),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        shouldObscureTextRepeat = !shouldObscureTextRepeat;
+                      });
+                    },
+                    icon: Icon(shouldObscureTextRepeat
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                    color: AppColors.clientOrange,
+                  ),
+                )
+              ]),
+              const SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
                 onTap: submitEnabled
                     ? () {
                         widget.onSubmit(email, password);
@@ -211,9 +214,31 @@ class _SignUpCardState extends State<SignUpCard> {
                         fontSize: 16,
                         fontWeight: FontWeight.w700),
                   ),
-                )),
-          ]),
+                ),
+              ),
+            ],
+          ),
         ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Text(
+          'Imate nalog?',
+          style: TextStyle(fontSize: 14),
+        ),
+        GestureDetector(
+          onTap: () {
+            widget.navigateToSignIn();
+          },
+          child: Text(
+            'Prijavite se',
+            style: TextStyle(
+              fontSize: 16,
+              color: AppColors.clientOrange,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        )
       ],
     );
   }
