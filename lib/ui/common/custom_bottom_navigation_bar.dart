@@ -33,6 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    bool isUserVerified = true; //TODO: Replace this with real value
     return BottomAppBar(
       color: Colors.white,
       child: SizedBox(
@@ -45,7 +46,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
-            buildNavigationItem(AppRoutes.authentification, 'Profil',
+            buildNavigationItem(
+                isUserVerified
+                    ? AppRoutes.userProfile
+                    : AppRoutes.authentification,
+                'Profil',
                 'assets/images/icons/scan_qr${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
             // buildNavigationItem(AppRoutes.myQR, 'Tvoj QR kod',
             //     'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png')
@@ -57,16 +62,21 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   Widget buildNavigationItem(AppRoutes route, String name, String iconSrc) {
     return ElevatedButton(
-        style: getButtonStyle(),
-        onPressed: () => goTo(route),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      style: getButtonStyle(),
+      onPressed: () => goTo(route),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Image(image: AssetImage(iconSrc)),
-          Text(name,
-              style: TextStyle(
-                  color: isActive(route)
-                      ? AppColors.textColor
-                      : AppColors.grayBlue))
-        ]));
+          Text(
+            name,
+            style: TextStyle(
+                color:
+                    isActive(route) ? AppColors.textColor : AppColors.grayBlue),
+          )
+        ],
+      ),
+    );
   }
 
   ButtonStyle getButtonStyle() {

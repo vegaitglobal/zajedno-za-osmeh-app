@@ -9,7 +9,8 @@ enum AppRoutes {
   qrResult,
   myQR,
   authentification,
-  checkEmail
+  checkEmail,
+  userProfile
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -25,5 +26,6 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.qrResult => '/qrResult',
         AppRoutes.myQR => '/myQr',
         AppRoutes.checkEmail => '/checkEmail',
+        AppRoutes.userProfile => '/userProfile',
       };
 }
