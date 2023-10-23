@@ -12,6 +12,10 @@ class FilterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void goBack() {
+      context.go(AppRoutes.benefits.path());
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -20,9 +24,7 @@ class FilterView extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    context.go(AppRoutes.benefits.path());
-                  },
+                  onTap: goBack,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -91,7 +93,7 @@ class FilterView extends StatelessWidget {
                             ),
                             const SizedBox(height: 40),
                             GestureDetector(
-                                onTap: () {},
+                                onTap: goBack,
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
