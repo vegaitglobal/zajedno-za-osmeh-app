@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/data/filter_feature/model/filter_model_response.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
 import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import '../../../resources/my_colors.dart';
@@ -39,7 +40,11 @@ class BenefitsView extends StatelessWidget {
                     ),
                   BenefitsInitial() => const Placeholder(),
                   BenefitsSuccessState() => _buildFilterExpansionTile(
-                      state.categories, state.selectedCategories),
+                      state.categories,
+                      state.selectedCategories,
+                      state.cities,
+                      state.selectedCity,
+                    ),
                   BenefitsFailState() => const Placeholder()
                 };
               },
@@ -77,7 +82,10 @@ class BenefitsView extends StatelessWidget {
   }
 
   Widget _buildFilterExpansionTile(
-      List<FilterUiModel> categories, List<FilterUiModel> selectedCategories) {
+      List<FilterUiModel> categories,
+      List<FilterUiModel> selectedCategories,
+      List<FilterByCityModelResponse> cities,
+      String selectedCity) {
     return Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -100,6 +108,8 @@ class BenefitsView extends StatelessWidget {
               FilterView(
                 categories: categories,
                 selectedCategories: selectedCategories,
+                cities: cities,
+                selectedCity: selectedCity,
               ),
             ],
           ),
