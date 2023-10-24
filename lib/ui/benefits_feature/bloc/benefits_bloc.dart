@@ -178,11 +178,13 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         state.selectedCity,
       ));
       try {
-        List<BenefitModel> filteredBenefits = state.benefits
-            .where((element) => state.selectedCategories
-                .map((e) => e.name)
-                .contains(element.categoryName))
-            .toList();
+        List<BenefitModel> filteredBenefits = state.benefits.where((element) {
+          final matchesCategory = state.selectedCategories.isEmpty ||
+              state.selectedCategories
+                  .map((e) => e.name)
+                  .contains(element.categoryName);
+          return matchesCategory;
+        }).toList();
 
         emit(BenefitsSuccessState(
           state.benefits,
