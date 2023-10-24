@@ -29,6 +29,8 @@ dependencies:
   flutter_email_sender: ^6.0.2
   file_picker: ^6.0.0
   flutter_native_splash: ^2.3.4
+  image_picker: ^1.0.4
+
   flutter:
     sdk: flutter
 
