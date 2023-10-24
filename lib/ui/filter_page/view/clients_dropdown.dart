@@ -41,7 +41,11 @@ class ClientsDropdown extends StatelessWidget {
             }).toList(),
           ],
           onChanged: (newValue) {
-            context.read<BenefitsBloc>().add(SelectCityFilter(newValue!));
+            if (newValue == null) {
+              context.read<BenefitsBloc>().add(RemoveCityFilter());
+            } else {
+              context.read<BenefitsBloc>().add(SelectCityFilter(newValue));
+            }
           },
           underline: Container(
             height: 0,

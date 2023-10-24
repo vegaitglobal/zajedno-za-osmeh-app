@@ -25,3 +25,5 @@ final class SelectCityFilter extends BenefitsEvent {
   final String city;
   const SelectCityFilter(this.city);
 }
+
+final class RemoveCityFilter extends BenefitsEvent {}

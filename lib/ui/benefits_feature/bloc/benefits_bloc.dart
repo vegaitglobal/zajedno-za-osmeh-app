@@ -158,5 +158,35 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         ));
       }
     });
+
+    on<RemoveCityFilter>((event, emit) async {
+      emit(BenefitsLoadingState(
+        state.benefits,
+        state.filteredBenefits,
+        state.categories,
+        state.selectedCategories,
+        state.cities,
+        state.selectedCity,
+      ));
+      try {
+        emit(BenefitsSuccessState(
+          state.benefits,
+          state.benefits,
+          state.categories,
+          state.selectedCategories,
+          state.cities,
+          '',
+        ));
+      } catch (error) {
+        emit(BenefitsFailState(
+          state.benefits,
+          state.filteredBenefits,
+          state.categories,
+          state.selectedCategories,
+          state.cities,
+          state.selectedCity,
+        ));
+      }
+    });
   }
 }
