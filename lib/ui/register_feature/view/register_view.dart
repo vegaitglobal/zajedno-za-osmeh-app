@@ -9,6 +9,8 @@ import 'package:gu_mobile/ui/theme/color.dart';
 import '../../../resources/my_colors.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 import '../bloc/register_bloc.dart';
+import '../model/register_event.dart';
+import '../model/register_state.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -16,107 +18,38 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 150,
-        leading: GestureDetector(
-          onTap: () {
-            context.read<RegisterBloc>().add(OnBackPressed());
-          },
-          child: Container(
-            margin: EdgeInsets.only(left: 16),
-            child: Row(
-              children: [
-                Image.asset('assets/images/icons/arrow.png'),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  'Nazad',
-                  style: TextStyle(fontSize: 14, color: AppColors.royalBlue),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      resizeToAvoidBottomInset: true,
-      body: BlocConsumer<RegisterBloc, RegisterState>(
-        buildWhen: (previousState, currentState) {
-          if (currentState is RegisterFormState ||
-              currentState is LoadingState ||
-              currentState is UserRegisterSuccess ||
-              currentState is FileUploaded ||
-              currentState is SendingDocumentationSuccess) {
-            return true;
-          } else {
-            return false;
-          }
-        },
-        listenWhen: (previousState, currentState) {
-          if (currentState is UserRegisterSuccess ||
-              currentState is UserRegisterFailure ||
-              currentState is SendingDocumentationError ||
-              currentState is SendingDocumentationSuccess ||
-              currentState is NavigateBack) {
-            return true;
-          } else {
-            return false;
-          }
-        },
+      appBar: _appBar(context),
+      body: BlocConsumer<RegisterBloc, RegisterStateEvent>(
+        buildWhen: (previousState, currentState) =>
+            _configureBuilderExecutionForState(currentState),
+        listenWhen: (previousState, currentState) =>
+            _configureListenerExecutionOnEffect(currentState),
         listener: (context, state) {
-          if (state is NavigateBack) {
-            context.go(AppRoutes.authentification.path());
-          }
-
-          if (state is UserRegisterSuccess && state.showToast) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Verifikacioni email je poslat!"),
-            ));
-          }
-          if (state is UserRegisterFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Doslo je do greske, probajte kasnije"),
-            ));
-          }
-
-          if (state is SendingDocumentationError) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text(
-                  "Doslo je do greske prilikom slanja dokumentacije, molimo vas probajte opet!"),
-            ));
-          }
-
-          if (state is SendingDocumentationSuccess && state.showToast) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Vas dokument je uspesno poslat!"),
-            ));
-          }
+          _onNavigateBackEffect(state, context);
+          _onUserRegisterSuccessEffect(state, context);
+          _onUserRegisterFailureEffect(state, context);
+          _onSendDocumentErrorEffect(state, context);
+          _onSendDocumentSuccessEffect(state, context);
         },
-        builder: (
-          BuildContext context,
-          RegisterState state,
-        ) {
+        builder: (BuildContext context, RegisterStateEvent state) {
           return SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _registrationLabel(),
                 switch (state) {
-                  LoadingState() =>
-                    const Center(child: CircularProgressIndicator()),
-                  RegisterFormState() => _registerForm(context, state),
-                  UserRegisterSuccess() => _uploadFileForm(context, state),
-                  FileUploaded() => _uploadFileForm(context, state),
-                  SendingDocumentationSuccess() =>
-                    _registrationFinished(context),
-                  UserRegisterFailure() => Container(),
-                  FileUploadError() => Container(),
-                  SendingDocumentationError() => Container(),
-                  NavigateBack() => Container(),
-                }
+                  LoadingView() => const CircularProgressIndicator(),
+                  RegisterFormView() => _registerForm(context, state),
+                  UploadDocView() => _uploadFileForm(context, state),
+                  FileUploadedView() => _uploadFileForm(context, state),
+                  RegistrationFinishedView() => _registrationFinished(context),
+                  RegisterEffect() => Container(),
+                },
+                Container(),
               ],
             ),
           );
@@ -125,7 +58,92 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Padding _registerForm(BuildContext context, RegisterFormState state) {
+  bool _configureListenerExecutionOnEffect(RegisterStateEvent currentState) {
+    if (currentState is RegisterEffect) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool _configureBuilderExecutionForState(RegisterStateEvent currentState) {
+    if (currentState is RegisterState) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void _onSendDocumentSuccessEffect(
+      RegisterStateEvent state, BuildContext context) {
+    if (state is SendDocumentSuccess) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Vas dokument je uspesno poslat!"),
+      ));
+    }
+  }
+
+  void _onSendDocumentErrorEffect(
+      RegisterStateEvent state, BuildContext context) {
+    if (state is SendDocumentError) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+            "Doslo je do greske prilikom slanja dokumentacije, molimo vas probajte opet!"),
+      ));
+    }
+  }
+
+  void _onUserRegisterFailureEffect(
+      RegisterStateEvent state, BuildContext context) {
+    if (state is UserRegisterFailure) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Doslo je do greske, probajte kasnije"),
+      ));
+    }
+  }
+
+  void _onUserRegisterSuccessEffect(
+      RegisterStateEvent state, BuildContext context) {
+    if (state is UserRegisterSuccess) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Verifikacioni email je poslat!"),
+      ));
+    }
+  }
+
+  void _onNavigateBackEffect(RegisterStateEvent state, BuildContext context) {
+    if (state is NavigateBack) {
+      context.go(AppRoutes.authentification.path());
+    }
+  }
+
+  AppBar _appBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leadingWidth: 150,
+      leading: GestureDetector(
+        onTap: () => context.read<RegisterBloc>().add(OnBackPressed()),
+        child: Container(
+          margin: const EdgeInsets.only(left: 16),
+          child: Row(
+            children: [
+              Image.asset('assets/images/icons/arrow.png'),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                'Nazad',
+                style: TextStyle(fontSize: 14, color: AppColors.royalBlue),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _registerForm(BuildContext context, RegisterFormView state) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 26.0,
@@ -148,7 +166,7 @@ class RegisterScreen extends StatelessWidget {
   }
 
   TextFormField _confirmPasswordInput(
-      BuildContext context, RegisterFormState state) {
+      BuildContext context, RegisterFormView state) {
     return TextFormField(
       obscureText: state.uiModel.hidePassword,
       keyboardType: TextInputType.text,
@@ -171,7 +189,7 @@ class RegisterScreen extends StatelessWidget {
         ),
       );
 
-  TextFormField _passwordInput(RegisterFormState state, BuildContext context) {
+  TextFormField _passwordInput(RegisterFormView state, BuildContext context) {
     return TextFormField(
       obscureText: state.uiModel.hidePassword,
       keyboardType: TextInputType.text,
@@ -190,129 +208,149 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  IconButton _hidePasswordButton(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.visibility),
-      onPressed: () => context.read<RegisterBloc>().add(HidePassword()),
-    );
-  }
+  _hidePasswordButton(BuildContext context) => IconButton(
+        icon: const Icon(Icons.visibility),
+        onPressed: () => context.read<RegisterBloc>().add(HidePassword()),
+      );
 
-  TextFormField _emailInput(BuildContext context, RegisterFormState state) {
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        errorText:
-            !state.uiModel.emailValid ? "Email adresa nije ispravna" : null,
-        border: const OutlineInputBorder(),
-        label: const Text("Email adresa"),
-      ),
-      onChanged: (value) =>
-          context.read<RegisterBloc>().add(EmailChanged(value)),
-    );
-  }
+  _emailInput(BuildContext context, RegisterFormView state) => TextFormField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          errorText:
+              !state.uiModel.emailValid ? "Email adresa nije ispravna" : null,
+          border: const OutlineInputBorder(),
+          label: const Text("Email adresa"),
+        ),
+        onChanged: (value) =>
+            context.read<RegisterBloc>().add(EmailChanged(value)),
+      );
 
-  TextFormField _lastnameInput(BuildContext context, RegisterFormState state) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        label: Text("Prezime"),
-      ),
-      onChanged: (value) =>
-          context.read<RegisterBloc>().add(LastnameChanged(value)),
-    );
-  }
+  _lastnameInput(BuildContext context, RegisterFormView state) => TextFormField(
+        keyboardType: TextInputType.text,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+          label: Text("Prezime"),
+        ),
+        onChanged: (value) =>
+            context.read<RegisterBloc>().add(LastnameChanged(value)),
+      );
 
-  TextFormField _nameInput(BuildContext context, RegisterFormState state) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        label: Text("Ime"),
-      ),
-      onChanged: (value) =>
-          context.read<RegisterBloc>().add(NameChanged(value)),
-    );
-  }
+  _nameInput(BuildContext context, RegisterFormView state) => TextFormField(
+        keyboardType: TextInputType.text,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+          label: Text("Ime"),
+        ),
+        onChanged: (value) =>
+            context.read<RegisterBloc>().add(NameChanged(value)),
+      );
 
-  Widget _uploadFileForm(BuildContext context, RegisterState state) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: AppColors.royalBlue,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(Icons.info_outline_rounded, color: Colors.orange),
-                Padding(padding: EdgeInsets.only(left: 10.0)),
-                Text(
-                  'U sledecem koraku ce biti\npotrebno priloziti izvestaj lekara',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
-          const Text("Prilozite izvestaj lekara"),
-          SizedBox(
-
-            width: double.infinity,
-            child: DottedBorder(
-              strokeWidth: 1.0,
-              radius: const Radius.circular(8.0),
-              color: Colors.grey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
+  _uploadFileForm(BuildContext context, RegisterState state) => Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 180),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.royalBlue,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                  if (state is UserRegisterSuccess)
-                    Image.asset('assets/images/icons/upload_file.png')
-                  else
-                    const Icon(Icons.check_circle_outline, color: Colors.green),
-                  const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                  if (state is UserRegisterSuccess)
-                    _uploadFileTextButton(context),
-                  if (state is FileUploaded) Text(state.uiModel.fileName),
-                  const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                  if (state is UserRegisterSuccess)
-                    const Text("Potrebno je priloziti fotografiju dokumenta"),
-                  if (state is FileUploaded)
-                    const Text("Dokument uspesno ucitan"),
-                  const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+                  Icon(Icons.info_outline_rounded, color: Colors.orange),
+                  Padding(padding: EdgeInsets.only(left: 10.0)),
+                  Text(
+                    'U sledecem koraku ce biti\npotrebno priloziti izvestaj lekara',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: _buttonStyleOnStateChange(state),
-              onPressed: () {
-                if (state is FileUploaded) {
-                  context.read<RegisterBloc>().add(SendDocumentation());
-                }
-              },
-              child: const Text(
-                "Posalji zahtev",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Prilozite izvestaj lekara"),
+                  SizedBox(
+                      width: double.infinity,
+                      child: _dottedContainer(context, state)),
+                  const Padding(padding: EdgeInsets.symmetric(vertical: 32.0)),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: _buttonStyleOnStateChange(state),
+                      onPressed: () {
+                        if (state is FileUploadedView) {
+                          context.read<RegisterBloc>().add(SendDocumentation());
+                        }
+                      },
+                      child: const Text(
+                        "Posalji zahtev",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
+          ],
+        ),
+      );
+
+  _uploadedFileNamePlaceholder(RegisterState state) {
+    if (state is UploadDocView) {
+      return const Text("Potrebno je priloziti fotografiju dokumenta");
+    }
+    if (state is FileUploadedView) {
+      return const Text("Dokument uspesno ucitan");
+    }
+  }
+
+  _uploadFileClickableText(BuildContext context, RegisterState state) {
+    if (state is UploadDocView) {
+      return _uploadFileTextButton(context);
+    }
+    if (state is FileUploadedView) {
+      return Text(state.uiModel.fileName);
+    }
+  }
+
+  DottedBorder _dottedContainer(BuildContext context, RegisterState state) =>
+      DottedBorder(
+        strokeWidth: 1,
+        color: Colors.grey,
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _fileUploadIndicatorIcon(state),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+              _uploadFileClickableText(context, state),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+              _uploadedFileNamePlaceholder(state),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      );
+
+  _fileUploadIndicatorIcon(RegisterState state) {
+    if (state is UploadDocView) {
+      return Image.asset('assets/images/icons/upload_file.png');
+    } else {
+      return const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      );
+    }
   }
 
   Row _uploadFileTextButton(BuildContext context) {
@@ -365,7 +403,7 @@ class RegisterScreen extends StatelessWidget {
       );
 
   _buttonStyleOnStateChange(RegisterState state) {
-    if (state is FileUploaded) {
+    if (state is FileUploadedView) {
       return ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Green));
     } else {
@@ -388,9 +426,8 @@ class RegisterScreen extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Green),
                 ),
-                onPressed: () => context
-                    .read<RegisterBloc>()
-                    .add(const PreformUserRegistrationEvent()),
+                onPressed: () =>
+                    {context.read<RegisterBloc>().add(OnBackPressed())},
                 child: const Text(
                   "Zavrsi i idi na pocetnu stranu",
                   style: TextStyle(

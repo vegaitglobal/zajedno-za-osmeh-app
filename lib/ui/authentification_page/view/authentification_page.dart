@@ -4,10 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
-import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
-import 'package:gu_mobile/ui/authentification_feature/view/signup_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 import '../../authentification_feature/view/login_card.dart';
