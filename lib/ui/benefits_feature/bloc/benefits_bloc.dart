@@ -60,9 +60,11 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
             [...state.selectedCategories, event.category].toList();
 
         List<BenefitModel> filteredBenefits = state.benefits
-            .where((element) => newSelectedCategories
-                .map((e) => e.name)
-                .contains(element.categoryName))
+            .where((element) =>
+                newSelectedCategories
+                    .map((e) => e.name)
+                    .contains(element.categoryName) &&
+                element.city == state.selectedCity)
             .toList();
 
         emit(BenefitsSuccessState(
@@ -100,9 +102,11 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
             .toList();
 
         List<BenefitModel> filteredBenefits = state.benefits
-            .where((element) => newSelectedCategories
-                .map((e) => e.name)
-                .contains(element.categoryName))
+            .where((element) =>
+                newSelectedCategories
+                    .map((e) => e.name)
+                    .contains(element.categoryName) &&
+                element.city == state.selectedCity)
             .toList();
 
         emit(BenefitsSuccessState(
@@ -136,7 +140,11 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
       ));
       try {
         List<BenefitModel> filteredBenefits = state.benefits
-            .where((element) => element.city == event.city)
+            .where((element) =>
+                element.city == event.city &&
+                state.selectedCategories
+                    .map((e) => e.name)
+                    .contains(element.categoryName))
             .toList();
 
         emit(BenefitsSuccessState(
@@ -169,9 +177,15 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         state.selectedCity,
       ));
       try {
+        List<BenefitModel> filteredBenefits = state.benefits
+            .where((element) => state.selectedCategories
+                .map((e) => e.name)
+                .contains(element.categoryName))
+            .toList();
+
         emit(BenefitsSuccessState(
           state.benefits,
-          state.benefits,
+          filteredBenefits,
           state.categories,
           state.selectedCategories,
           state.cities,
