@@ -56,30 +56,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   _registerUser(Emitter<RegisterState> emit) async {
     if (_formRequirementsSatisfied()) {
       emit(LoadingState());
-      // await _repo
-      //     .signUp(email: _uiModel.email, password: _uiModel.password)
-      //     .then((value) => {emit(UserRegisterSuccess())})
-      //     .catchError(
-      //   (onError) {
-      //     emit(UserRegisterFailure("Dogodila se greska, probajte kasnije"));
-      //   },
-      // );
-      await Future.delayed(Duration(seconds: 2)); // Wait for 2 seconds
-      emit(UserRegisterSuccess(showToast: true));
-      // repo.signUpWithVerification(email: email, password: password, filePath: filePath)
-      // await userRepository
-      //     .registerUser(
-      //       state.name,
-      //       state.lastName,
-      //       state.email,
-      //       state.password,
-      //     )
-      //     .then((response) => {})
-      //     .catchError(
-      //       (exception) => {
-      //
-      //       },
-      //     );
+      await _repo
+          .signUp(email: _uiModel.email, password: _uiModel.password)
+          .then((value) => {emit(UserRegisterSuccess(showToast: true))})
+          .catchError(
+        (onError) {
+          emit(UserRegisterFailure("Dogodila se greska, probajte kasnije"));
+        },
+      );
     }
   }
 
