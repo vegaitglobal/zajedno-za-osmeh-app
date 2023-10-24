@@ -58,21 +58,23 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                 state is UserLoggedInState) {
               context.go(AppRoutes.home.path());
             }
+
+            if (state is AuthRegistrationState) {
+              context.go(AppRoutes.register.path());
+            }
           }, builder: (context, state) {
             return switch (state) {
-              AuthInitialState() => Placeholder(),
               AuthLoginState() => LoginCard(
                   onSubmit: (email, password) =>
                       _loginAction(context, email, password),
                   navigateToSignUp: () => _switchToSignUp(context),
                 ),
-              AuthRegistrationState() => SignUpCard(
-                  onSubmit: (email, password) =>
-                      _signUpAction(context, email, password)),
               AuthFinalRegistrationState() => UploadMedicalrecordCard(
                   onSubmit: (filePath) =>
                       _registrationCompleteAction(context, filePath),
                 ),
+              AuthInitialState() => Placeholder(),
+              AuthRegistrationState() => Placeholder(),
               UserLoggedInState() => Placeholder(),
               RegistrationCompleteState() => Placeholder(),
               AuthErrorState() =>
