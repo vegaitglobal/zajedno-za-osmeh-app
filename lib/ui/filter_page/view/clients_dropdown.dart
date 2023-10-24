@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/data/filter_feature/model/filter_model_response.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 
 class ClientsDropdown extends StatelessWidget {
   const ClientsDropdown({
@@ -39,10 +41,7 @@ class ClientsDropdown extends StatelessWidget {
             }).toList(),
           ],
           onChanged: (newValue) {
-            // setState(() {
-            //   selectedCity = newValue;
-            // });
-            print(newValue);
+            context.read<BenefitsBloc>().add(SelectCityFilter(newValue!));
           },
           underline: Container(
             height: 0,

@@ -124,5 +124,39 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         ));
       }
     });
+
+    on<SelectCityFilter>((event, emit) async {
+      emit(BenefitsLoadingState(
+        state.benefits,
+        state.filteredBenefits,
+        state.categories,
+        state.selectedCategories,
+        state.cities,
+        state.selectedCity,
+      ));
+      try {
+        List<BenefitModel> filteredBenefits = state.benefits
+            .where((element) => element.city == event.city)
+            .toList();
+
+        emit(BenefitsSuccessState(
+          state.benefits,
+          filteredBenefits,
+          state.categories,
+          state.selectedCategories,
+          state.cities,
+          event.city,
+        ));
+      } catch (error) {
+        emit(BenefitsFailState(
+          state.benefits,
+          state.filteredBenefits,
+          state.categories,
+          state.selectedCategories,
+          state.cities,
+          state.selectedCity,
+        ));
+      }
+    });
   }
 }
