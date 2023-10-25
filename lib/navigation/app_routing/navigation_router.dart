@@ -4,6 +4,7 @@ import 'package:gu_mobile/ui/authentification_page/view/authentification_page.da
 import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
+import 'package:gu_mobile/ui/profile_page/view/profile_view.dart';
 import 'package:gu_mobile/ui/register_feature/view/register_view.dart';
 import 'package:gu_mobile/ui/my_qr_code_page/view/my_qr_code_view.dart';
 import 'package:gu_mobile/ui/qr_result_page/view/qr_result_view.dart';
@@ -79,7 +80,8 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.qrResult.name,
             builder: (context, state) {
               return QRResultView(
-                isValid: state.queryParameters['isValid']  == 'true' ? true : false,
+                isValid:
+                    state.queryParameters['isValid'] == 'true' ? true : false,
               );
             }),
         GoRoute(
@@ -93,6 +95,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.register.name,
             builder: (context, state) {
               return const RegisterScreen();
+            }),
+        GoRoute(
+            path: AppRoutes.userProfile.path(),
+            name: AppRoutes.userProfile.name,
+            builder: (context, state) {
+              return const ProfileScreen();
             }),
       ])
 ]);

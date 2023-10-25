@@ -33,6 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    bool isUserVerified = true; //TODO: Replace this with real value
     return BottomAppBar(
       color: Colors.white,
       child: SizedBox(
@@ -45,7 +46,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
-            buildNavigationItem(AppRoutes.authentification, 'Profil',
+            buildNavigationItem(
+                isUserVerified
+                    ? AppRoutes.userProfile
+                    : AppRoutes.authentification,
+                'Profil',
                 'assets/images/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.myQR, 'Tvoj QR',
                 'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png'),
