@@ -91,31 +91,6 @@ class FilterView extends StatelessWidget {
                               selectedCity: state.selectedCity,
                               cities: state.cities,
                             ),
-                            const SizedBox(height: 40),
-                            GestureDetector(
-                                onTap: goBack,
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                    color: true
-                                        ? AppColors.buttonEnabled
-                                        : AppColors.buttonDisabled,
-                                  ),
-                                  child: const Text(
-                                    'Primeni',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                )),
                           ],
                         ),
                       BenefitsFailState() => const Placeholder()
