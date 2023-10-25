@@ -74,7 +74,12 @@ class _AuthentificationViewState extends State<AuthentificationView> {
               UserLoggedInState() => Placeholder(),
               RegistrationCompleteState() => Placeholder(),
               AuthErrorState() =>
-                Text("Došlo je do greške, proverite internet konekciju")
+                Text("Došlo je do greške, proverite internet konekciju"),
+              UserLoggedOutState() => LoginCard(
+                  onSubmit: (email, password) =>
+                      _loginAction(context, email, password),
+                  navigateToSignUp: () => _switchToSignUp(context),
+                )
             };
           }),
         ));

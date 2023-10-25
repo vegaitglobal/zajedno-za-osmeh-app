@@ -7,7 +7,6 @@ sealed class AuthenticationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
 final class SignInEvent extends AuthenticationEvent {
   final String email;
   final String password;
@@ -38,4 +37,8 @@ final class BackButtonPressedEvent extends AuthenticationEvent {
 
 final class SwitchToSignUpScreen extends AuthenticationEvent {
   const SwitchToSignUpScreen();
+}
+
+class SignOutEvent extends AuthenticationEvent {
+  const SignOutEvent();
 }
