@@ -5,6 +5,7 @@ import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
 import 'package:gu_mobile/ui/filter_page/view/filter_view.dart';
+import 'package:gu_mobile/ui/register_feature/view/register_view.dart';
 import 'package:gu_mobile/ui/my_qr_code_page/view/my_qr_code_view.dart';
 import 'package:gu_mobile/ui/qr_result_page/view/qr_result_view.dart';
 import 'package:gu_mobile/ui/qr_verification_page/view/qr_scanner.dart';
@@ -94,6 +95,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.filters.name,
             builder: (context, state) {
               return const FilterView();
+            }),
+        GoRoute(
+            path: AppRoutes.register.path(),
+            name: AppRoutes.register.name,
+            builder: (context, state) {
+              return const RegisterScreen();
             })
       ])
 ]);

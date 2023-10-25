@@ -4,10 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
-import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
-import 'package:gu_mobile/ui/authentification_feature/view/signup_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
-import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 import '../../authentification_feature/view/login_card.dart';
@@ -58,21 +54,23 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                 state is UserLoggedInState) {
               context.go(AppRoutes.home.path());
             }
+
+            if (state is AuthRegistrationState) {
+              context.go(AppRoutes.register.path());
+            }
           }, builder: (context, state) {
             return switch (state) {
-              AuthInitialState() => Placeholder(),
               AuthLoginState() => LoginCard(
                   onSubmit: (email, password) =>
                       _loginAction(context, email, password),
                   navigateToSignUp: () => _switchToSignUp(context),
                 ),
-              AuthRegistrationState() => SignUpCard(
-                  onSubmit: (email, password) =>
-                      _signUpAction(context, email, password)),
               AuthFinalRegistrationState() => UploadMedicalrecordCard(
                   onSubmit: (filePath) =>
                       _registrationCompleteAction(context, filePath),
                 ),
+              AuthInitialState() => Placeholder(),
+              AuthRegistrationState() => Placeholder(),
               UserLoggedInState() => Placeholder(),
               RegistrationCompleteState() => Placeholder(),
               AuthErrorState() =>
