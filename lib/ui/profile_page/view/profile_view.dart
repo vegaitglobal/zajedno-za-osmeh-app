@@ -6,6 +6,7 @@ import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/ui/profile_page/view/delete_account_dialog.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -17,51 +18,75 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: Center(
-        child: Column(
-          children: [
-            // ClipRRect(
-            //   borderRadius: BorderRadius.circular(16),
-            //   child: Container(
-            //     width: double.infinity,
-            //     color: Colors.white,
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(16),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           const Text(
-            //             "Petar Petrovic", //TODO: Use users real name and surname
-            //             style: TextStyle(fontSize: 16),
-            //           ),
-            //           GestureDetector(
-            //             onTap: () {
-            //               print('go to edit screen');
-            //             },
-            //             child: const Image(
-            //               image: AssetImage(
-            //                   'assets/images/icons/edit_profile.png'),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            TextButton(
-              onPressed: () {
-                context.go(AppRoutes.home.path());
-                BlocProvider.of<AuthenticationBloc>(context)
-                    .add(const SignOutEvent());
-              },
-              child: const Text('Sign out'),
-            ),
-            TextButton(
-              onPressed: () {
-                print('delete account');
-              },
-              child: const Text('Delete account'),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.go(AppRoutes.home.path());
+                  BlocProvider.of<AuthenticationBloc>(context)
+                      .add(const SignOutEvent());
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Odjavi se",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Icon(
+                            Icons.logout,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DeleteAccountDialog();
+                    },
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Izbriši nalog",
+                            style: TextStyle(fontSize: 16, color: Colors.red),
+                          ),
+                          Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
