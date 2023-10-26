@@ -9,6 +9,7 @@ enum AppRoutes {
   qrResult,
   myQR,
   authentification,
+  filters,
   login,
   register
 }
@@ -25,6 +26,7 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.qrScanner => '/qrScanner',
         AppRoutes.qrResult => '/qrResult',
         AppRoutes.myQR => '/myQr',
+        AppRoutes.filters => '/filters',
         AppRoutes.login => '/login',
         AppRoutes.register => '/register'
       };
