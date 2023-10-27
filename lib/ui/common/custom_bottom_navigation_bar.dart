@@ -47,7 +47,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
             buildNavigationItem(
-                isUserVerified
+                !isUserVerified
                     ? AppRoutes.userProfile
                     : AppRoutes.authentification,
                 'Profil',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gu_mobile/ui/profile_page/bloc/donee_bloc.dart';
+import 'package:gu_mobile/ui/profile_page/bloc/profile_bloc.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/donee_event.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
@@ -24,7 +24,7 @@ class DeleteAccountDialog extends StatelessWidget {
             style: TextStyle(color: Colors.red),
           ),
           onPressed: () {
-            context.read<DoneeBloc>().add(
+            context.read<ProfileBloc>().add(
                   const DeleteDonee(),
                 );
             Navigator.of(context).pop();

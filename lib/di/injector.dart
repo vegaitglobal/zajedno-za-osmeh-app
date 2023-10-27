@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:gu_mobile/data/core/database.dart';
 import 'package:gu_mobile/data/core/token/token_manager.dart';
 import 'package:gu_mobile/data/core/token/token_manager_impl.dart';
-import 'package:gu_mobile/data/donee/repository/donee_repository.dart';
+import 'package:gu_mobile/data/profile/repository/donee_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/about_us_page/repository/team_members_repository.dart';
@@ -50,7 +50,7 @@ void _initRepositories() {
   getIt.registerLazySingleton<QRCodeStatusRepository>(
       () => QRCodeStatusRepository());
 
-  getIt.registerLazySingleton<DoneeRepository>(() => DoneeRepository());
+  getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepository());
 
   getIt.registerLazySingleton<FilterRepository>(() => FilterRepository());
 

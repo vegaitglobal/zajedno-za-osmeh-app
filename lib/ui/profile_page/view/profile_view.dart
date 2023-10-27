@@ -7,8 +7,8 @@ import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gu_mobile/ui/profile_page/bloc/donee_bloc.dart';
-import 'package:gu_mobile/ui/profile_page/bloc/donee_state.dart';
+import 'package:gu_mobile/ui/profile_page/bloc/profile_bloc.dart';
+import 'package:gu_mobile/ui/profile_page/bloc/profile_state.dart';
 import 'package:gu_mobile/ui/profile_page/view/delete_account_dialog.dart';
 import 'package:gu_mobile/ui/profile_page/view/profile_button.dart';
 
@@ -26,11 +26,11 @@ class ProfileScreen extends StatelessWidget {
       appBar: const CustomAppBar(),
       backgroundColor: AppColors.backgroundColor,
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      body: BlocListener<DoneeBloc, DoneeState>(
-        listener: (BuildContext context, DoneeState state) {
-          if (state is DoneeSuccessState) {
+      body: BlocListener<ProfileBloc, ProfileState>(
+        listener: (BuildContext context, ProfileState state) {
+          if (state is ProfileDeletionSuccessState) {
             signOut();
-          } else if (state is DoneeFailureState) {
+          } else if (state is ProfileDeletionFailureState) {
             print('fail:');
           }
         },
