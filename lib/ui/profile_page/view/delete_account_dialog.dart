@@ -25,9 +25,7 @@ class DeleteAccountDialog extends StatelessWidget {
           ),
           onPressed: () {
             context.read<DoneeBloc>().add(
-                  const DeleteDonee(
-                    doneeId: "70227b70-d333-4922-82e5-6eece6875467",
-                  ),
+                  const DeleteDonee(),
                 );
             Navigator.of(context).pop();
           },

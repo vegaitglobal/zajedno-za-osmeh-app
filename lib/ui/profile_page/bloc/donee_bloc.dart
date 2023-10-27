@@ -8,7 +8,7 @@ class DoneeBloc extends Bloc<DoneeEvent, DoneeState> {
       : super(const DoneeInitialState()) {
     on<DeleteDonee>((event, emit) async {
       try {
-        await repository.deleteDonee(event.doneeId);
+        await repository.deleteAccount();
 
         emit(const DoneeSuccessState());
       } catch (e) {

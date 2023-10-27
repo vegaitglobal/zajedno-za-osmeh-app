@@ -3,6 +3,5 @@ sealed class DoneeEvent {
 }
 
 final class DeleteDonee extends DoneeEvent {
-  final String doneeId;
-  const DeleteDonee({required this.doneeId});
+  const DeleteDonee();
 }
