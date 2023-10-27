@@ -7,7 +7,6 @@ import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/components/info_dialog.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/profile_bloc.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/profile_state.dart';
 import 'package:gu_mobile/ui/profile_page/view/delete_account_dialog.dart';
