@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
+import 'package:gu_mobile/ui/authentification_feature/components/info_dialog.dart';
 import 'package:gu_mobile/ui/common/custom_appbar.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,12 @@ class ProfileScreen extends StatelessWidget {
           if (state is ProfileDeletionSuccessState) {
             signOut();
           } else if (state is ProfileDeletionFailureState) {
-            print('fail:');
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const InfoDialog();
+              },
+            );
           }
         },
         child: Center(
