@@ -42,7 +42,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            buildNavigationItem(AppRoutes.home, 'Home',
+            buildNavigationItem(AppRoutes.home, 'Početna',
                 'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
             buildNavigationItem(AppRoutes.benefits, 'Usluge',
                 'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
