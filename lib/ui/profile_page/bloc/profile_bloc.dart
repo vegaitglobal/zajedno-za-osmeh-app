@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:gu_mobile/data/profile/repository/donee_repository.dart';
-import 'package:gu_mobile/ui/profile_page/bloc/donee_event.dart';
+import 'package:gu_mobile/ui/profile_page/bloc/profile_event.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/profile_state.dart';
 
-class ProfileBloc extends Bloc<DoneeEvent, ProfileState> {
+class ProfileBloc extends Bloc<DeleteProfile, ProfileState> {
   ProfileBloc({required ProfileRepository repository})
       : super(const ProfileInitialState()) {
-    on<DeleteDonee>((event, emit) async {
+    on<DeleteProfile>((event, emit) async {
       try {
         await repository.deleteAccount();
 
