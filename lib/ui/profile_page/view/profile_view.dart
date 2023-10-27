@@ -17,6 +17,11 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void signOut() {
+      context.go(AppRoutes.home.path());
+      BlocProvider.of<AuthenticationBloc>(context).add(const SignOutEvent());
+    }
+
     return Scaffold(
       appBar: const CustomAppBar(),
       backgroundColor: AppColors.backgroundColor,
@@ -24,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
       body: BlocListener<DoneeBloc, DoneeState>(
         listener: (BuildContext context, DoneeState state) {
           if (state is DoneeSuccessState) {
-            print("obrisano");
+            signOut();
           } else if (state is DoneeFailureState) {
             print('fail:');
           }
@@ -41,11 +46,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ProfileButton(
-                  onPress: () {
-                    context.go(AppRoutes.home.path());
-                    BlocProvider.of<AuthenticationBloc>(context)
-                        .add(const SignOutEvent());
-                  },
+                  onPress: signOut,
                   icon: Icons.logout,
                   text: "Odjavi se",
                 ),
