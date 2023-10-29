@@ -20,3 +20,10 @@ final class RemoveCategoryFilter extends BenefitsEvent {
   final FilterUiModel category;
   const RemoveCategoryFilter(this.category);
 }
+
+final class SelectCityFilter extends BenefitsEvent {
+  final String city;
+  const SelectCityFilter(this.city);
+}
+
+final class RemoveCityFilter extends BenefitsEvent {}

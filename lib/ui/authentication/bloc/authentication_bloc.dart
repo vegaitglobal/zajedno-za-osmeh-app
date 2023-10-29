@@ -59,6 +59,15 @@ class AuthenticationBloc
       emit(const AuthRegistrationState(null, null));
       emit(const AuthLoginState());
     });
+
+    on<SignOutEvent>((event, emit) async {
+      try {
+        await repository.signOut();
+        emit(const UserLoggedOutState());
+      } catch (e) {
+        emit(const AuthErrorState());
+      }
+    });
   }
 }
 

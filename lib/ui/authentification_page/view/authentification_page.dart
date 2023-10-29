@@ -69,12 +69,17 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                   onSubmit: (filePath) =>
                       _registrationCompleteAction(context, filePath),
                 ),
+              AuthErrorState() =>
+                Text("Došlo je do greške, proverite internet konekciju"),
+              UserLoggedOutState() => LoginCard(
+                  onSubmit: (email, password) =>
+                      _loginAction(context, email, password),
+                  navigateToSignUp: () => _switchToSignUp(context),
+                ),
               AuthInitialState() => Container(),
               AuthRegistrationState() => Container(),
               UserLoggedInState() => Container(),
               RegistrationCompleteState() => Container(),
-              AuthErrorState() =>
-                const Text("Došlo je do greške, proverite internet konekciju")
             };
           }),
         ));
