@@ -49,39 +49,32 @@ class _AuthentificationViewState extends State<AuthentificationView> {
         bottomNavigationBar: const CustomBottomNavigationBar(),
         body: Center(
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-            if (state is RegistrationCompleteState ||
-                state is UserLoggedInState) {
-              context.go(AppRoutes.home.path());
-            }
-
-            if (state is AuthRegistrationState) {
-              context.go(AppRoutes.register.path());
-            }
-          }, builder: (context, state) {
-            return switch (state) {
-              AuthLoginState() => LoginCard(
-                  onSubmit: (email, password) =>
-                      _loginAction(context, email, password),
-                  navigateToSignUp: () => _switchToSignUp(context),
-                ),
-              AuthFinalRegistrationState() => UploadMedicalrecordCard(
-                  onSubmit: (filePath) =>
-                      _registrationCompleteAction(context, filePath),
-                ),
-              AuthInitialState() => Placeholder(),
-              AuthRegistrationState() => Placeholder(),
-              UserLoggedInState() => Placeholder(),
-              RegistrationCompleteState() => Placeholder(),
-              AuthErrorState() =>
-                Text("Došlo je do greške, proverite internet konekciju"),
-              UserLoggedOutState() => LoginCard(
-                  onSubmit: (email, password) =>
-                      _loginAction(context, email, password),
-                  navigateToSignUp: () => _switchToSignUp(context),
-                )
-            };
-          }),
+              buildWhen: (context, state) => _triggerBuilderOnStateChange(state),
+              listenWhen: (context, state) => _triggerListenerOnStateChange(state),
+              listener: (context, state) => _handleEventListener(state, context),
+              builder: (context, state) {
+                return switch (state) {
+                  AuthLoginState() => LoginCard(
+                      onSubmit: (email, password) =>
+                          _loginAction(context, email, password),
+                      navigateToSignUp: () => _switchToSignUp(context),
+                    ),
+                  AuthFinalRegistrationState() => UploadMedicalrecordCard(
+                      onSubmit: (filePath) =>
+                          _registrationCompleteAction(context, filePath),
+                    ),
+                  UserLoggedOutState() => LoginCard(
+                      onSubmit: (email, password) =>
+                          _loginAction(context, email, password),
+                      navigateToSignUp: () => _switchToSignUp(context),
+                    ),
+                  AuthErrorState() => Container(),
+                  AuthInitialState() => Container(),
+                  AuthRegistrationState() => Container(),
+                  UserLoggedInState() => Container(),
+                  RegistrationCompleteState() => Container(),
+                };
+              }),
         ));
   }
 
@@ -89,6 +82,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     context.read<AuthenticationBloc>().add(SignInEvent(email, password));
   }
 
+  // Check if this is still needed
   _signUpAction(BuildContext context, String email, String password) {
     context
         .read<AuthenticationBloc>()
@@ -101,5 +95,56 @@ class _AuthentificationViewState extends State<AuthentificationView> {
 
   _switchToSignUp(BuildContext context) {
     context.read<AuthenticationBloc>().add(SwitchToSignUpScreen());
+  }
+
+  bool _triggerBuilderOnStateChange(AuthenticationState state) {
+    if (state is AuthLoginState ||
+        state is AuthFinalRegistrationState ||
+        state is UserLoggedOutState) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool _triggerListenerOnStateChange(AuthenticationState state) {
+    if (state is RegistrationCompleteState ||
+        state is UserLoggedInState ||
+        state is AuthRegistrationState ||
+        state is AuthErrorState) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void _navHomeOnStateChange(AuthenticationState state, BuildContext context) {
+    if (state is RegistrationCompleteState || state is UserLoggedInState) {
+      context.go(AppRoutes.home.path());
+    }
+  }
+
+  void _navToSignupOnStateChange(
+      AuthenticationState state, BuildContext context) {
+    if (state is AuthRegistrationState) {
+      context.go(AppRoutes.register.path());
+    }
+  }
+
+  void _displayErrorMessageOnStateChange(
+    AuthenticationState state,
+    BuildContext context,
+  ) {
+    if (state is AuthErrorState) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Došlo je do greške, proverite internet konekciju"),
+      ));
+    }
+  }
+
+  void _handleEventListener(AuthenticationState state, BuildContext context) {
+    _navHomeOnStateChange(state, context);
+    _navToSignupOnStateChange(state, context);
+    _displayErrorMessageOnStateChange(state, context);
   }
 }

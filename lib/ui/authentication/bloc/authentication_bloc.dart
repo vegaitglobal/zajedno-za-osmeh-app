@@ -17,6 +17,7 @@ class AuthenticationBloc
       try {
         await repository.signIn(email: event.email, password: event.password);
         emit(const UserLoggedInState());
+        emit(const AuthLoginState());
       } catch (e) {
         emit(const AuthErrorState());
       }
@@ -56,6 +57,7 @@ class AuthenticationBloc
 
     on<SwitchToSignUpScreen>((event, emit) async {
       emit(const AuthRegistrationState(null, null));
+      emit(const AuthLoginState());
     });
 
     on<SignOutEvent>((event, emit) async {

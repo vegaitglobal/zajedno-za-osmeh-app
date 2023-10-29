@@ -11,6 +11,7 @@ import 'package:gu_mobile/di/injector.dart';
 import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
+import 'package:gu_mobile/ui/common/bottom_nav_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/profile_bloc.dart';
 import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_bloc.dart';
@@ -63,6 +64,9 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
               create: (context) =>
                   ProfileBloc(repository: getIt<ProfileRepository>())),
+          BlocProvider(
+              create: (context) => BottomNavBloc(
+                  authRepository: getIt<IAuthenticationRepository>())),
         ],
         child: MaterialApp.router(
           routerConfig: router,

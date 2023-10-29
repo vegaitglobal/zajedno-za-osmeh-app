@@ -113,8 +113,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
       emit(LoadingView());
       await _repo
           .signUp(email: _uiModel.email, password: _uiModel.password)
-          .then(
-              (value) => {emit(UploadDocView()), emit(UserRegisterSuccess())})
+          .then((value) => {emit(UploadDocView()), emit(UserRegisterSuccess())})
           .catchError(
         (onError) {
           emit(UserRegisterFailure("Dogodila se greska, probajte kasnije"));
