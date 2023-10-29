@@ -1,4 +1,8 @@
 
+import 'dart:async';
+
+import 'model/UserSession.dart';
+
 abstract class IAuthenticationRepository {
   Future<void> signIn({
     required String email,
@@ -17,4 +21,8 @@ abstract class IAuthenticationRepository {
   });
 
   Future<void> signOut();
+
+  Future<UserSession> getCurrentSession();
+
+  StreamController<UserSession> observeSessionState();
 }
