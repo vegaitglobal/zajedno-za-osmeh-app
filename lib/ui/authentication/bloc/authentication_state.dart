@@ -35,3 +35,7 @@ final class RegistrationCompleteState extends AuthenticationState {
 final class AuthErrorState extends AuthenticationState {
   const AuthErrorState();
 }
+
+final class UserLoggedOutState extends AuthenticationState {
+  const UserLoggedOutState();
+}

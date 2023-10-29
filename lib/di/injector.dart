@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:gu_mobile/data/core/database.dart';
 import 'package:gu_mobile/data/core/token/token_manager.dart';
 import 'package:gu_mobile/data/core/token/token_manager_impl.dart';
+import 'package:gu_mobile/data/profile/repository/donee_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/about_us_page/repository/team_members_repository.dart';
@@ -36,21 +37,22 @@ Future<void> _initSharedPref() async {
 
 void _initRepositories() {
   getIt.registerLazySingleton<UserStorage>(
-          () => UserStorageImpl(getIt<SharedPreferences>()));
+      () => UserStorageImpl(getIt<SharedPreferences>()));
 
   getIt.registerLazySingleton<BenefitsRepo>(() => BenefitsRepository());
 
   getIt.registerLazySingleton<TeamMembersRepository>(
-          () => TeamMembersRepository());
+      () => TeamMembersRepository());
 
   getIt.registerLazySingleton<OrganizationRepository>(
-          () => OrganizationRepository());
+      () => OrganizationRepository());
 
   getIt.registerLazySingleton<QRCodeStatusRepository>(
-          () => QRCodeStatusRepository());
+      () => QRCodeStatusRepository());
 
-  getIt.registerLazySingleton<FilterRepository>(
-          () => FilterRepository());
+  getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepository());
+
+  getIt.registerLazySingleton<FilterRepository>(() => FilterRepository());
 
   getIt.registerLazySingleton<IAuthenticationRepository>(() =>
       AuthenticationRepository(supabaseClient.auth, getIt<UserStorage>()));

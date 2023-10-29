@@ -173,7 +173,7 @@ class AboutUsView extends StatelessWidget {
           ),
           child: const ExpansionTile(
               title: Text(
-                'Ko smo mi',
+                'Ko smo mi?',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
