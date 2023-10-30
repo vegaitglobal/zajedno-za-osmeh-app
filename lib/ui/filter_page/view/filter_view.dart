@@ -136,7 +136,7 @@ class _FilterViewState extends State<FilterView> {
                           : AppColors.buttonDisabled,
                     ),
                     child: const Text(
-                      'Potvrdi i nastavi',
+                      'Primeni',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
