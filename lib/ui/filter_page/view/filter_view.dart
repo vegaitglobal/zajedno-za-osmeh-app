@@ -75,7 +75,7 @@ class _FilterViewState extends State<FilterView> {
                           children: [
                             const SizedBox(
                               width: double.infinity,
-                              height: 30,
+                              height: 40,
                               child: Text(
                                 'Kategorije',
                                 style: TextStyle(

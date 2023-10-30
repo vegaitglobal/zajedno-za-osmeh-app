@@ -19,54 +19,58 @@ class CategoriesWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 8.0, children: [
-      ...categories.map((category) {
-        final isSelected =
-            selectedCategories.map((e) => e.id).contains(category.id);
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2.5, vertical: 5),
-          child: InkWell(
-            onTap: () {
-              onPress();
-              if (isSelected) {
-                context
-                    .read<BenefitsBloc>()
-                    .add(RemoveCategoryFilter(category));
-              } else {
-                context.read<BenefitsBloc>().add(AddCategoryFilter(category));
-              }
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color.fromARGB(133, 0, 0, 0),
-                  width: 1,
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(spacing: 8, children: [
+        ...categories.map((category) {
+          final isSelected =
+              selectedCategories.map((e) => e.id).contains(category.id);
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.5, vertical: 5),
+            child: InkWell(
+              onTap: () {
+                onPress();
+                if (isSelected) {
+                  context
+                      .read<BenefitsBloc>()
+                      .add(RemoveCategoryFilter(category));
+                } else {
+                  context.read<BenefitsBloc>().add(AddCategoryFilter(category));
+                }
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: const Color.fromARGB(133, 0, 0, 0),
+                    width: 1,
+                  ),
+                  color: isSelected ? AppColors.royalBlue : Colors.transparent,
                 ),
-                color: isSelected ? AppColors.royalBlue : Colors.transparent,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    MdiIcons.fromString(category.icon),
-                    color: AppColors.primaryOrange,
-                  ),
-                  const SizedBox(width: 7),
-                  Text(
-                    category.name,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: isSelected ? Colors.white : Colors.black,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      MdiIcons.fromString(category.icon),
+                      color: AppColors.primaryOrange,
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 7),
+                    Text(
+                      category.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isSelected ? Colors.white : Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }).toList()
-    ]);
+          );
+        }).toList()
+      ]),
+    );
   }
 }
