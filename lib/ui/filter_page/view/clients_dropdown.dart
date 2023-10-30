@@ -28,6 +28,12 @@ class ClientsDropdown extends StatelessWidget {
         padding: const EdgeInsets.only(top: 2, left: 12, bottom: 2),
         child: DropdownButton<String>(
           isExpanded: true,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Image.asset(
+              'assets/images/icons/arrow_down.png',
+            ),
+          ),
           value: selectedCity.isNotEmpty ? selectedCity : null,
           items: [
             const DropdownMenuItem<String>(
