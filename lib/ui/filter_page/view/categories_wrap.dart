@@ -5,11 +5,16 @@ import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CategoriesWrap extends StatelessWidget {
-  const CategoriesWrap(
-      {super.key, required this.categories, required this.selectedCategories});
+  const CategoriesWrap({
+    super.key,
+    required this.categories,
+    required this.selectedCategories,
+    required this.onPress,
+  });
 
   final List<FilterUiModel> categories;
   final List<FilterUiModel> selectedCategories;
+  final void Function() onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,7 @@ class CategoriesWrap extends StatelessWidget {
             backgroundColor: Colors.transparent,
             selected: selectedCategories.map((e) => e.id).contains(category.id),
             onSelected: (bool value) {
+              onPress();
               if (value) {
                 context.read<BenefitsBloc>().add(AddCategoryFilter(category));
               } else {

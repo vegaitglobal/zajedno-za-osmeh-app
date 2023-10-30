@@ -9,10 +9,12 @@ class ClientsDropdown extends StatelessWidget {
     super.key,
     required this.selectedCity,
     required this.cities,
+    required this.onSelect,
   });
 
   final String selectedCity;
   final List<FilterByCityModelResponse> cities;
+  final void Function() onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class ClientsDropdown extends StatelessWidget {
             }).toList(),
           ],
           onChanged: (newValue) {
+            onSelect();
             if (newValue == null) {
               context.read<BenefitsBloc>().add(RemoveCityFilter());
             } else {
