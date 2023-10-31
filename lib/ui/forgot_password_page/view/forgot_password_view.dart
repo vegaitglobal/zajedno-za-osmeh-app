@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/components/auth_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
@@ -101,7 +103,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   GestureDetector(
                     onTap: isEmailValid
                         ? () {
-                            print('Email submitted: $email');
+                            context
+                                .read<AuthenticationBloc>()
+                                .add(ResetPasswordEvent(email));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Email za resetovanje lozinke vam je poslat."),
+                            ));
                           }
                         : null,
                     child: Container(
@@ -116,7 +125,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             ? AppColors.buttonEnabled
                             : AppColors.buttonDisabled,
                       ),
-                      // color: AppColors.buttonDisabled),
                       child: const Text(
                         'Pošalji zahtev',
                         textAlign: TextAlign.center,

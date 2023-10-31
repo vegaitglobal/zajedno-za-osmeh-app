@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:gu_mobile/data/authentication/authentication_repository.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 
 part 'authentication_event.dart';
@@ -73,7 +74,25 @@ class AuthenticationBloc
         emit(const AuthErrorState());
       }
     });
+
+    on<ResetPasswordEvent>((event, emit) async {
+      try {
+        await repository.resetPassword(event.email);
+        // emit(const UpdatePasswordState());
+      } catch (e) {
+        emit(const AuthErrorState());
+      }
+    });
+
+    // void _startUserSubscription() {
+    // _repository.getAuthStateChanges().listen((user) {
+    //   add(AuthOnCurrentUserChanged(user));
+    // });
   }
+
+  // void _startUserSubscription() => _userSubscription = repository
+  //     .getAuthStateChanges()
+  //     .listen((user) => add(AuthOnCurrentUserChanged(user)));
 }
 
 class RegistrationInformation {

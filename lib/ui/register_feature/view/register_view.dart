@@ -88,7 +88,7 @@ class RegisterScreen extends StatelessWidget {
     if (state is SendDocumentError) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text(
-            "Doslo je do greske prilikom slanja dokumentacije, molimo vas probajte opet!"),
+            "Došlo je do greške prilikom slanja dokumentacije, molimo vas probajte opet!"),
       ));
     }
   }
@@ -97,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
       RegisterStateEvent state, BuildContext context) {
     if (state is UserRegisterFailure) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Doslo je do greske, probajte kasnije"),
+        content: Text("Došlo je do greške, probajte kasnije"),
       ));
     }
   }

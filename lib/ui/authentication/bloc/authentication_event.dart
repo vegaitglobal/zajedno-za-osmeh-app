@@ -46,3 +46,8 @@ final class SwitchToForgotPassScreen extends AuthenticationEvent {
 class SignOutEvent extends AuthenticationEvent {
   const SignOutEvent();
 }
+
+class ResetPasswordEvent extends AuthenticationEvent {
+  final String email;
+  const ResetPasswordEvent(this.email);
+}

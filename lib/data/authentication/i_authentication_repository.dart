@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'model/UserSession.dart';
@@ -25,4 +24,7 @@ abstract class IAuthenticationRepository {
   Future<UserSession> getCurrentSession();
 
   StreamController<UserSession> observeSessionState();
+
+  Future<void> resetPassword(String email);
+  // Stream<void> getAuthStateChanges();
 }
