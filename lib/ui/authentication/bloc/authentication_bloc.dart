@@ -60,6 +60,11 @@ class AuthenticationBloc
       emit(const AuthLoginState());
     });
 
+    on<SwitchToForgotPassScreen>((event, emit) async {
+      emit(const ForgotenPasswordState());
+      emit(const AuthLoginState());
+    });
+
     on<SignOutEvent>((event, emit) async {
       try {
         await repository.signOut();

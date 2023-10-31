@@ -255,12 +255,12 @@ class RegisterScreen extends StatelessWidget {
                 color: AppColors.royalBlue,
                 borderRadius: BorderRadius.circular(8.0),
               ),
-              child: const Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.info_outline_rounded, color: Colors.orange),
-                  Padding(padding: EdgeInsets.only(left: 10.0)),
-                  Text(
+                  Image.asset('assets/images/icons/info.png'),
+                  const Padding(padding: EdgeInsets.only(left: 10.0)),
+                  const Text(
                     'U sledecem koraku ce biti\npotrebno priloziti izvestaj lekara',
                     style: TextStyle(color: Colors.white),
                   ),

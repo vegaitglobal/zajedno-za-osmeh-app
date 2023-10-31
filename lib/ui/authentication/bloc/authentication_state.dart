@@ -39,3 +39,7 @@ final class AuthErrorState extends AuthenticationState {
 final class UserLoggedOutState extends AuthenticationState {
   const UserLoggedOutState();
 }
+
+final class ForgotenPasswordState extends AuthenticationState {
+  const ForgotenPasswordState();
+}

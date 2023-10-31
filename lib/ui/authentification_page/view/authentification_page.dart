@@ -26,10 +26,12 @@ class _AuthentificationViewState extends State<AuthentificationView> {
           leadingWidth: 150,
           leading: GestureDetector(
             onTap: () {
-              context.read<AuthenticationBloc>().add(BackButtonPressedEvent());
+              context
+                  .read<AuthenticationBloc>()
+                  .add(const BackButtonPressedEvent());
             },
             child: Container(
-              margin: EdgeInsets.only(left: 16),
+              margin: const EdgeInsets.only(left: 16),
               child: Row(
                 children: [
                   Image.asset('assets/images/icons/arrow.png'),
@@ -49,15 +51,20 @@ class _AuthentificationViewState extends State<AuthentificationView> {
         bottomNavigationBar: const CustomBottomNavigationBar(),
         body: Center(
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              buildWhen: (context, state) => _triggerBuilderOnStateChange(state),
-              listenWhen: (context, state) => _triggerListenerOnStateChange(state),
-              listener: (context, state) => _handleEventListener(state, context),
+              buildWhen: (context, state) =>
+                  _triggerBuilderOnStateChange(state),
+              listenWhen: (context, state) =>
+                  _triggerListenerOnStateChange(state),
+              listener: (context, state) =>
+                  _handleEventListener(state, context),
               builder: (context, state) {
                 return switch (state) {
                   AuthLoginState() => LoginCard(
                       onSubmit: (email, password) =>
                           _loginAction(context, email, password),
                       navigateToSignUp: () => _switchToSignUp(context),
+                      navigateToForgotPassword: () =>
+                          _switchToForgotPassScreen(context),
                     ),
                   AuthFinalRegistrationState() => UploadMedicalrecordCard(
                       onSubmit: (filePath) =>
@@ -67,12 +74,15 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                       onSubmit: (email, password) =>
                           _loginAction(context, email, password),
                       navigateToSignUp: () => _switchToSignUp(context),
+                      navigateToForgotPassword: () =>
+                          _switchToForgotPassScreen(context),
                     ),
                   AuthErrorState() => Container(),
                   AuthInitialState() => Container(),
                   AuthRegistrationState() => Container(),
                   UserLoggedInState() => Container(),
                   RegistrationCompleteState() => Container(),
+                  ForgotenPasswordState() => Container(),
                 };
               }),
         ));
@@ -94,7 +104,11 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   }
 
   _switchToSignUp(BuildContext context) {
-    context.read<AuthenticationBloc>().add(SwitchToSignUpScreen());
+    context.read<AuthenticationBloc>().add(const SwitchToSignUpScreen());
+  }
+
+  _switchToForgotPassScreen(BuildContext context) {
+    context.read<AuthenticationBloc>().add(const SwitchToForgotPassScreen());
   }
 
   bool _triggerBuilderOnStateChange(AuthenticationState state) {
@@ -111,7 +125,8 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     if (state is RegistrationCompleteState ||
         state is UserLoggedInState ||
         state is AuthRegistrationState ||
-        state is AuthErrorState) {
+        state is AuthErrorState ||
+        state is ForgotenPasswordState) {
       return true;
     } else {
       return false;
@@ -131,6 +146,13 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     }
   }
 
+  void _navToForgotPassOnStateChange(
+      AuthenticationState state, BuildContext context) {
+    if (state is ForgotenPasswordState) {
+      context.go(AppRoutes.forgotPassword.path());
+    }
+  }
+
   void _displayErrorMessageOnStateChange(
     AuthenticationState state,
     BuildContext context,
@@ -145,6 +167,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   void _handleEventListener(AuthenticationState state, BuildContext context) {
     _navHomeOnStateChange(state, context);
     _navToSignupOnStateChange(state, context);
+    _navToForgotPassOnStateChange(state, context);
     _displayErrorMessageOnStateChange(state, context);
   }
 }

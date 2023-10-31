@@ -4,6 +4,7 @@ import 'package:gu_mobile/ui/authentification_page/view/authentification_page.da
 import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
 import 'package:gu_mobile/ui/benefits_page/view/benefits_view.dart';
 import 'package:gu_mobile/ui/donate_page/view/donate_page.dart';
+import 'package:gu_mobile/ui/forgot_password_page/view/forgot_password_view.dart';
 import 'package:gu_mobile/ui/profile_page/view/profile_view.dart';
 import 'package:gu_mobile/ui/filter_page/view/filter_view.dart';
 import 'package:gu_mobile/ui/register_feature/view/register_view.dart';
@@ -108,6 +109,12 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.userProfile.name,
             builder: (context, state) {
               return const ProfileScreen();
+            }),
+        GoRoute(
+            path: AppRoutes.forgotPassword.path(),
+            name: AppRoutes.forgotPassword.name,
+            builder: (context, state) {
+              return const ForgotPasswordScreen();
             }),
       ])
 ]);
