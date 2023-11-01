@@ -59,11 +59,15 @@ class AuthenticationBloc
     });
 
     on<BackButtonPressedEvent>((event, emit) async {
-      if (state is AuthRegistrationState) {
+      if (state is AuthRegistrationState || state is ForgotenPasswordState) {
         emit(const AuthLoginState());
       } else if (state is AuthFinalRegistrationState) {
         emit(AuthRegistrationState(
             _registrationData?.email, _registrationData?.password));
+      } else if (state is UpdatePasswordState) {
+        await repository.signOut();
+        emit(const AuthLoginState());
+        emit(const UserLoggedOutState());
       }
     });
 
@@ -74,7 +78,6 @@ class AuthenticationBloc
 
     on<SwitchToForgotPassScreen>((event, emit) async {
       emit(const ForgotenPasswordState());
-      // emit(const AuthLoginState());
     });
 
     on<SignOutEvent>((event, emit) async {
