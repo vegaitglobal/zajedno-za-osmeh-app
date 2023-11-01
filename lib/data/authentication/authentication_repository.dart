@@ -20,11 +20,14 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Future<void> signUpWithVerification(
-      {required String email,
-      required String password,
-      required String filePath}) async {
-    await _sendEmail(email, filePath)
+  Future<void> signUpWithVerification({
+    required String name,
+    required String lastname,
+    required String email,
+    required String password,
+    required String filePath,
+  }) async {
+    await _sendEmail(name, lastname, email, filePath)
         .then((value) => signUp(email: email, password: password))
         .then((value) => signIn(password: password, email: email))
         .then((value) => _updateSessionState());
@@ -45,7 +48,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Future<UserSession> getCurrentSession() async => _mapAuthClientSessionToUserSession();
+  Future<UserSession> getCurrentSession() async =>
+      _mapAuthClientSessionToUserSession();
 
   Future<UserSession> _mapAuthClientSessionToUserSession() async =>
       _authClient.currentSession == null ? Unauthorized() : Authorized();
@@ -53,18 +57,27 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   StreamController<UserSession> observeSessionState() => _sessionStream;
 
+  void _updateSessionState() async =>
+      _sessionStream.sink.add(await _mapAuthClientSessionToUserSession());
 
-  void _updateSessionState() async => _sessionStream.sink.add(await _mapAuthClientSessionToUserSession());
-
-  Future<void> _sendEmail(String sender, String filePath) async {
+  Future<void> _sendEmail(String name, String lastname, String senderMail, String filePath) async {
     final Email email = Email(
-      body: 'Šalje: $sender',
-      subject: 'Registracija korisnika',
-      recipients: ['fondacijazajednozaosmeh@gmail.com'],
+      body: 'Šalje: $senderMail ${"$name $lastname"}',
+      subject: 'Registracija korisnika ${"$name $lastname"}',
+      // recipients: ['fondacijazajednozaosmeh@gmail.com'],
+      recipients: ['d.cetkovic@vegait.rs'],
       attachmentPaths: [filePath],
       isHTML: false,
     );
 
     await FlutterEmailSender.send(email);
+  }
+
+  @override
+  Future<String> getCurrentUserId() {
+    if(_authClient.currentUser == null){
+      throw Exception();
+    }
+    return Future<String>.value(_authClient.currentUser?.id);
   }
 }

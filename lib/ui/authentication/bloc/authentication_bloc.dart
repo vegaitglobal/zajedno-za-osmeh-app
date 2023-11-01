@@ -1,6 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:gu_mobile/data/authentication/authentication_repository.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 
 part 'authentication_event.dart';
@@ -9,8 +7,8 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({required IAuthenticationRepository repository})
-      : super(const AuthLoginState()) {
+
+  AuthenticationBloc({required IAuthenticationRepository repository}) : super(const AuthLoginState()) {
     RegistrationInformation? _registrationData;
 
     on<SignInEvent>((event, emit) async {
@@ -19,14 +17,13 @@ class AuthenticationBloc
         emit(const UserLoggedInState());
         emit(const AuthLoginState());
       } catch (e) {
-        emit(const AuthErrorState());
+        emit(AuthErrorState());
       }
     });
 
     on<EnterUserInformationEvent>((event, emit) async {
       _registrationData =
           RegistrationInformation(email: event.email, password: event.password);
-
       emit(const AuthFinalRegistrationState());
     });
 
@@ -35,12 +32,10 @@ class AuthenticationBloc
         if (_registrationData == null) {
           emit(const AuthErrorState());
         }
-        await repository.signUpWithVerification(
-            email: _registrationData!.email,
-            password: _registrationData!.password,
-            filePath: event.filePath);
-
-        emit(const RegistrationCompleteState());
+        // await repository.signUpWithVerification(
+        //     email: _registrationData!.email,
+        //     password: _registrationData!.password,
+        //     filePath: event.filePath);
       } catch (e) {
         emit(const AuthErrorState());
       }

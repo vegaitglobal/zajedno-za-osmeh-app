@@ -15,6 +15,8 @@ abstract class IAuthenticationRepository {
   });
 
   Future<void> signUpWithVerification({
+    required String name,
+    required String lastname,
     required String email,
     required String password,
     required String filePath,
@@ -25,4 +27,7 @@ abstract class IAuthenticationRepository {
   Future<UserSession> getCurrentSession();
 
   StreamController<UserSession> observeSessionState();
+
+  Future<String> getCurrentUserId();
+
 }

@@ -13,6 +13,7 @@ import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/common/bottom_nav_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
+import 'package:gu_mobile/ui/my_qr_code_page/view/my_qr_code_view.dart';
 import 'package:gu_mobile/ui/profile_page/bloc/profile_bloc.dart';
 import 'package:gu_mobile/ui/qr_verification_page/bloc/qr_verification_bloc.dart';
 import 'data/qr_verification_page/repository/qr_code_status_repository.dart';
@@ -67,6 +68,9 @@ class _ApplicationState extends State<Application> {
           BlocProvider(
               create: (context) => BottomNavBloc(
                   authRepository: getIt<IAuthenticationRepository>())),
+          BlocProvider(
+              create: (context) =>
+                  QrCodeBloc(repository: getIt<IAuthenticationRepository>())),
         ],
         child: MaterialApp.router(
           routerConfig: router,

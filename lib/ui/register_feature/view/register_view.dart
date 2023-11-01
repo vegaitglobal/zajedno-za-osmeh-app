@@ -181,11 +181,14 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Text _registrationLabel() => const Text(
-        "Registracija",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
+  Padding _registrationLabel() => const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "Registracija",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
       );
 
@@ -267,6 +270,7 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
             ),
+
             const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -322,22 +326,25 @@ class RegisterScreen extends StatelessWidget {
     }
   }
 
-  DottedBorder _dottedContainer(BuildContext context, RegisterState state) =>
-      DottedBorder(
-        strokeWidth: 1,
-        color: Colors.grey,
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _fileUploadIndicatorIcon(state),
-              const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-              _uploadFileClickableText(context, state),
-              const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-              _uploadedFileNamePlaceholder(state),
-            ],
+  GestureDetector _dottedContainer(BuildContext context, RegisterState state) =>
+      GestureDetector(
+        onTap: () => context.read<RegisterBloc>().add(UploadFile()),
+        child: DottedBorder(
+          strokeWidth: 1,
+          color: Colors.grey,
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _fileUploadIndicatorIcon(state),
+                const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+                _uploadFileClickableText(context, state),
+                const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+                _uploadedFileNamePlaceholder(state),
+              ],
+            ),
           ),
         ),
       );
@@ -353,25 +360,18 @@ class RegisterScreen extends StatelessWidget {
     }
   }
 
-  Row _uploadFileTextButton(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: GestureDetector(
-            onTap: () {
-              context.read<RegisterBloc>().add(UploadFile());
-            },
-            child: const Text(
+  Row _uploadFileTextButton(BuildContext context) => const Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(
               "Klikni ",
               style: TextStyle(color: Colors.orange),
             ),
           ),
-        ),
-        const Text("da odaberes fajl iz galerije")
-      ],
-    );
-  }
+          Text("da odaberes fajl iz galerije")
+        ],
+      );
 
   Widget _passwordRulesInfoLabel() => const Text(
         "Lozinka mora da sadrži najmanje 8 karaktera, jedno malo i veliko slovo i jedan broj",
