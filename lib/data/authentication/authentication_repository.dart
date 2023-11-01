@@ -77,6 +77,12 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
+  Future<void> updatePassword(String newPassword) async {
+    final userAttributes = UserAttributes(password: newPassword);
+    await _authClient.updateUser(userAttributes);
+  }
+
+  @override
   Stream<AuthChangeEvent> getAuthStateChanges() {
     return _authClient.onAuthStateChange.map((event) {
       return event.event;

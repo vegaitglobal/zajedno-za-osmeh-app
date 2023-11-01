@@ -29,5 +29,7 @@ abstract class IAuthenticationRepository {
 
   Future<void> resetPassword(String email);
 
+  Future<void> updatePassword(String newPassword);
+
   Stream<AuthChangeEvent> getAuthStateChanges();
 }

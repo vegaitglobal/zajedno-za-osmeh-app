@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/components/auth_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdatePasswordCard extends StatefulWidget {
   const UpdatePasswordCard({super.key});
@@ -35,8 +37,10 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
 
   @override
   Widget build(BuildContext context) {
-    isButtonDisabled =
-        isPasswordValid && isRepeatedPasswordValid && password.isNotEmpty;
+    isButtonDisabled = isPasswordValid &&
+        isRepeatedPasswordValid &&
+        password.isNotEmpty &&
+        repeatedPassword.isNotEmpty;
 
     return Column(
       children: [
@@ -162,9 +166,9 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
               GestureDetector(
                 onTap: isButtonDisabled
                     ? () {
-                        // context
-                        //     .read<AuthenticationBloc>()
-                        //     .add(ResetPasswordEvent(email));
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(UpdatePasswordEvent(password));
                         // ScaffoldMessenger.of(context)
                         //     .showSnackBar(const SnackBar(
                         //   content: Text(

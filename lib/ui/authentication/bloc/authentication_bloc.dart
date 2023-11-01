@@ -19,7 +19,6 @@ class AuthenticationBloc
     void startUserSubscription() => _authChangesSubscription =
             repository.getAuthStateChanges().listen((authState) {
           if (authState == AuthChangeEvent.passwordRecovery) {
-            print('usao');
             add(const SwitchToUpdatePassScreen());
           }
         });
@@ -90,6 +89,15 @@ class AuthenticationBloc
     on<ResetPasswordEvent>((event, emit) async {
       try {
         await repository.resetPassword(event.email);
+      } catch (e) {
+        emit(const AuthErrorState());
+      }
+    });
+
+    on<UpdatePasswordEvent>((event, emit) async {
+      try {
+        await repository.updatePassword(event.newPassword);
+        emit(const AuthLoginState());
       } catch (e) {
         emit(const AuthErrorState());
       }

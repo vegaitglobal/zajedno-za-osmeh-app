@@ -51,6 +51,7 @@ class _LoginCardState extends State<LoginCard> {
                 email = value;
               }),
               initialValue: email,
+              keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               decoration: InputDecoration(
                 border: OutlineInputBorder(

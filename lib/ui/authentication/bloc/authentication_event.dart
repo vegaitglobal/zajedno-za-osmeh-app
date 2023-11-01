@@ -55,3 +55,8 @@ class ResetPasswordEvent extends AuthenticationEvent {
   final String email;
   const ResetPasswordEvent(this.email);
 }
+
+class UpdatePasswordEvent extends AuthenticationEvent {
+  final String newPassword;
+  const UpdatePasswordEvent(this.newPassword);
+}
