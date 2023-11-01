@@ -13,7 +13,6 @@ enum AppRoutes {
   login,
   register,
   userProfile,
-  updatePassword,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -32,6 +31,5 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.login => '/login',
         AppRoutes.register => '/register',
         AppRoutes.userProfile => '/userProfile',
-        AppRoutes.updatePassword => '/updatePassword'
       };
 }

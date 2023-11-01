@@ -11,8 +11,6 @@ import 'package:gu_mobile/ui/my_qr_code_page/view/my_qr_code_view.dart';
 import 'package:gu_mobile/ui/qr_result_page/view/qr_result_view.dart';
 import 'package:gu_mobile/ui/qr_verification_page/view/qr_scanner.dart';
 import 'package:gu_mobile/ui/qr_verification_page/view/qr_verification_view.dart';
-import 'package:gu_mobile/ui/update_password/view/update_password.dart';
-
 import '../../ui/about_us_page/view/about_us_view.dart';
 import '../../ui/benefit_detail_page/view/benefit_detail_view.dart';
 import '../../ui/home_page/view/home_view.dart';
@@ -109,12 +107,6 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             name: AppRoutes.userProfile.name,
             builder: (context, state) {
               return const ProfileScreen();
-            }),
-        GoRoute(
-            path: AppRoutes.updatePassword.path(),
-            name: AppRoutes.updatePassword.name,
-            builder: (context, state) {
-              return const UpdatePasswordScreen();
             }),
       ])
 ]);

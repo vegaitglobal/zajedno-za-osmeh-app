@@ -5,6 +5,7 @@ import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
+import 'package:gu_mobile/ui/authentification_feature/view/update_password_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 import '../../authentification_feature/view/login_card.dart';
@@ -79,12 +80,12 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                           _switchToForgotPassScreen(context),
                     ),
                   ForgotenPasswordState() => const ForgotPasswordCard(),
+                  UpdatePasswordState() => const UpdatePasswordCard(),
                   AuthErrorState() => Container(),
                   AuthInitialState() => Container(),
                   AuthRegistrationState() => Container(),
                   UserLoggedInState() => Container(),
                   RegistrationCompleteState() => Container(),
-                  UpdatePasswordState() => Container(),
                 };
               }),
         ));
@@ -117,7 +118,8 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     if (state is AuthLoginState ||
         state is AuthFinalRegistrationState ||
         state is UserLoggedOutState ||
-        state is ForgotenPasswordState) {
+        state is ForgotenPasswordState ||
+        state is UpdatePasswordState) {
       return true;
     } else {
       return false;
@@ -128,8 +130,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     if (state is RegistrationCompleteState ||
         state is UserLoggedInState ||
         state is AuthRegistrationState ||
-        state is AuthErrorState ||
-        state is UpdatePasswordState) {
+        state is AuthErrorState) {
       return true;
     } else {
       return false;
@@ -149,12 +150,12 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     }
   }
 
-  void _navToUpdatePassOnStateChange(
-      AuthenticationState state, BuildContext context) {
-    if (state is UpdatePasswordState) {
-      context.go(AppRoutes.updatePassword.path());
-    }
-  }
+  // void _navToUpdatePassOnStateChange(
+  //     AuthenticationState state, BuildContext context) {
+  //   if (state is UpdatePasswordState) {
+  //     context.go(AppRoutes.updatePassword.path());
+  //   }
+  // }
 
   void _displayErrorMessageOnStateChange(
     AuthenticationState state,
@@ -170,7 +171,6 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   void _handleEventListener(AuthenticationState state, BuildContext context) {
     _navHomeOnStateChange(state, context);
     _navToSignupOnStateChange(state, context);
-    _navToUpdatePassOnStateChange(state, context);
     _displayErrorMessageOnStateChange(state, context);
   }
 }
