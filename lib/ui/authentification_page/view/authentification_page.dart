@@ -150,13 +150,6 @@ class _AuthentificationViewState extends State<AuthentificationView> {
     }
   }
 
-  // void _navToUpdatePassOnStateChange(
-  //     AuthenticationState state, BuildContext context) {
-  //   if (state is UpdatePasswordState) {
-  //     context.go(AppRoutes.updatePassword.path());
-  //   }
-  // }
-
   void _displayErrorMessageOnStateChange(
     AuthenticationState state,
     BuildContext context,

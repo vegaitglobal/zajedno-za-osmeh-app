@@ -99,7 +99,8 @@ class _ForgotPasswordCardState extends State<ForgotPasswordCard> {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           content: Text(
-                              "Email za resetovanje lozinke vam je poslat."),
+                            "Email za resetovanje lozinke vam je poslat.",
+                          ),
                         ));
                       }
                     : null,
