@@ -43,6 +43,10 @@ final class SwitchToForgotPassScreen extends AuthenticationEvent {
   const SwitchToForgotPassScreen();
 }
 
+final class SwitchToUpdatePassScreen extends AuthenticationEvent {
+  const SwitchToUpdatePassScreen();
+}
+
 class SignOutEvent extends AuthenticationEvent {
   const SignOutEvent();
 }

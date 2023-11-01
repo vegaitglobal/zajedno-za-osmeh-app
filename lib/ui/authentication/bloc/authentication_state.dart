@@ -44,6 +44,6 @@ final class ForgotenPasswordState extends AuthenticationState {
   const ForgotenPasswordState();
 }
 
-// final class UpdatePasswordState extends AuthenticationState {
-//   const UpdatePasswordState();
-// }
+final class UpdatePasswordState extends AuthenticationState {
+  const UpdatePasswordState();
+}

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'authentication_event.dart';
 
@@ -13,6 +14,17 @@ class AuthenticationBloc
   AuthenticationBloc({required IAuthenticationRepository repository})
       : super(const AuthLoginState()) {
     RegistrationInformation? _registrationData;
+    StreamSubscription<AuthChangeEvent?>? _authChangesSubscription;
+
+    void startUserSubscription() => _authChangesSubscription =
+            repository.getAuthStateChanges().listen((authState) {
+          if (authState == AuthChangeEvent.passwordRecovery) {
+            print('usao');
+            add(const SwitchToUpdatePassScreen());
+          }
+        });
+
+    startUserSubscription();
 
     on<SignInEvent>((event, emit) async {
       try {
@@ -63,7 +75,7 @@ class AuthenticationBloc
 
     on<SwitchToForgotPassScreen>((event, emit) async {
       emit(const ForgotenPasswordState());
-      emit(const AuthLoginState());
+      // emit(const AuthLoginState());
     });
 
     on<SignOutEvent>((event, emit) async {
@@ -78,21 +90,21 @@ class AuthenticationBloc
     on<ResetPasswordEvent>((event, emit) async {
       try {
         await repository.resetPassword(event.email);
-        // emit(const UpdatePasswordState());
       } catch (e) {
         emit(const AuthErrorState());
       }
     });
 
-    // void _startUserSubscription() {
-    // _repository.getAuthStateChanges().listen((user) {
-    //   add(AuthOnCurrentUserChanged(user));
-    // });
-  }
+    on<SwitchToUpdatePassScreen>((event, emit) async {
+      emit(const UpdatePasswordState());
+    });
 
-  // void _startUserSubscription() => _userSubscription = repository
-  //     .getAuthStateChanges()
-  //     .listen((user) => add(AuthOnCurrentUserChanged(user)));
+    @override
+    Future<void> close() {
+      _authChangesSubscription?.cancel();
+      return super.close();
+    }
+  }
 }
 
 class RegistrationInformation {

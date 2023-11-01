@@ -12,8 +12,6 @@ class AuthenticationRepository implements IAuthenticationRepository {
   final GoTrueClient _authClient;
   final UserStorage _userStorage;
   final StreamController<UserSession> _sessionStream = StreamController();
-  StreamController<AuthState> _authStateController =
-      StreamController<AuthState>();
 
   AuthenticationRepository(this._authClient, this._userStorage);
 
@@ -78,19 +76,10 @@ class AuthenticationRepository implements IAuthenticationRepository {
         redirectTo: 'io.supabase.zajednozaosmeh://login-callback/');
   }
 
-  // @override
-  // Stream<AuthState> getAuthStateChanges() {
-  //   _authClient.onAuthStateChange.listen((event) {
-  //     event.event;
-  //   });
-  // }
   @override
-  Stream<AuthState> getAuthStateChanges() {
-    return _authStateController.stream;
-  }
-
-  // Whenever the authentication state changes, call this method to add an event to the stream.
-  void onAuthStateChanged(AuthState state) {
-    _authStateController.add(state);
+  Stream<AuthChangeEvent> getAuthStateChanges() {
+    return _authClient.onAuthStateChange.map((event) {
+      return event.event;
+    });
   }
 }

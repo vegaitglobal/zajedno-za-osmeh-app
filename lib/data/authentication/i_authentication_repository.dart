@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'model/UserSession.dart';
 
 abstract class IAuthenticationRepository {
@@ -26,5 +28,6 @@ abstract class IAuthenticationRepository {
   StreamController<UserSession> observeSessionState();
 
   Future<void> resetPassword(String email);
-  // Stream<void> getAuthStateChanges();
+
+  Stream<AuthChangeEvent> getAuthStateChanges();
 }
