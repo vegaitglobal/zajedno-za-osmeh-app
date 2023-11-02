@@ -124,7 +124,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
 
   void _uploadFile(Emitter<RegisterStateEvent> emit) async {
     try {
-      print("=====>>>> uploading file");
       XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
       _uiModel = _uiModel.copyWith(
         filePath: image?.path,

@@ -15,8 +15,22 @@ class MyQrCodeView extends StatelessWidget {
       appBar: const CustomAppBar(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: BlocConsumer<QrCodeBloc, QrCodeState>(
+        listenWhen: (context, state) {
+          if (state is ErrorGeneratingUserId) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        buildWhen: (context, state) {
+          if (state is UserIdGenerated || state is QrCodeGenerating) {
+            return true;
+          } else {
+            return false;
+          }
+        },
         listener: (context, state) {
-          if (state == ErrorGeneratingUserId) {
+          if (state is ErrorGeneratingUserId) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text("Doslo je do greske prilikom generisanja QR koda"),
             ));
@@ -26,14 +40,14 @@ class MyQrCodeView extends StatelessWidget {
           return switch (state) {
             QrCodeGenerating() => const CircularProgressIndicator(),
             UserIdGenerated() => _qrContainer(state),
-            ErrorGeneratingUserId() => _qrContainer(state),
+            ErrorGeneratingUserId() => Container(),
           };
         },
       ),
     );
   }
 
-  Widget _qrContainer(QrCodeState state) => Center(
+  Widget _qrContainer(UserIdGenerated state) => Center(
         child: QrImageView(
           data: state is UserIdGenerated ? state.userId : "",
           version: QrVersions.auto,
@@ -58,9 +72,7 @@ class QrCodeBloc extends Bloc<QrCodeEvent, QrCodeState> {
     await repo
         .getCurrentUserId()
         .then((value) => {emit(UserIdGenerated(userId: value))})
-        .onError(
-          (error, stackTrace) => {emit(ErrorGeneratingUserId())},
-        );
+        .onError((error, stackTrace) => {emit(ErrorGeneratingUserId())});
   }
 }
 
