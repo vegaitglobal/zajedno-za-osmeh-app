@@ -74,7 +74,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           buildNavigationItem(AppRoutes.home, 'Početna',
-              'assets/icons/home${isActive(AppRoutes.home) ? '_active' : null}_icon.svg'),
+              'assets/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.benefits, 'Usluge',
               'assets/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.userProfile, 'Profil',
@@ -91,9 +91,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            iconSrc,
-          ),
+          SvgPicture.asset(iconSrc),
           Text(
             name,
             style: TextStyle(

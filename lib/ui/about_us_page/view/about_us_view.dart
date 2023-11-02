@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
@@ -139,9 +140,7 @@ class AboutUsView extends StatelessWidget {
                 children: goals.map((strone) {
                   return Row(
                     children: [
-                      const Image(
-                          image:
-                              AssetImage('assets/images/icons/check_icon.png')),
+                      SvgPicture.asset('assets/icons/check_icon.svg'),
                       const SizedBox(
                         width: 15,
                       ),

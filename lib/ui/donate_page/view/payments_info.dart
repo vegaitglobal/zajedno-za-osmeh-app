@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -284,8 +285,8 @@ class PaymentInfo extends StatelessWidget {
                       Uri.parse(organization.accessFileUrl),
                     );
                   },
-                  child: Image.asset(
-                    'assets/images/icons/pdf_icon.png',
+                  child: SvgPicture.asset(
+                    'assets/icons/pdf_icon.svg',
                     width: 24,
                     height: 32,
                   ),

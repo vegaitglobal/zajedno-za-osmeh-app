@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/theme/color.dart';
@@ -128,7 +129,7 @@ class RegisterScreen extends StatelessWidget {
           margin: const EdgeInsets.only(left: 16),
           child: Row(
             children: [
-              Image.asset('assets/images/icons/arrow.png'),
+              SvgPicture.asset('assets/icons/arrow_left.svg'),
               const SizedBox(
                 width: 8,
               ),
@@ -344,7 +345,7 @@ class RegisterScreen extends StatelessWidget {
 
   _fileUploadIndicatorIcon(RegisterState state) {
     if (state is UploadDocView) {
-      return Image.asset('assets/images/icons/upload_file.png');
+      return SvgPicture.asset('assets/icons/upload_file.svg');
     } else {
       return const Icon(
         Icons.check_circle_outline,
