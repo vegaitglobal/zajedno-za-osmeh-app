@@ -60,5 +60,7 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>Dozvoli aplikaciji da koristi kameru</string>
 	</dict>
 </plist>

@@ -4,8 +4,12 @@ import 'package:gu_mobile/ui/qr_verification_page/model/qr_code_status_ui_model.
 class QRCodeStatusRepository {
   QRCodeStatusRepository();
 
-  Future<QRCodeStatusUIModel> get(String doneelId) async {
-    final response = await supabaseClient.from('Donee').select().filter('id', 'eq', doneelId).single();
+  Future<QRCodeStatusUIModel> get(String doneeId) async {
+    final response = await supabaseClient
+        .from('Donee')
+        .select()
+        .filter('id', 'eq', doneeId)
+        .single();
     QRCodeStatusUIModel qrStatus = QRCodeStatusUIModel(
       isValid: response['is_valid'],
     );
