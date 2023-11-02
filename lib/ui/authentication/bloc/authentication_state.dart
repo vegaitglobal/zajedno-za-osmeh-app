@@ -37,6 +37,14 @@ final class UserLoggedOutState extends AuthenticationState {
   const UserLoggedOutState();
 }
 
+final class ForgotenPasswordState extends AuthenticationState {
+  const ForgotenPasswordState();
+}
+
+final class UpdatePasswordState extends AuthenticationState {
+  const UpdatePasswordState();
+}
+
 final class LoadingState extends AuthenticationState {
   const LoadingState() : super();
 }

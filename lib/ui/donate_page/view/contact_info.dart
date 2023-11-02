@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -45,7 +46,7 @@ class ContactInfo extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Image.asset('assets/images/icons/phone_ringing.png'),
+                      SvgPicture.asset('assets/icons/phone_ringing.svg'),
                       const SizedBox(
                         width: 20,
                       ),
@@ -69,7 +70,7 @@ class ContactInfo extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Image.asset('assets/images/icons/email_address.png'),
+                      SvgPicture.asset('assets/icons/at_sign.svg'),
                       const SizedBox(
                         width: 20,
                       ),

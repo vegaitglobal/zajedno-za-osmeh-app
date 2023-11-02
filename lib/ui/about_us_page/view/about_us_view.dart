@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/about_us_page/bloc/about_us_bloc.dart';
@@ -34,7 +35,7 @@ class AboutUsView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: BlocListener<AboutUsBloc, AboutUsState>(
         listener: (BuildContext context, AboutUsState state) {},
         child: BlocBuilder<AboutUsBloc, AboutUsState>(
@@ -72,6 +73,7 @@ class AboutUsView extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+                  _buildTermsExpansionTile(),
                 ]),
               AboutUsFailureState() => const Padding(
                   padding: EdgeInsets.only(
@@ -138,17 +140,15 @@ class AboutUsView extends StatelessWidget {
                 children: goals.map((strone) {
                   return Row(
                     children: [
-                      const Image(
-                          image:
-                              AssetImage('assets/images/icons/check_icon.png')),
+                      SvgPicture.asset('assets/icons/check_icon.svg'),
                       const SizedBox(
                         width: 15,
-                      ), //space between bullet and text
+                      ),
                       Expanded(
                         child: Text(
                           strone,
                           style: const TextStyle(fontSize: 16),
-                        ), //text
+                        ),
                       )
                     ],
                   );
@@ -163,65 +163,102 @@ class AboutUsView extends StatelessWidget {
 
   Padding _buildWhoAreWeExpansionTile() {
     return Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: const ExpansionTile(
+          title: Text(
+            'Ko smo mi?',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          child: const ExpansionTile(
-              title: Text(
-                'Ko smo mi?',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          'Fondacija „Zajedno za osmeh“  je osnovana sa željom, '
-                          'grupe mladih ljudi, da svojim delovanjem pomognu unapređenje socijalne '
-                          'i zdravstvene zaštite dece u Republici Srbiji, da pruže podršku '
-                          'oboleloj deci i njihovim porodicama, u cilju lečenja, medicinskog '
-                          'zbrinjavanja i oporavka, da pomognu promovisanju i unapređenju sistema '
-                          'dečije zdravstvene zaštite, da pruže svaki vid pomoći i podrške onima'
-                          ' kojima je to potrebno. Godišnje u našoj zemlji od maligne bolesti '
-                          'oboli oko 330 dece. Strah, nemoć, a na kraju i smrt- to je sudbina '
-                          'svakog 7. og obolelog deteta u Republici Srbiji. Ekstremno siromaštvo '
-                          'u Srbiji podrazumeva da čovek nema ni za hleb i taj vid siromaštva još '
-                          'uvek nije iskorenjen.',
-                          style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 24.0),
-                      Text(
-                        'Socijalna davanja',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 24.0),
-                      Text(
-                        'Ekstremno siromaštvo u Srbiji podrazumeva da čovek nema ni za hleb i '
-                        'taj vid siromaštva još uvek nije iskorenjen.'
-                        'Apsolutno siromaštvo u Srbiji podrazumeva svaku osobu koja nema '
-                        '12 000 din. mesečno za zadovoljenje osnovnih životnih potreba.'
-                        ' Takvih je u R. Srbiji oko pola miliona stanovnika ili 7,3%.'
-                        'Prema podacima UNICEF-a, 22 000 dece umre svaki dan od siromaštva, '
-                        'dok je u Srbiji 400 000 dece pod rizikom od siromaštva. '
-                        '268 000 stanovnika dobija neki oblik socijalne pomoći.',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      'Fondacija „Zajedno za osmeh“  je osnovana sa željom, '
+                      'grupe mladih ljudi, da svojim delovanjem pomognu unapređenje socijalne '
+                      'i zdravstvene zaštite dece u Republici Srbiji, da pruže podršku '
+                      'oboleloj deci i njihovim porodicama, u cilju lečenja, medicinskog '
+                      'zbrinjavanja i oporavka, da pomognu promovisanju i unapređenju sistema '
+                      'dečije zdravstvene zaštite, da pruže svaki vid pomoći i podrške onima'
+                      ' kojima je to potrebno. Godišnje u našoj zemlji od maligne bolesti '
+                      'oboli oko 330 dece. Strah, nemoć, a na kraju i smrt- to je sudbina '
+                      'svakog 7. og obolelog deteta u Republici Srbiji. Ekstremno siromaštvo '
+                      'u Srbiji podrazumeva da čovek nema ni za hleb i taj vid siromaštva još '
+                      'uvek nije iskorenjen.',
+                      style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 24.0),
+                  Text(
+                    'Socijalna davanja',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ]),
-        ));
+                  SizedBox(height: 24.0),
+                  Text(
+                    'Ekstremno siromaštvo u Srbiji podrazumeva da čovek nema ni za hleb i '
+                    'taj vid siromaštva još uvek nije iskorenjen.'
+                    'Apsolutno siromaštvo u Srbiji podrazumeva svaku osobu koja nema '
+                    '12 000 din. mesečno za zadovoljenje osnovnih životnih potreba.'
+                    ' Takvih je u R. Srbiji oko pola miliona stanovnika ili 7,3%.'
+                    'Prema podacima UNICEF-a, 22 000 dece umre svaki dan od siromaštva, '
+                    'dok je u Srbiji 400 000 dece pod rizikom od siromaštva. '
+                    '268 000 stanovnika dobija neki oblik socijalne pomoći.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _buildTermsExpansionTile() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        child: const ExpansionTile(
+          title: Text(
+            'Terms & Conditions',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
+              child: Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+                'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
+                'nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit '
+                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, '
+                'sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

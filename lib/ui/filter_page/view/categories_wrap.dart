@@ -1,52 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/filter_page/model/FilterUiModel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CategoriesWrap extends StatelessWidget {
-  const CategoriesWrap(
-      {super.key, required this.categories, required this.selectedCategories});
+  const CategoriesWrap({
+    super.key,
+    required this.categories,
+    required this.selectedCategories,
+    required this.onPress,
+  });
 
   final List<FilterUiModel> categories;
   final List<FilterUiModel> selectedCategories;
+  final void Function() onPress;
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 8.0, children: [
-      ...categories.map((category) {
-        return Padding(
-          padding: const EdgeInsets.all(2),
-          child: FilterChip(
-            label: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(MdiIcons.fromString(category.icon)),
-                const SizedBox(width: 4.0),
-                Text(
-                  category.name,
-                  style: const TextStyle(fontSize: 16),
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(spacing: 8, children: [
+        ...categories.map((category) {
+          final isSelected =
+              selectedCategories.map((e) => e.id).contains(category.id);
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.5, vertical: 5),
+            child: InkWell(
+              onTap: () {
+                onPress();
+                if (isSelected) {
+                  context
+                      .read<BenefitsBloc>()
+                      .add(RemoveCategoryFilter(category));
+                } else {
+                  context.read<BenefitsBloc>().add(AddCategoryFilter(category));
+                }
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: const Color.fromARGB(133, 0, 0, 0),
+                    width: 1,
+                  ),
+                  color: isSelected ? AppColors.royalBlue : Colors.transparent,
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      MdiIcons.fromString(category.icon),
+                      color: AppColors.primaryOrange,
+                    ),
+                    const SizedBox(width: 7),
+                    Text(
+                      category.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isSelected ? Colors.white : Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(color: Colors.black, width: 1.0),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            backgroundColor: Colors.transparent,
-            selected: selectedCategories.map((e) => e.id).contains(category.id),
-            onSelected: (bool value) {
-              if (value) {
-                context.read<BenefitsBloc>().add(AddCategoryFilter(category));
-              } else {
-                context
-                    .read<BenefitsBloc>()
-                    .add(RemoveCategoryFilter(category));
-              }
-            },
-          ),
-        );
-      }).toList()
-    ]);
+          );
+        }).toList()
+      ]),
+    );
   }
 }

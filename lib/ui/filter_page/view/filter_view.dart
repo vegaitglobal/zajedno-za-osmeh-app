@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
-import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
 import 'package:gu_mobile/ui/filter_page/view/categories_wrap.dart';
 import 'package:gu_mobile/ui/filter_page/view/clients_dropdown.dart';
+import 'package:gu_mobile/resources/my_colors.dart';
 
-class FilterView extends StatelessWidget {
+class FilterView extends StatefulWidget {
   const FilterView({super.key});
+
+  @override
+  State<FilterView> createState() => _FilterViewState();
+}
+
+class _FilterViewState extends State<FilterView> {
+  bool changesMade = false;
 
   @override
   Widget build(BuildContext context) {
     void goBack() {
       context.go(AppRoutes.benefits.path());
+    }
+
+    void markChangesAsMade() {
+      setState(() {
+        changesMade = true;
+      });
     }
 
     return Scaffold(
@@ -37,7 +51,7 @@ class FilterView extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset("assets/images/icons/cross.png")
+                      SvgPicture.asset("assets/icons/cross.svg")
                     ],
                   ),
                 ),
@@ -62,7 +76,7 @@ class FilterView extends StatelessWidget {
                           children: [
                             const SizedBox(
                               width: double.infinity,
-                              height: 30,
+                              height: 40,
                               child: Text(
                                 'Kategorije',
                                 style: TextStyle(
@@ -75,6 +89,9 @@ class FilterView extends StatelessWidget {
                             CategoriesWrap(
                               categories: state.categories,
                               selectedCategories: state.selectedCategories,
+                              onPress: () {
+                                markChangesAsMade();
+                              },
                             ),
                             const SizedBox(height: 20),
                             const SizedBox(
@@ -90,12 +107,45 @@ class FilterView extends StatelessWidget {
                             ClientsDropdown(
                               selectedCity: state.selectedCity,
                               cities: state.cities,
+                              onSelect: () {
+                                markChangesAsMade();
+                              },
                             ),
                           ],
                         ),
                       BenefitsFailState() => const Placeholder()
                     };
                   },
+                ),
+                const SizedBox(height: 40),
+                GestureDetector(
+                  onTap: changesMade
+                      ? () {
+                          goBack();
+                        }
+                      : null,
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                      color: changesMade
+                          ? AppColors.buttonEnabled
+                          : AppColors.buttonDisabled,
+                    ),
+                    child: const Text(
+                      'Primeni',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

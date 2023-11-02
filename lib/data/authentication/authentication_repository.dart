@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:gu_mobile/data/authentication/local/user_storage.dart';
+import 'package:gu_mobile/data/core/supabase/supabase_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'i_authentication_repository.dart';
@@ -62,16 +63,35 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
   Future<void> _sendEmail(String name, String lastname, String senderMail, String filePath) async {
     final Email email = Email(
-      body: 'Šalje: $senderMail ${"$name $lastname"}',
-      subject: 'Registracija korisnika ${"$name $lastname"}',
-      // recipients: ['fondacijazajednozaosmeh@gmail.com'],
-      recipients: ['d.cetkovic@vegait.rs'],
+      body: 'Šalje: $sender',
+      subject: 'Registracija korisnika',
+      recipients: ['fondacijazajednozaosmeh@gmail.com'],
       attachmentPaths: [filePath],
       isHTML: false,
     );
 
     await FlutterEmailSender.send(email);
   }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await _authClient.resetPasswordForEmail(email,
+        redirectTo: 'io.supabase.zajednozaosmeh://login-callback/');
+  }
+
+  @override
+  Future<void> updatePassword(String newPassword) async {
+    final userAttributes = UserAttributes(password: newPassword);
+    await _authClient.updateUser(userAttributes);
+  }
+
+  @override
+  Stream<AuthChangeEvent> getAuthStateChanges() {
+    return _authClient.onAuthStateChange.map((event) {
+      return event.event;
+    });
+  }
+
 
   @override
   Future<String> getCurrentUserId() {

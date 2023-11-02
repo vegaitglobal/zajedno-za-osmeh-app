@@ -46,10 +46,7 @@ class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                Icons.info_outline_rounded,
-                color: AppColors.primaryOrange,
-              ),
+              Image.asset('assets/images/icons/info.png'),
               const SizedBox(
                 width: 16,
               ),

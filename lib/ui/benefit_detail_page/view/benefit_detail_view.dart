@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
@@ -25,7 +26,7 @@ class BenefitDetailView extends StatelessWidget {
             margin: const EdgeInsets.only(left: 16),
             child: Row(
               children: [
-                Image.asset('assets/images/icons/arrow.png'),
+                SvgPicture.asset('assets/icons/arrow_left.svg'),
                 const SizedBox(
                   width: 8,
                 ),

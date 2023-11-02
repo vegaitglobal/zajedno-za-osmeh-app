@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/data/filter_feature/model/filter_model_response.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
@@ -9,10 +10,12 @@ class ClientsDropdown extends StatelessWidget {
     super.key,
     required this.selectedCity,
     required this.cities,
+    required this.onSelect,
   });
 
   final String selectedCity;
   final List<FilterByCityModelResponse> cities;
+  final void Function() onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,10 @@ class ClientsDropdown extends StatelessWidget {
         padding: const EdgeInsets.only(top: 2, left: 12, bottom: 2),
         child: DropdownButton<String>(
           isExpanded: true,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: SvgPicture.asset('assets/icons/arrow_down.svg'),
+          ),
           value: selectedCity.isNotEmpty ? selectedCity : null,
           items: [
             const DropdownMenuItem<String>(
@@ -41,6 +48,7 @@ class ClientsDropdown extends StatelessWidget {
             }).toList(),
           ],
           onChanged: (newValue) {
+            onSelect();
             if (newValue == null) {
               context.read<BenefitsBloc>().add(RemoveCityFilter());
             } else {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/common/bottom_nav_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/my_colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -58,13 +59,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           buildNavigationItem(AppRoutes.home, 'Početna',
-              'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
+              'assets/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.benefits, 'Usluge',
-              'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
+              'assets/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.authentification, 'Login',
-              'assets/images/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
-          buildNavigationItem(AppRoutes.qrVerification, 'Sken',
-              'assets/images/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.png'),
+              'assets/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.svg'),
+          buildNavigationItem(AppRoutes.qrVerification, 'Skener',
+              'assets/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.svg')
         ],
       );
 
@@ -73,15 +74,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           buildNavigationItem(AppRoutes.home, 'Početna',
-              'assets/images/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.png'),
+              'assets/icons/home${isActive(AppRoutes.home) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.benefits, 'Usluge',
-              'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
+              'assets/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.userProfile, 'Profil',
-              'assets/images/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
+              'assets/icons/profile${isActive(AppRoutes.userProfile) ? '_active' : ''}_icon.svg'),
           buildNavigationItem(AppRoutes.myQR, 'Tvoj QR',
-              'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png'),
-          buildNavigationItem(AppRoutes.qrVerification, 'Sken',
-              'assets/images/icons/scan_qr${isActive(AppRoutes.qrVerification) ? '_active' : ''}_icon.png')
+              'assets/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.svg'),
         ],
       );
 
@@ -92,7 +91,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(image: AssetImage(iconSrc)),
+          SvgPicture.asset(iconSrc),
           Text(
             name,
             style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../navigation/app_routing/app_routes.dart';
@@ -22,7 +23,7 @@ class QRResultView extends StatelessWidget {
             margin: const EdgeInsets.only(left: 16),
             child: Row(
               children: [
-                Image.asset('assets/images/icons/arrow.png'),
+                SvgPicture.asset('assets/icons/arrow_left.svg'),
                 const SizedBox(
                   width: 8,
                 ),
@@ -48,12 +49,16 @@ class QRResultView extends StatelessWidget {
                 color: AppColors.royalBlue,
               ),
             ),
-            Image(image: AssetImage('assets/images/icons/${isValid ? 'valid' : 'invalid'}_qr_icon.png')),
+            Image(
+                image: AssetImage(
+                    'assets/images/icons/${isValid ? 'valid' : 'invalid'}_qr_icon.png')),
             SizedBox(
               width: 295,
               child: OutlinedButton(
                 onPressed: () => context.go(AppRoutes.qrScanner.path()),
-                style: ButtonStyle(side: MaterialStateProperty.resolveWith((states) => BorderSide(color: AppColors.royalBlue))),
+                style: ButtonStyle(
+                    side: MaterialStateProperty.resolveWith(
+                        (states) => BorderSide(color: AppColors.royalBlue))),
                 child: Text(
                   "Vrati se na skener",
                   style: TextStyle(color: AppColors.royalBlue),

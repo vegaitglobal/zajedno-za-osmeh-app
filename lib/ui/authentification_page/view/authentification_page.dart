@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
+import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
+import 'package:gu_mobile/ui/authentification_feature/view/update_password_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 
 import '../../authentification_feature/view/login_card.dart';
@@ -20,19 +23,22 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 150,
           leading: GestureDetector(
             onTap: () {
-              context.read<AuthenticationBloc>().add(BackButtonPressedEvent());
+              context
+                  .read<AuthenticationBloc>()
+                  .add(const BackButtonPressedEvent());
             },
             child: Container(
-              margin: EdgeInsets.only(left: 16),
+              margin: const EdgeInsets.only(left: 16),
               child: Row(
                 children: [
-                  Image.asset('assets/images/icons/arrow.png'),
+                  SvgPicture.asset('assets/icons/arrow_left.svg'),
                   const SizedBox(
                     width: 8,
                   ),
@@ -61,6 +67,8 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                       onSubmit: (email, password) =>
                           _loginAction(context, email, password),
                       navigateToSignUp: () => _switchToSignUp(context),
+                      navigateToForgotPassword: () =>
+                          _switchToForgotPassScreen(context),
                     ),
                   AuthFinalRegistrationState() => UploadMedicalrecordCard(
                       onSubmit: (filePath) =>
@@ -70,7 +78,11 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                       onSubmit: (email, password) =>
                           _loginAction(context, email, password),
                       navigateToSignUp: () => _switchToSignUp(context),
+                      navigateToForgotPassword: () =>
+                          _switchToForgotPassScreen(context),
                     ),
+                  ForgotenPasswordState() => const ForgotPasswordCard(),
+                  UpdatePasswordState() => const UpdatePasswordCard(),
                   AuthErrorState() => Container(),
                   AuthInitialState() => Container(),
                   AuthRegistrationState() => Container(),
@@ -91,13 +103,19 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   }
 
   _switchToSignUp(BuildContext context) {
-    context.read<AuthenticationBloc>().add(SwitchToSignUpScreen());
+    context.read<AuthenticationBloc>().add(const SwitchToSignUpScreen());
+  }
+
+  _switchToForgotPassScreen(BuildContext context) {
+    context.read<AuthenticationBloc>().add(const SwitchToForgotPassScreen());
   }
 
   bool _triggerBuilderOnStateChange(AuthenticationState state) {
     if (state is AuthLoginState ||
         state is AuthFinalRegistrationState ||
-        state is UserLoggedOutState) {
+        state is UserLoggedOutState ||
+        state is ForgotenPasswordState ||
+        state is UpdatePasswordState) {
       return true;
     } else {
       return false;

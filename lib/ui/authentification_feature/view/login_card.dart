@@ -4,11 +4,16 @@ import 'package:gu_mobile/ui/authentification_feature/components/auth_card.dart'
 import '../../../resources/my_colors.dart';
 
 class LoginCard extends StatefulWidget {
-  const LoginCard(
-      {super.key, required this.onSubmit, required this.navigateToSignUp});
+  const LoginCard({
+    super.key,
+    required this.onSubmit,
+    required this.navigateToSignUp,
+    required this.navigateToForgotPassword,
+  });
 
   final Function(String, String) onSubmit;
   final Function navigateToSignUp;
+  final void Function() navigateToForgotPassword;
 
   @override
   State<LoginCard> createState() => _LoginCardState();
@@ -46,6 +51,7 @@ class _LoginCardState extends State<LoginCard> {
                 email = value;
               }),
               initialValue: email,
+              keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -101,7 +107,7 @@ class _LoginCardState extends State<LoginCard> {
               alignment: Alignment.centerRight,
               child: GestureDetector(
                 onTap: () {
-                  // TODO: switch to forgot password
+                  widget.navigateToForgotPassword();
                 },
                 child: Text(
                   'Zaboravljena lozinka',
