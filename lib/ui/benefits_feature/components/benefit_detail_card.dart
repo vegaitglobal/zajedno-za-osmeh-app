@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/tag_pill.dart';
 import 'package:gu_mobile/ui/benefits_feature/model/benefit_model.dart';
@@ -49,7 +50,7 @@ class BenefitDetailsCard extends StatelessWidget {
                     const SizedBox(
                       width: 8,
                     ),
-                    Image.asset('assets/images/icons/open_in_new_icon.png')
+                    SvgPicture.asset('assets/icons/external_link.svg')
                   ],
                 ),
               )
@@ -123,7 +124,7 @@ class BenefitServiceSingle extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
-          Image.asset('assets/images/icons/check_icon.png'),
+          SvgPicture.asset('assets/icons/check_icon.svg'),
           const SizedBox(
             width: 12,
           ),

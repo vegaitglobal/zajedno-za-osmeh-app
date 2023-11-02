@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/theme/color.dart';
@@ -22,38 +23,41 @@ class RegisterScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       bottomNavigationBar: const CustomBottomNavigationBar(),
       appBar: _appBar(context),
-      body: BlocConsumer<RegisterBloc, RegisterStateEvent>(
-        buildWhen: (previousState, currentState) =>
-            _configureBuilderExecutionForState(currentState),
-        listenWhen: (previousState, currentState) =>
-            _configureListenerExecutionOnEffect(currentState),
-        listener: (context, state) {
-          _onNavigateBackEffect(state, context);
-          _onUserRegisterSuccessEffect(state, context);
-          _onUserRegisterFailureEffect(state, context);
-          _onSendDocumentErrorEffect(state, context);
-          _onSendDocumentSuccessEffect(state, context);
-        },
-        builder: (BuildContext context, RegisterStateEvent state) {
-          return SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _registrationLabel(),
-                switch (state) {
-                  LoadingView() => const CircularProgressIndicator(),
-                  RegisterFormView() => _registerForm(context, state),
-                  UploadDocView() => _uploadFileForm(context, state),
-                  FileUploadedView() => _uploadFileForm(context, state),
-                  RegistrationFinishedView() => _registrationFinished(context),
-                  RegisterEffect() => Container(),
-                },
-                Container(),
-              ],
-            ),
-          );
-        },
+      body: SingleChildScrollView(
+        child: BlocConsumer<RegisterBloc, RegisterStateEvent>(
+          buildWhen: (previousState, currentState) =>
+              _configureBuilderExecutionForState(currentState),
+          listenWhen: (previousState, currentState) =>
+              _configureListenerExecutionOnEffect(currentState),
+          listener: (context, state) {
+            _onNavigateBackEffect(state, context);
+            _onUserRegisterSuccessEffect(state, context);
+            _onUserRegisterFailureEffect(state, context);
+            _onSendDocumentErrorEffect(state, context);
+            _onSendDocumentSuccessEffect(state, context);
+          },
+          builder: (BuildContext context, RegisterStateEvent state) {
+            return SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _registrationLabel(),
+                  switch (state) {
+                    LoadingView() => const CircularProgressIndicator(),
+                    RegisterFormView() => _registerForm(context, state),
+                    UploadDocView() => _uploadFileForm(context, state),
+                    FileUploadedView() => _uploadFileForm(context, state),
+                    RegistrationFinishedView() =>
+                      _registrationFinished(context),
+                    RegisterEffect() => Container(),
+                  },
+                  Container(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -128,7 +132,7 @@ class RegisterScreen extends StatelessWidget {
           margin: const EdgeInsets.only(left: 16),
           child: Row(
             children: [
-              Image.asset('assets/images/icons/arrow.png'),
+              SvgPicture.asset('assets/icons/arrow_left.svg'),
               const SizedBox(
                 width: 8,
               ),
@@ -344,7 +348,7 @@ class RegisterScreen extends StatelessWidget {
 
   _fileUploadIndicatorIcon(RegisterState state) {
     if (state is UploadDocView) {
-      return Image.asset('assets/images/icons/upload_file.png');
+      return SvgPicture.asset('assets/icons/upload_file.svg');
     } else {
       return const Icon(
         Icons.check_circle_outline,

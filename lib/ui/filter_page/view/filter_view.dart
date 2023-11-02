@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
@@ -50,7 +51,7 @@ class _FilterViewState extends State<FilterView> {
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset("assets/images/icons/cross.png")
+                      SvgPicture.asset("assets/icons/cross.svg")
                     ],
                   ),
                 ),

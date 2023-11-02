@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/benefit_detail_card.dart';
@@ -51,7 +52,7 @@ class BenefitsView extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Image.asset("assets/images/icons/filter_icon.png")
+                    SvgPicture.asset("assets/icons/filter_icon.svg")
                   ],
                 ),
               ),

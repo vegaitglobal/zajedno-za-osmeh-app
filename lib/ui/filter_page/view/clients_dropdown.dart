@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/data/filter_feature/model/filter_model_response.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/bloc/benefits_bloc.dart';
@@ -30,9 +31,7 @@ class ClientsDropdown extends StatelessWidget {
           isExpanded: true,
           icon: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Image.asset(
-              'assets/images/icons/arrow_down.png',
-            ),
+            child: SvgPicture.asset('assets/icons/arrow_down.svg'),
           ),
           value: selectedCity.isNotEmpty ? selectedCity : null,
           items: [
