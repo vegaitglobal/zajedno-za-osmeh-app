@@ -63,7 +63,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
   Future<void> _sendEmail(String name, String lastname, String senderMail, String filePath) async {
     final Email email = Email(
-      body: 'Šalje: $sender',
+      body: 'Šalje: $senderMail',
       subject: 'Registracija korisnika',
       recipients: ['fondacijazajednozaosmeh@gmail.com'],
       attachmentPaths: [filePath],

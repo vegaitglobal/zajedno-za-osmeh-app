@@ -49,7 +49,9 @@ class AuthenticationBloc
         await repository.signUpWithVerification(
             email: _registrationData!.email,
             password: _registrationData!.password,
-            filePath: event.filePath);
+            filePath: event.filePath,
+            name: '',
+            lastname: '');
 
         emit(const RegistrationCompleteState());
       } catch (e) {
