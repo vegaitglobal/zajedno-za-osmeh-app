@@ -9,10 +9,12 @@ class ClientsDropdown extends StatelessWidget {
     super.key,
     required this.selectedCity,
     required this.cities,
+    required this.onSelect,
   });
 
   final String selectedCity;
   final List<FilterByCityModelResponse> cities;
+  final void Function() onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,12 @@ class ClientsDropdown extends StatelessWidget {
         padding: const EdgeInsets.only(top: 2, left: 12, bottom: 2),
         child: DropdownButton<String>(
           isExpanded: true,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Image.asset(
+              'assets/images/icons/arrow_down.png',
+            ),
+          ),
           value: selectedCity.isNotEmpty ? selectedCity : null,
           items: [
             const DropdownMenuItem<String>(
@@ -41,6 +49,7 @@ class ClientsDropdown extends StatelessWidget {
             }).toList(),
           ],
           onChanged: (newValue) {
+            onSelect();
             if (newValue == null) {
               context.read<BenefitsBloc>().add(RemoveCityFilter());
             } else {

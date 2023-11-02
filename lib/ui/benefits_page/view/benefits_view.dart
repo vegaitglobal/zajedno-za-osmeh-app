@@ -15,7 +15,7 @@ class BenefitsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFFF6F5FA),
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         bottomNavigationBar: const CustomBottomNavigationBar(),
         body: Center(
           child: Column(children: [
@@ -56,23 +56,6 @@ class BenefitsView extends StatelessWidget {
                 ),
               ),
             ),
-            // BlocBuilder<BenefitsBloc, BenefitsState>(
-            //   builder: (context, state) {
-            //     return switch (state) {
-            //       BenefitsLoadingState() => const Center(
-            //           child: CircularProgressIndicator(),
-            //         ),
-            //       BenefitsInitial() => const Placeholder(),
-            //       BenefitsSuccessState() => _buildFilterExpansionTile(
-            // state.categories,
-            // state.selectedCategories,
-            // state.cities,
-            // state.selectedCity,
-            //         ),
-            //       BenefitsFailState() => const Placeholder()
-            //     };
-            //   },
-            // ),
             const SizedBox(
               height: 10,
             ),
@@ -104,39 +87,4 @@ class BenefitsView extends StatelessWidget {
           ]),
         ));
   }
-
-  // Widget _buildFilterExpansionTile(
-  //     List<FilterUiModel> categories,
-  //     List<FilterUiModel> selectedCategories,
-  //     List<FilterByCityModelResponse> cities,
-  //     String selectedCity) {
-  //   return Padding(
-  //       padding: const EdgeInsets.symmetric(
-  //         horizontal: 16,
-  //       ),
-  //       child: Container(
-  //         decoration: const BoxDecoration(
-  //           color: Colors.white,
-  //           borderRadius: BorderRadius.all(Radius.circular(8)),
-  //         ),
-  //         child: ExpansionTile(
-  //           title: const Text(
-  //             'Filteri',
-  //             style: TextStyle(
-  //               fontSize: 24,
-  //               fontWeight: FontWeight.bold,
-  //             ),
-  //           ),
-  //           trailing: Image.asset("assets/images/icons/filter_icon.png"),
-  //           children: [
-  //             FilterView(
-  //               categories: categories,
-  //               selectedCategories: selectedCategories,
-  //               cities: cities,
-  //               selectedCity: selectedCity,
-  //             ),
-  //           ],
-  //         ),
-  //       ));
-  // }
 }

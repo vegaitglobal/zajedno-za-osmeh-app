@@ -75,7 +75,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           buildNavigationItem(AppRoutes.benefits, 'Usluge',
               'assets/images/icons/benefits${isActive(AppRoutes.benefits) ? '_active' : ''}_icon.png'),
           buildNavigationItem(AppRoutes.userProfile, 'Profil',
-              'assets/images/icons/profile${isActive(AppRoutes.authentification) ? '_active' : ''}_icon.png'),
+              'assets/images/icons/profile${isActive(AppRoutes.userProfile) ? '_active' : ''}_icon.png'),
           buildNavigationItem(AppRoutes.myQR, 'Tvoj QR',
               'assets/images/icons/your_qr${isActive(AppRoutes.myQR) ? '_active' : ''}_icon.png'),
           buildNavigationItem(AppRoutes.qrVerification, 'Sken',
