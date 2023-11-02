@@ -21,11 +21,14 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Future<void> signUpWithVerification(
-      {required String email,
-      required String password,
-      required String filePath}) async {
-    await _sendEmail(email, filePath)
+  Future<void> signUpWithVerification({
+    required String name,
+    required String lastname,
+    required String email,
+    required String password,
+    required String filePath,
+  }) async {
+    await _sendEmail(name, lastname, email, filePath)
         .then((value) => signUp(email: email, password: password))
         .then((value) => signIn(password: password, email: email))
         .then((value) => _updateSessionState());
@@ -58,7 +61,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
   void _updateSessionState() async =>
       _sessionStream.sink.add(await _mapAuthClientSessionToUserSession());
 
-  Future<void> _sendEmail(String sender, String filePath) async {
+  Future<void> _sendEmail(String name, String lastname, String senderMail, String filePath) async {
     final Email email = Email(
       body: 'Šalje: $sender',
       subject: 'Registracija korisnika',
@@ -87,5 +90,14 @@ class AuthenticationRepository implements IAuthenticationRepository {
     return _authClient.onAuthStateChange.map((event) {
       return event.event;
     });
+  }
+
+
+  @override
+  Future<String> getCurrentUserId() {
+    if(_authClient.currentUser == null){
+      throw Exception();
+    }
+    return Future<String>.value(_authClient.currentUser?.id);
   }
 }

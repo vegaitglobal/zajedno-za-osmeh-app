@@ -7,7 +7,7 @@ class QRCodeStatusRepository {
   Future<QRCodeStatusUIModel> get(String doneelId) async {
     final response = await supabaseClient.from('Donee').select().filter('id', 'eq', doneelId).single();
     QRCodeStatusUIModel qrStatus = QRCodeStatusUIModel(
-      isValid: response['is_verified'],
+      isValid: response['is_valid'],
     );
     return qrStatus;
   }

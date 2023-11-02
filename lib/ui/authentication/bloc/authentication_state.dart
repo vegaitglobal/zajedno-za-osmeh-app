@@ -1,10 +1,7 @@
 part of 'authentication_bloc.dart';
 
-sealed class AuthenticationState extends Equatable {
+sealed class AuthenticationState{
   const AuthenticationState();
-
-  @override
-  List<Object> get props => [];
 }
 
 final class AuthInitialState extends AuthenticationState {}
@@ -46,4 +43,8 @@ final class ForgotenPasswordState extends AuthenticationState {
 
 final class UpdatePasswordState extends AuthenticationState {
   const UpdatePasswordState();
+}
+
+final class LoadingState extends AuthenticationState {
+  const LoadingState() : super();
 }

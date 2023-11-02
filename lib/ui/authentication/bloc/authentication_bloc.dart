@@ -31,14 +31,13 @@ class AuthenticationBloc
         emit(const UserLoggedInState());
         emit(const AuthLoginState());
       } catch (e) {
-        emit(const AuthErrorState());
+        emit(AuthErrorState());
       }
     });
 
     on<EnterUserInformationEvent>((event, emit) async {
       _registrationData =
           RegistrationInformation(email: event.email, password: event.password);
-
       emit(const AuthFinalRegistrationState());
     });
 

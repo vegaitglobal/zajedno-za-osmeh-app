@@ -163,7 +163,7 @@ class _LoginCardState extends State<LoginCard> {
             widget.navigateToSignUp();
           },
           child: Text(
-            'napravite nalog kao korisnik usluga',
+            'Napravite nalog kao korisnik usluga',
             style: TextStyle(
               fontSize: 16,
               color: AppColors.clientOrange,

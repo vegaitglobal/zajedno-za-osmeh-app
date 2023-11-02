@@ -12,7 +12,7 @@ class QRVerificationBloc extends Bloc<QRVerificationEvent, QRVerificationState> 
         QRCodeStatusUIModel item = await repository.get(event.doneeId);
         emit(QRVerificationSuccessState(item));
       } catch (e) {
-        emit(const QRVerificationFailureState());
+        emit(QRVerificationFailureState());
       }
     });
   }

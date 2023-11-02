@@ -49,7 +49,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
     }
   }
 
-  _validateEmail(Emitter<RegisterStateEvent> emit, String email) {
+  void _validateEmail(Emitter<RegisterStateEvent> emit, String email) {
     _uiModel = _uiModel.copyWith(
       email: email,
       emailValid: checkEmailValidationRules(email),
@@ -129,7 +129,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
         filePath: image?.path,
         fileName: image?.name,
       );
-      emit(FileUploadedView(uiModel: _uiModel));
+      if (image == null) {
+        emit(FileUploadError());
+      } else {
+        emit(FileUploadedView(uiModel: _uiModel));
+      }
     } catch (exception) {
       emit(FileUploadError());
     }
@@ -138,6 +142,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
   void _sendDocumentation(Emitter<RegisterStateEvent> emit) async {
     try {
       await _repo.signUpWithVerification(
+          name: _uiModel.name,
+          lastname: _uiModel.lastName,
           email: _uiModel.email,
           password: _uiModel.password,
           filePath: _uiModel.filePath);

@@ -88,6 +88,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                   AuthRegistrationState() => Container(),
                   UserLoggedInState() => Container(),
                   RegistrationCompleteState() => Container(),
+                  LoadingState() => CircularProgressIndicator(),
                 };
               }),
         ));
@@ -95,13 +96,6 @@ class _AuthentificationViewState extends State<AuthentificationView> {
 
   _loginAction(BuildContext context, String email, String password) {
     context.read<AuthenticationBloc>().add(SignInEvent(email, password));
-  }
-
-  // Check if this is still needed
-  _signUpAction(BuildContext context, String email, String password) {
-    context
-        .read<AuthenticationBloc>()
-        .add(EnterUserInformationEvent(email, password));
   }
 
   _registrationCompleteAction(BuildContext context, String filePath) {
@@ -158,7 +152,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   ) {
     if (state is AuthErrorState) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Došlo je do greške, proverite internet konekciju"),
+        content: Text("Došlo je do greške prilikom prijave!"),
       ));
     }
   }
