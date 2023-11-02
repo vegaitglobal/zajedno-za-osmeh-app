@@ -23,38 +23,41 @@ class RegisterScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       bottomNavigationBar: const CustomBottomNavigationBar(),
       appBar: _appBar(context),
-      body: BlocConsumer<RegisterBloc, RegisterStateEvent>(
-        buildWhen: (previousState, currentState) =>
-            _configureBuilderExecutionForState(currentState),
-        listenWhen: (previousState, currentState) =>
-            _configureListenerExecutionOnEffect(currentState),
-        listener: (context, state) {
-          _onNavigateBackEffect(state, context);
-          _onUserRegisterSuccessEffect(state, context);
-          _onUserRegisterFailureEffect(state, context);
-          _onSendDocumentErrorEffect(state, context);
-          _onSendDocumentSuccessEffect(state, context);
-        },
-        builder: (BuildContext context, RegisterStateEvent state) {
-          return SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _registrationLabel(),
-                switch (state) {
-                  LoadingView() => const CircularProgressIndicator(),
-                  RegisterFormView() => _registerForm(context, state),
-                  UploadDocView() => _uploadFileForm(context, state),
-                  FileUploadedView() => _uploadFileForm(context, state),
-                  RegistrationFinishedView() => _registrationFinished(context),
-                  RegisterEffect() => Container(),
-                },
-                Container(),
-              ],
-            ),
-          );
-        },
+      body: SingleChildScrollView(
+        child: BlocConsumer<RegisterBloc, RegisterStateEvent>(
+          buildWhen: (previousState, currentState) =>
+              _configureBuilderExecutionForState(currentState),
+          listenWhen: (previousState, currentState) =>
+              _configureListenerExecutionOnEffect(currentState),
+          listener: (context, state) {
+            _onNavigateBackEffect(state, context);
+            _onUserRegisterSuccessEffect(state, context);
+            _onUserRegisterFailureEffect(state, context);
+            _onSendDocumentErrorEffect(state, context);
+            _onSendDocumentSuccessEffect(state, context);
+          },
+          builder: (BuildContext context, RegisterStateEvent state) {
+            return SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _registrationLabel(),
+                  switch (state) {
+                    LoadingView() => const CircularProgressIndicator(),
+                    RegisterFormView() => _registerForm(context, state),
+                    UploadDocView() => _uploadFileForm(context, state),
+                    FileUploadedView() => _uploadFileForm(context, state),
+                    RegistrationFinishedView() =>
+                      _registrationFinished(context),
+                    RegisterEffect() => Container(),
+                  },
+                  Container(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
