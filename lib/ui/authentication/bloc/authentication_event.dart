@@ -39,6 +39,24 @@ final class SwitchToSignUpScreen extends AuthenticationEvent {
   const SwitchToSignUpScreen();
 }
 
+final class SwitchToForgotPassScreen extends AuthenticationEvent {
+  const SwitchToForgotPassScreen();
+}
+
+final class SwitchToUpdatePassScreen extends AuthenticationEvent {
+  const SwitchToUpdatePassScreen();
+}
+
 class SignOutEvent extends AuthenticationEvent {
   const SignOutEvent();
+}
+
+class ResetPasswordEvent extends AuthenticationEvent {
+  final String email;
+  const ResetPasswordEvent(this.email);
+}
+
+class UpdatePasswordEvent extends AuthenticationEvent {
+  final String newPassword;
+  const UpdatePasswordEvent(this.newPassword);
 }

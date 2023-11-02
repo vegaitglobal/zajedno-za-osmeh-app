@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:gu_mobile/data/authentication/local/user_storage.dart';
+import 'package:gu_mobile/data/core/supabase/supabase_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'i_authentication_repository.dart';
@@ -45,7 +46,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Future<UserSession> getCurrentSession() async => _mapAuthClientSessionToUserSession();
+  Future<UserSession> getCurrentSession() async =>
+      _mapAuthClientSessionToUserSession();
 
   Future<UserSession> _mapAuthClientSessionToUserSession() async =>
       _authClient.currentSession == null ? Unauthorized() : Authorized();
@@ -53,8 +55,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   StreamController<UserSession> observeSessionState() => _sessionStream;
 
-
-  void _updateSessionState() async => _sessionStream.sink.add(await _mapAuthClientSessionToUserSession());
+  void _updateSessionState() async =>
+      _sessionStream.sink.add(await _mapAuthClientSessionToUserSession());
 
   Future<void> _sendEmail(String sender, String filePath) async {
     final Email email = Email(
@@ -66,5 +68,24 @@ class AuthenticationRepository implements IAuthenticationRepository {
     );
 
     await FlutterEmailSender.send(email);
+  }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await _authClient.resetPasswordForEmail(email,
+        redirectTo: 'io.supabase.zajednozaosmeh://login-callback/');
+  }
+
+  @override
+  Future<void> updatePassword(String newPassword) async {
+    final userAttributes = UserAttributes(password: newPassword);
+    await _authClient.updateUser(userAttributes);
+  }
+
+  @override
+  Stream<AuthChangeEvent> getAuthStateChanges() {
+    return _authClient.onAuthStateChange.map((event) {
+      return event.event;
+    });
   }
 }

@@ -12,7 +12,7 @@ enum AppRoutes {
   filters,
   login,
   register,
-  userProfile
+  userProfile,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -30,6 +30,6 @@ extension AppRoutesExtension on AppRoutes {
         AppRoutes.filters => '/filters',
         AppRoutes.login => '/login',
         AppRoutes.register => '/register',
-        AppRoutes.userProfile => '/userProfile'
+        AppRoutes.userProfile => '/userProfile',
       };
 }
