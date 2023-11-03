@@ -274,7 +274,6 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -296,7 +295,7 @@ class RegisterScreen extends StatelessWidget {
                         }
                       },
                       child: const Text(
-                        "Posalji zahtev",
+                        "Pošalji zahtev",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -314,10 +313,10 @@ class RegisterScreen extends StatelessWidget {
 
   _uploadedFileNamePlaceholder(RegisterState state) {
     if (state is UploadDocView) {
-      return const Text("Potrebno je priloziti fotografiju dokumenta");
+      return const Text("Potrebno je priložiti fotografiju dokumenta");
     }
     if (state is FileUploadedView) {
-      return const Text("Dokument uspesno ucitan");
+      return const Text("Dokument uspešno učitan");
     }
   }
 
@@ -430,10 +429,12 @@ class RegisterScreen extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Green),
                 ),
-                onPressed: () =>
-                    {context.read<RegisterBloc>().add(OnBackPressed())},
+                onPressed: () => {
+                  context.read<RegisterBloc>().add(OnBackPressed()),
+                  context.go(AppRoutes.home.path())
+                },
                 child: const Text(
-                  "Zavrsi i idi na pocetnu stranu",
+                  "Završi i idi na početnu stranu",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
