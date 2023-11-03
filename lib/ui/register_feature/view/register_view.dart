@@ -430,8 +430,7 @@ class RegisterScreen extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Green),
                 ),
-                onPressed: () =>
-                    {context.read<RegisterBloc>().add(OnBackPressed())},
+                onPressed: () => {context.go(AppRoutes.home.path())},
                 child: const Text(
                   "Zavrsi i idi na pocetnu stranu",
                   style: TextStyle(

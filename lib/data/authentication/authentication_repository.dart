@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:gu_mobile/data/authentication/local/user_storage.dart';
-import 'package:gu_mobile/data/core/supabase/supabase_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'i_authentication_repository.dart';
@@ -29,7 +28,6 @@ class AuthenticationRepository implements IAuthenticationRepository {
     required String filePath,
   }) async {
     await _sendEmail(name, lastname, email, filePath)
-        .then((value) => signUp(email: email, password: password))
         .then((value) => signIn(password: password, email: email))
         .then((value) => _updateSessionState());
   }
