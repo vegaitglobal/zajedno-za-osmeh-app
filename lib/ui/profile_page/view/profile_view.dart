@@ -44,12 +44,13 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                ProfileButton(
-                  onPress: () {},
-                  icon: Icons.password_outlined,
-                  text: "Promeni lozinku",
-                ),
-                const SizedBox(height: 20),
+                //TODO uncomment this once we are able to implement it properly
+                // ProfileButton(
+                //   onPress: () {},
+                //   icon: Icons.password_outlined,
+                //   text: "Promeni lozinku",
+                // ),
+                // const SizedBox(height: 20),
                 ProfileButton(
                   onPress: signOut,
                   icon: Icons.logout,

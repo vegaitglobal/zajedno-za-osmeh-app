@@ -427,10 +427,7 @@ class RegisterScreen extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Green),
                 ),
-                onPressed: () => {
-                  context.read<RegisterBloc>().add(OnBackPressed()),
-                  context.go(AppRoutes.home.path())
-                },
+                onPressed: () => {context.go(AppRoutes.home.path())},
                 child: const Text(
                   "Završi i idi na početnu stranu",
                   style: TextStyle(
