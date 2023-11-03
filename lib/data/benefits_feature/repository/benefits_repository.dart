@@ -31,7 +31,7 @@ class BenefitsRepository implements BenefitsRepo {
         (element) => benefitsUiData.add(element.toUiModel()),
       );
     } catch (error) {
-      print(error);
+      throw Exception();
     }
     return benefitsUiData;
   }

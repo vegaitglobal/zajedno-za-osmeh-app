@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -31,7 +29,7 @@ class AuthenticationBloc
         emit(const UserLoggedInState());
         emit(const AuthLoginState());
       } catch (e) {
-        emit(AuthErrorState());
+        emit(const AuthErrorState());
       }
     });
 

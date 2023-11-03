@@ -16,7 +16,7 @@ class DonatePage extends StatelessWidget {
     context.read<DonatePageBloc>().add(const DonatePageFetchOrganization());
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: BlocListener<DonatePageBloc, DonatePageState>(
         listener: (context, state) {},
         child: BlocBuilder<DonatePageBloc, DonatePageState>(

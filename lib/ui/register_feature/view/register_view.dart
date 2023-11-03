@@ -1,12 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/ui/theme/color.dart';
-
 import '../../../resources/my_colors.dart';
 import '../../common/custom_bottom_navigation_bar.dart';
 import '../bloc/register_bloc.dart';
@@ -274,7 +272,6 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -296,7 +293,7 @@ class RegisterScreen extends StatelessWidget {
                         }
                       },
                       child: const Text(
-                        "Posalji zahtev",
+                        "Pošalji zahtev",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -314,10 +311,10 @@ class RegisterScreen extends StatelessWidget {
 
   _uploadedFileNamePlaceholder(RegisterState state) {
     if (state is UploadDocView) {
-      return const Text("Potrebno je priloziti fotografiju dokumenta");
+      return const Text("Potrebno je priložiti fotografiju dokumenta");
     }
     if (state is FileUploadedView) {
-      return const Text("Dokument uspesno ucitan");
+      return const Text("Dokument uspešno učitan");
     }
   }
 
@@ -422,7 +419,7 @@ class RegisterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(_registration_confirmation_text),
+            const Text(_registrationConfirmationText),
             const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
             SizedBox(
               width: double.infinity,
@@ -432,7 +429,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 onPressed: () => {context.go(AppRoutes.home.path())},
                 child: const Text(
-                  "Zavrsi i idi na pocetnu stranu",
+                  "Završi i idi na početnu stranu",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -446,7 +443,7 @@ class RegisterScreen extends StatelessWidget {
       );
 }
 
-const _registration_confirmation_text =
+const _registrationConfirmationText =
     "Primili smo Vaš zahtev za registraciju, nas admin tim ce pregledati Vašu prijavu "
     "i dobićete potvrdu na unetu email adresu da li je Vaš zahtev prihvaćen.\n\n"
     "Ukoliko Vaša prijava bude privaćena, na aplikaciji će Vam biti dostupan QR "
