@@ -41,24 +41,6 @@ class AuthenticationBloc
       emit(const AuthFinalRegistrationState());
     });
 
-    on<CompleteSignUpEvent>((event, emit) async {
-      try {
-        if (_registrationData == null) {
-          emit(const AuthErrorState());
-        }
-        await repository.signUpWithVerification(
-            email: _registrationData!.email,
-            password: _registrationData!.password,
-            filePath: event.filePath,
-            name: '',
-            lastname: '');
-
-        emit(const RegistrationCompleteState());
-      } catch (e) {
-        emit(const AuthErrorState());
-      }
-    });
-
     on<BackButtonPressedEvent>((event, emit) async {
       if (state is AuthRegistrationState || state is ForgotenPasswordState) {
         emit(const AuthLoginState());
