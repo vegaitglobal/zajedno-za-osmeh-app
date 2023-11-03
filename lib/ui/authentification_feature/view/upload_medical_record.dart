@@ -19,7 +19,7 @@ class _UploadMedicalrecordCardState extends State<UploadMedicalrecordCard> {
   Key formKey = GlobalKey();
   bool submitEnabled = false;
 
-  String? filePath = null;
+  String? filePath;
 
   @override
   Widget build(BuildContext context) {

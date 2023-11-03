@@ -137,7 +137,7 @@ class _SignUpCardState extends State<SignUpCard> {
                 ),
               )
             ]),
-            SizedBox(
+            const SizedBox(
               height: 6,
             ),
             Text(

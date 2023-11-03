@@ -13,7 +13,7 @@ import '../../authentification_feature/view/login_card.dart';
 import '../../authentification_feature/view/upload_medical_record.dart';
 
 class AuthentificationView extends StatefulWidget {
-  AuthentificationView({super.key});
+  const AuthentificationView({super.key});
 
   @override
   State<AuthentificationView> createState() => _AuthentificationViewState();
@@ -88,7 +88,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                   AuthRegistrationState() => Container(),
                   UserLoggedInState() => Container(),
                   RegistrationCompleteState() => Container(),
-                  LoadingState() => CircularProgressIndicator(),
+                  LoadingState() => const CircularProgressIndicator(),
                 };
               }),
         ));

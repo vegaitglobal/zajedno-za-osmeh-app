@@ -12,7 +12,6 @@ class ProfileBloc extends Bloc<DeleteProfile, ProfileState> {
 
         emit(const ProfileDeletionSuccessState());
       } catch (e) {
-        print('error: $e');
         emit(const ProfileDeletionFailureState());
       }
     });

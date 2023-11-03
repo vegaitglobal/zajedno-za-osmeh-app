@@ -36,7 +36,7 @@ final _router = GoRouter(initialLocation: AppRoutes.home.path(), routes: [
             path: AppRoutes.authentification.path(),
             name: AppRoutes.authentification.name,
             builder: (context, state) {
-              return AuthentificationView();
+              return const AuthentificationView();
             }),
         GoRoute(
             path: AppRoutes.benefits.path(),

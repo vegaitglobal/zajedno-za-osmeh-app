@@ -10,7 +10,7 @@ import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
 class BenefitDetailView extends StatelessWidget {
   final BenefitModel benefitData;
 
-  BenefitDetailView({required this.benefitData, super.key});
+  const BenefitDetailView({required this.benefitData, super.key});
 
   @override
   Widget build(BuildContext context) {
