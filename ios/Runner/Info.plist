@@ -62,5 +62,7 @@
 		<false/>
 		<key>NSCameraUsageDescription</key>
 		<string>Dozvoli aplikaciji da koristi kameru</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Dozvoli aplikaciji da koristi fajlove</string>
 	</dict>
 </plist>
