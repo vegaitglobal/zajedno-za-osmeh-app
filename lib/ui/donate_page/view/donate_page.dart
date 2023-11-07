@@ -5,7 +5,7 @@ import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/bloc/donate_page_bloc.dart';
 import 'package:gu_mobile/ui/donate_page/view/contact_info.dart';
 import 'package:gu_mobile/ui/donate_page/view/payments_info.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../common/custom_appbar.dart';
 
 class DonatePage extends StatelessWidget {
@@ -49,6 +49,26 @@ class DonatePage extends StatelessWidget {
                             height: 20,
                           ),
                           PaymentInfo(organization: state.organization),
+                          SizedBox(
+                            height: 80,
+                            width: double.infinity,
+                            child: TextButton(
+                              onPressed: () {
+                                launchUrl(
+                                  Uri.parse(
+                                      "https://www.freeprivacypolicy.com/live/e9822a57-52c0-4c55-99bd-4ab72176e285"),
+                                );
+                              },
+                              child: const Text(
+                                "Privacy Policy",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Color.fromARGB(92, 0, 0, 0),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     )

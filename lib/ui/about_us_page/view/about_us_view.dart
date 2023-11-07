@@ -70,10 +70,6 @@ class AboutUsView extends StatelessWidget {
                     height: 20,
                   ),
                   _buildOurTeamExpansionTile(state.teamMembers),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  _buildTermsExpansionTile(),
                 ]),
               AboutUsFailureState() => const Padding(
                   padding: EdgeInsets.only(
@@ -218,42 +214,6 @@ class AboutUsView extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Padding _buildTermsExpansionTile() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-        child: const ExpansionTile(
-          title: Text(
-            'Terms & Conditions',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 24, left: 16, right: 16),
-              child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
-                'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
-                'nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit '
-                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, '
-                'sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                style: TextStyle(fontSize: 16),
               ),
             ),
           ],
