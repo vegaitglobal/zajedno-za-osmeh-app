@@ -16,33 +16,42 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
     required FilterRepository filterRepository,
   }) : super(const BenefitsInitial([], [], [], [], [], '')) {
     on<FetchBenefitsData>((event, emit) async {
-      emit(
-        BenefitsLoadingState(
+      if (state.benefits.isEmpty) {
+        emit(
+          BenefitsLoadingState(
+              state.benefits,
+              state.filteredBenefits,
+              state.categories,
+              state.selectedCategories,
+              state.cities,
+              state.selectedCity),
+        );
+        try {
+          List<BenefitModel> benefitsData =
+              await benefitsRepository.getBenefits();
+
+          List<FilterUiModel> categories = await filterRepository.getAll();
+
+          List<FilterByCityModelResponse> cities =
+              await filterRepository.getAllCities();
+          emit(BenefitsSuccessState(
+            benefitsData,
+            benefitsData,
+            categories,
+            const [],
+            cities,
+            '',
+          ));
+        } catch (error) {
+          emit(BenefitsFailState(
             state.benefits,
             state.filteredBenefits,
             state.categories,
             state.selectedCategories,
             state.cities,
-            state.selectedCity),
-      );
-      try {
-        List<BenefitModel> benefitsData =
-            await benefitsRepository.getBenefits();
-        List<FilterUiModel> categories = await filterRepository.getAll();
-
-        List<FilterByCityModelResponse> cities =
-            await filterRepository.getAllCities();
-        emit(BenefitsSuccessState(
-            benefitsData, benefitsData, categories, const [], cities, ''));
-      } catch (error) {
-        emit(BenefitsFailState(
-          state.benefits,
-          state.filteredBenefits,
-          state.categories,
-          state.selectedCategories,
-          state.cities,
-          state.selectedCity,
-        ));
+            state.selectedCity,
+          ));
+        }
       }
     });
 
