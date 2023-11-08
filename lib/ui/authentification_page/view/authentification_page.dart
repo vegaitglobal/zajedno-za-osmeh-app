@@ -23,75 +23,85 @@ class _AuthentificationViewState extends State<AuthentificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leadingWidth: 150,
-          leading: GestureDetector(
-            onTap: () {
-              context
-                  .read<AuthenticationBloc>()
-                  .add(const BackButtonPressedEvent());
-            },
-            child: Container(
-              margin: const EdgeInsets.only(left: 16),
-              child: Row(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: AppColors.backgroundColor,
+      bottomNavigationBar: const CustomBottomNavigationBar(),
+      body: SafeArea(
+        child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+            buildWhen: (context, state) => _triggerBuilderOnStateChange(state),
+            listenWhen: (context, state) =>
+                _triggerListenerOnStateChange(state),
+            listener: (context, state) => _handleEventListener(state, context),
+            builder: (context, state) {
+              return Column(
                 children: [
-                  SvgPicture.asset('assets/icons/arrow_left.svg'),
-                  const SizedBox(
-                    width: 8,
+                  Container(
+                    height: 50,
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (state is AuthLoginState) {
+                          context.go(AppRoutes.home.path());
+                        }
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(const BackButtonPressedEvent());
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 16),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset('assets/icons/arrow_left.svg'),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Nazad',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.royalBlue,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  Text(
-                    'Nazad',
-                    style: TextStyle(fontSize: 14, color: AppColors.royalBlue),
+                  Column(
+                    children: [
+                      switch (state) {
+                        AuthLoginState() => LoginCard(
+                            onSubmit: (email, password) =>
+                                _loginAction(context, email, password),
+                            navigateToSignUp: () => _switchToSignUp(context),
+                            navigateToForgotPassword: () =>
+                                _switchToForgotPassScreen(context),
+                          ),
+                        AuthFinalRegistrationState() => UploadMedicalrecordCard(
+                            onSubmit: (filePath) =>
+                                _registrationCompleteAction(context, filePath),
+                          ),
+                        UserLoggedOutState() => LoginCard(
+                            onSubmit: (email, password) =>
+                                _loginAction(context, email, password),
+                            navigateToSignUp: () => _switchToSignUp(context),
+                            navigateToForgotPassword: () =>
+                                _switchToForgotPassScreen(context),
+                          ),
+                        ForgotenPasswordState() => const ForgotPasswordCard(),
+                        UpdatePasswordState() => const UpdatePasswordCard(),
+                        AuthErrorState() => Container(),
+                        AuthInitialState() => Container(),
+                        AuthRegistrationState() => Container(),
+                        UserLoggedInState() => Container(),
+                        RegistrationCompleteState() => Container(),
+                        LoadingState() => const CircularProgressIndicator(),
+                      }
+                    ],
                   )
                 ],
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: AppColors.backgroundColor,
-        bottomNavigationBar: const CustomBottomNavigationBar(),
-        body: Center(
-          child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              buildWhen: (context, state) =>
-                  _triggerBuilderOnStateChange(state),
-              listenWhen: (context, state) =>
-                  _triggerListenerOnStateChange(state),
-              listener: (context, state) =>
-                  _handleEventListener(state, context),
-              builder: (context, state) {
-                return switch (state) {
-                  AuthLoginState() => LoginCard(
-                      onSubmit: (email, password) =>
-                          _loginAction(context, email, password),
-                      navigateToSignUp: () => _switchToSignUp(context),
-                      navigateToForgotPassword: () =>
-                          _switchToForgotPassScreen(context),
-                    ),
-                  AuthFinalRegistrationState() => UploadMedicalrecordCard(
-                      onSubmit: (filePath) =>
-                          _registrationCompleteAction(context, filePath),
-                    ),
-                  UserLoggedOutState() => LoginCard(
-                      onSubmit: (email, password) =>
-                          _loginAction(context, email, password),
-                      navigateToSignUp: () => _switchToSignUp(context),
-                      navigateToForgotPassword: () =>
-                          _switchToForgotPassScreen(context),
-                    ),
-                  ForgotenPasswordState() => const ForgotPasswordCard(),
-                  UpdatePasswordState() => const UpdatePasswordCard(),
-                  AuthErrorState() => Container(),
-                  AuthInitialState() => Container(),
-                  AuthRegistrationState() => Container(),
-                  UserLoggedInState() => Container(),
-                  RegistrationCompleteState() => Container(),
-                  LoadingState() => const CircularProgressIndicator(),
-                };
-              }),
-        ));
+              );
+            }),
+      ),
+    );
   }
 
   _loginAction(BuildContext context, String email, String password) {
