@@ -36,51 +36,53 @@ class AboutUsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: const CustomAppBar(),
-      body: BlocListener<AboutUsBloc, AboutUsState>(
-        listener: (BuildContext context, AboutUsState state) {},
-        child: BlocBuilder<AboutUsBloc, AboutUsState>(
-          builder: (context, state) {
-            return switch (state) {
-              AboutUsInitialState() => const Padding(
-                  padding: EdgeInsets.only(
-                    top: 24,
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: LeftArrowBackButton(),
-                ),
-              AboutUsSuccessState() => ListView(children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      top: 24,
-                      left: 16,
-                      right: 16,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: BlocListener<AboutUsBloc, AboutUsState>(
+            listener: (BuildContext context, AboutUsState state) {},
+            child: BlocBuilder<AboutUsBloc, AboutUsState>(
+              builder: (context, state) {
+                return switch (state) {
+                  AboutUsInitialState() => const Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    child: LeftArrowBackButton(),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  _buildWhoAreWeExpansionTile(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  _buildGoalsOfFoundationExpansionTile(goals),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  _buildOurTeamExpansionTile(state.teamMembers),
-                ]),
-              AboutUsFailureState() => const Padding(
-                  padding: EdgeInsets.only(
-                    top: 24,
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: LeftArrowBackButton(),
-                ),
-            };
-          },
+                  AboutUsSuccessState() => Column(children: [
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: 24,
+                          left: 16,
+                          right: 16,
+                        ),
+                        child: LeftArrowBackButton(),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _buildWhoAreWeExpansionTile(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      _buildGoalsOfFoundationExpansionTile(goals),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      _buildOurTeamExpansionTile(state.teamMembers),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ]),
+                  AboutUsFailureState() => const Padding(
+                      padding: EdgeInsets.only(
+                        top: 24,
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: LeftArrowBackButton(),
+                    ),
+                };
+              },
+            ),
+          ),
         ),
       ),
     );
