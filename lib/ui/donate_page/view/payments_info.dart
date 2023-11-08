@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/donate_page/model/organization_ui_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PaymentInfo extends StatelessWidget {
   const PaymentInfo({super.key, required this.organization});
@@ -234,10 +235,11 @@ class PaymentInfo extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.network(
-          organization.ipsQrUrl,
-          height: 80,
+        CachedNetworkImage(
+          imageUrl: organization.ipsQrUrl,
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           width: 80,
+          height: 80,
         ),
         const SizedBox(
           width: 20,

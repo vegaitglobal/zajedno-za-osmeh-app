@@ -7,15 +7,34 @@ part 'donate_page_event.dart';
 
 part 'donate_page_state.dart';
 
+final emptyOrganization = OrganizationUIModel(
+  id: 0,
+  createdAt: '',
+  account: '',
+  accessFileUrl: '',
+  email: '',
+  phoneNumber: '',
+  beneficiaryBankSwift: '',
+  beneficiaryBankName: '',
+  beneficiaryIban: '',
+  beneficiaryName: '',
+  beneficiaryAddress: '',
+  correspondentBankName: '',
+  correspondentBankSwift: '',
+  ipsQrUrl: '',
+);
+
 class DonatePageBloc extends Bloc<DonatePageEvent, DonatePageState> {
   DonatePageBloc({required OrganizationRepository repository})
-      : super(const DonatePageInitialState()) {
+      : super(DonatePageInitialState(emptyOrganization)) {
     on<DonatePageFetchOrganization>((event, emit) async {
-      try {
-        OrganizationUIModel organization = await repository.get();
-        emit(DonatePageSuccessState(organization));
-      } catch (e) {
-        emit(const DonatePageFailureState());
+      if (state.organization == emptyOrganization) {
+        try {
+          OrganizationUIModel organization = await repository.get();
+          emit(DonatePageSuccessState(organization));
+        } catch (e) {
+          emit(DonatePageFailureState(emptyOrganization));
+        }
       }
     });
   }

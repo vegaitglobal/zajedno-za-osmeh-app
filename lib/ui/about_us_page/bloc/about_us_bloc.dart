@@ -6,13 +6,15 @@ import 'package:gu_mobile/ui/about_us_page/model/team_members_ui_model.dart';
 
 class AboutUsBloc extends Bloc<AboutUsEvent, AboutUsState> {
   AboutUsBloc({required TeamMembersRepository repository})
-      : super(const AboutUsInitialState()) {
+      : super(const AboutUsInitialState([])) {
     on<AboutUsFetchTeamMembers>((event, emit) async {
-      try {
-        List<TeamMembersUIModel> items = await repository.getAll();
-        emit(AboutUsSuccessState(items));
-      } catch (e) {
-        emit(const AboutUsFailureState());
+      if (state.teamMembers.isEmpty) {
+        try {
+          List<TeamMembersUIModel> items = await repository.getAll();
+          emit(AboutUsSuccessState(items));
+        } catch (e) {
+          emit(const AboutUsFailureState([]));
+        }
       }
     });
   }

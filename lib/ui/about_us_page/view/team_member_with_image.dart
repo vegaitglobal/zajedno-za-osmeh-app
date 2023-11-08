@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gu_mobile/ui/about_us_page/model/team_members_ui_model.dart';
 
 class TeamMemberWithImage extends StatelessWidget {
@@ -24,8 +25,9 @@ class TeamMemberWithImage extends StatelessWidget {
             width: 158,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                teamMember.profileImageUrl!,
+              child: CachedNetworkImage(
+                imageUrl: teamMember.profileImageUrl!,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 fit: BoxFit.cover,
               ),
             ),
