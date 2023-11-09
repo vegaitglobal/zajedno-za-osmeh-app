@@ -36,9 +36,9 @@ class _AuthentificationViewState extends State<AuthentificationView> {
               return Column(
                 children: [
                   Container(
-                    height: 50,
                     alignment: Alignment.topLeft,
                     child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       onTap: () {
                         if (state is AuthLoginState) {
                           context.go(AppRoutes.home.path());
@@ -49,6 +49,7 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                       },
                       child: Container(
                         margin: const EdgeInsets.only(left: 16),
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Row(
                           children: [
                             SvgPicture.asset('assets/icons/arrow_left.svg'),
