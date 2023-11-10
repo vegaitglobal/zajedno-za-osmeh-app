@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/benefits_feature/components/tag_pill.dart';
@@ -28,11 +29,12 @@ class BenefitDetailsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(
-                benefitData.logoImgUrl,
+              CachedNetworkImage(
+                imageUrl: benefitData.logoImgUrl,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 fit: BoxFit.contain,
-                width: 120,
                 height: 70,
+                width: 120,
               ),
               GestureDetector(
                 onTap: () {

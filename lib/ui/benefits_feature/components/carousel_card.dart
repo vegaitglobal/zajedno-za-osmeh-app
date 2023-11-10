@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../model/benefit_model.dart';
 
 class CarouselCard extends StatelessWidget {
@@ -26,10 +26,11 @@ class CarouselCard extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
-              child: Image.network(
-                benefitData.coverImgUrl,
-                height: 176,
+              child: CachedNetworkImage(
+                imageUrl: benefitData.coverImgUrl,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 fit: BoxFit.cover,
+                height: 176,
               ),
             ),
             Padding(
