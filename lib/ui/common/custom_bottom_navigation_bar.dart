@@ -91,6 +91,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          if (route == AppRoutes.benefits && !isActive(AppRoutes.benefits))
+            Container(height: 10),
           SvgPicture.asset(iconSrc),
           Text(
             name,
