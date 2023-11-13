@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:gu_mobile/data/authentication/i_authentication_repository.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../model/register_event.dart';
 import '../model/register_state.dart';
 import '../model/register_ui_model.dart';
@@ -116,7 +115,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateEvent> {
           .then((value) => {emit(UploadDocView()), emit(UserRegisterSuccess())})
           .catchError(
         (onError) {
-          emit(UserRegisterFailure("Dogodila se greska, probajte kasnije"));
+          emit(UserRegisterFailure("Dogodila se greška, probajte kasnije"));
         },
       );
     }

@@ -17,7 +17,6 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
   bool isPasswordValid = true;
   bool isRepeatedPasswordValid = true;
   bool isPasswordObscured = true;
-  bool isRepeatedPasswordObscured = true;
   bool isButtonDisabled = true;
   String password = '';
   String repeatedPassword = '';
@@ -65,6 +64,8 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                     onChanged: (value) {
                       setState(() {
                         isPasswordValid = validatePassword(value);
+                        isRepeatedPasswordValid =
+                            validateRepeatedPassword(value);
                         password = value;
                       });
                     },
@@ -108,6 +109,15 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                   )
                 ],
               ),
+              const SizedBox(height: 5),
+              const Text(
+                "Lozinka mora da sadrži najmanje 8 karaktera, jedno malo i veliko slovo i jedan broj",
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               const SizedBox(height: 30),
               Stack(
                 children: [
@@ -115,14 +125,13 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                     onChanged: (value) {
                       setState(() {
                         isRepeatedPasswordValid =
-                            validateRepeatedPassword(value) &&
-                                validatePassword(value);
+                            validateRepeatedPassword(value);
                         repeatedPassword = value;
                       });
                     },
                     initialValue: repeatedPassword,
                     autocorrect: false,
-                    obscureText: isRepeatedPasswordObscured,
+                    obscureText: true,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       errorText: !isRepeatedPasswordValid
@@ -143,23 +152,6 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                           horizontal: 17, vertical: 10),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isRepeatedPasswordObscured =
-                              !isRepeatedPasswordObscured;
-                        });
-                      },
-                      icon: Icon(
-                        isRepeatedPasswordObscured
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                      ),
-                      color: AppColors.clientOrange,
-                    ),
-                  )
                 ],
               ),
               const SizedBox(height: 30),
@@ -169,11 +161,6 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                         context
                             .read<AuthenticationBloc>()
                             .add(UpdatePasswordEvent(password));
-                        // ScaffoldMessenger.of(context)
-                        //     .showSnackBar(const SnackBar(
-                        //   content: Text(
-                        //       "Email za resetovanje lozinke vam je poslat."),
-                        // ));
                       }
                     : null,
                 child: Container(
