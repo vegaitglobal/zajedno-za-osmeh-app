@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gu_mobile/common/left_arrow_back_button.dart';
 import 'package:gu_mobile/navigation/app_routing/app_routes.dart';
 import 'package:gu_mobile/resources/my_colors.dart';
 import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/update_password_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
-
 import '../../authentification_feature/view/login_card.dart';
 import '../../authentification_feature/view/upload_medical_record.dart';
 
@@ -37,32 +36,17 @@ class _AuthentificationViewState extends State<AuthentificationView> {
                 children: [
                   Container(
                     alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        if (state is AuthLoginState) {
-                          context.go(AppRoutes.home.path());
-                        }
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(const BackButtonPressedEvent());
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 16),
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset('assets/icons/arrow_left.svg'),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Nazad',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: AppColors.royalBlue,
-                              ),
-                            )
-                          ],
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: LeftArrowBackButton(
+                        onPress: () {
+                          if (state is AuthLoginState) {
+                            context.go(AppRoutes.home.path());
+                          }
+                          context
+                              .read<AuthenticationBloc>()
+                              .add(const BackButtonPressedEvent());
+                        },
                       ),
                     ),
                   ),

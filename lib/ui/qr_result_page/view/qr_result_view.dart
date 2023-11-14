@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gu_mobile/common/left_arrow_back_button.dart';
 
 import '../../../navigation/app_routing/app_routes.dart';
 import '../../../resources/my_colors.dart';
@@ -17,23 +17,9 @@ class QRResultView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 150,
-        leading: GestureDetector(
-          onTap: () => context.go(AppRoutes.home.path()),
-          child: Container(
-            margin: const EdgeInsets.only(left: 16),
-            child: Row(
-              children: [
-                SvgPicture.asset('assets/icons/arrow_left.svg'),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  'Nazad',
-                  style: TextStyle(fontSize: 14, color: AppColors.royalBlue),
-                )
-              ],
-            ),
-          ),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 16),
+          child: LeftArrowBackButton(),
         ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(),
