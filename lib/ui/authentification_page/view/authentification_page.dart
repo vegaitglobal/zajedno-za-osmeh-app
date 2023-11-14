@@ -8,7 +8,6 @@ import 'package:gu_mobile/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/forgot_password_card.dart';
 import 'package:gu_mobile/ui/authentification_feature/view/update_password_card.dart';
 import 'package:gu_mobile/ui/common/custom_bottom_navigation_bar.dart';
-
 import '../../authentification_feature/view/login_card.dart';
 import '../../authentification_feature/view/upload_medical_record.dart';
 
