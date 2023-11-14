@@ -48,6 +48,7 @@ app.*.map.json
 
 # Exclude pubspec lock file
 pubspec.lock
+*.env
 
 *.env
 
