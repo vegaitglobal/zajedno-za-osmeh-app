@@ -36,26 +36,28 @@ class BenefitDetailsCard extends StatelessWidget {
                 height: 70,
                 width: 120,
               ),
-              GestureDetector(
-                onTap: () {
-                  _launchUrl(Uri.parse(benefitData.websiteUrl));
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'website donatora',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.grayBlue,
+              benefitData.websiteUrl != 'null'
+                  ? GestureDetector(
+                      onTap: () {
+                        _launchUrl(Uri.parse(benefitData.websiteUrl));
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            'website donatora',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.grayBlue,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          SvgPicture.asset('assets/icons/external_link.svg')
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    SvgPicture.asset('assets/icons/external_link.svg')
-                  ],
-                ),
-              )
+                    )
+                  : Container()
             ],
           ),
           const SizedBox(
